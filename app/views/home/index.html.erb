@@ -1,0 +1,8 @@
+<h1>Life Achievement</h1>
+
+<% if current_user %>
+    <%= link_to "Logga ut", destroy_user_session_path, method: 'DELETE' %>
+<% else %>
+    <%= link_to "Logga in", new_user_session_path %><br>
+    <%= link_to "Bli medlem", new_user_registration_path %>
+<% end %>
