@@ -6,4 +6,10 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :achievements
   has_many :posts
   has_one :bucket_list
+  after_create :set_bucket_list
+  
+  def set_bucket_list
+    BucketList.new({ :user_id => self.id }).save
+  end
+  
 end
