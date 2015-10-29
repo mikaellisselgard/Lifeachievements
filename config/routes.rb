@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bucket_lists
   resources :posts
   resources :achievements
   resources :categories
