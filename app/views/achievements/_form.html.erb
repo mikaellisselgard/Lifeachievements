@@ -19,6 +19,10 @@
     <%= f.label :score %><br>
     <%= f.number_field :score %>
   </div>
+    <div class="field">
+      <%= f.label :category_id %><br>
+      <%= f.collection_select :category_ids, @categories, :id, :name, {}, { multiple: true, 'style' => 'height:200px' }%>
+    </div>
   <div class="actions">
     <%= f.submit %>
   </div>

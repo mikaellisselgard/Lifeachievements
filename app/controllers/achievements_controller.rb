@@ -15,6 +15,7 @@ class AchievementsController < ApplicationController
   # GET /achievements/new
   def new
     @achievement = Achievement.new
+    @categories = Category.all
   end
 
   # GET /achievements/1/edit
@@ -69,6 +70,6 @@ class AchievementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def achievement_params
-      params.require(:achievement).permit(:description, :score)
+      params.require(:achievement).permit(:description, :score, category_ids: [])
     end
 end
