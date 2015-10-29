@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :users
   
-  
+  post 'bucket_list/add_achievement/:id', to: 'bucket_lists#add_achievement'
+  post 'bucket_list/remove_achievement/:id', to: 'bucket_lists#remove_achievement'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
