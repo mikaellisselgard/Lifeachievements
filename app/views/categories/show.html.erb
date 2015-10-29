@@ -5,9 +5,12 @@
   <%= @category.name %>
 </p>
 
-<% @category.achievements.each do |x| %>
-    <%= x.description %>
-<% end %>
+<p>
+  <strong>Achievements: </strong><br>
+  <% @category.achievements.each do |x| %>
+      <%= x.description %><br>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
