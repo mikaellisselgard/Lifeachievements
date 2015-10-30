@@ -3,15 +3,8 @@
 
 <strong>Bucket list:</strong><br>
 
-<% @user.bucket_list_achievements.each do |achievement| %>
-
-    <%= achievement.description %>
-
-    <% if check_user_bucket_list %>
-        <%= link_to 'Ta bort', update_bucket_list_path(achievement.id), method: 'PUT' %>
-    <% end %>
-
-    <br>
-<% end %><br>
+<div class="bucket-list">
+    <%= render 'bucket_list' %>
+</div>
 
 <%= link_to 'Add profile-picture', edit_user_path(@user), class: 'button success radius expand' %><br>

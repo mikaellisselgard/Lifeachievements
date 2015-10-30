@@ -39,3 +39,12 @@ $(document).on 'click', '#add-achievement', (e) ->
       return
   return
 
+$(document).on 'click', '#remove-achievement', (e) ->
+  e.preventDefault()
+  $.ajax
+    url: $(this).attr('href')
+    method: 'PUT'
+    success: ->
+      return
+  return
+
