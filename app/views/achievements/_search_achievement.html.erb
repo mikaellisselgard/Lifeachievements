@@ -1,0 +1,6 @@
+<%= form_for( :achievement, html: {id: "search_achievement_form"}) do |f| %>
+
+    <%= f.autocomplete_field :description, autocomplete_achievement_description_achievements_path,
+                                     value: "", id: "search_achievement", placeholder: "Sök..." %>
+
+<% end %>

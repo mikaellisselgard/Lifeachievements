@@ -1,6 +1,8 @@
 class AchievementsController < ApplicationController
   before_action :set_achievement, only: [:show, :edit, :update, :destroy]
 
+  autocomplete :achievement, :description, full: true
+
   # GET /achievements
   # GET /achievements.json
   def index

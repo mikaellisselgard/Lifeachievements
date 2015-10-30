@@ -46,4 +46,6 @@ group :development do
 end
 
 gem 'devise'
+gem 'jquery-ui-rails'
+gem 'rails4-autocomplete'
 

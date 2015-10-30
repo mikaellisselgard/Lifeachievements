@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :bucket_lists
   resources :posts
-  resources :achievements
+  resources :achievements do
+    get :autocomplete_achievement_description, :on => :collection
+  end
   resources :categories
   resources :users
   

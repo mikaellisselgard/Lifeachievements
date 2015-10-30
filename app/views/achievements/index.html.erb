@@ -1,29 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="content">
+    <p id="notice"><%= notice %></p>
 
-<h1>Listing Achievements</h1>
+    <h1>Listing Achievements</h1>
+    <%= link_to 'New Achievement', new_achievement_path %>
+    <br><br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Score</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <%= render 'search_achievement' %>
 
-  <tbody>
+    <br><br>
+
     <% @achievements.each do |achievement| %>
-      <tr>
-        <td><%= achievement.description %></td>
-        <td><%= achievement.score %></td>
-        <td><%= link_to 'Show', achievement %></td>
-        <td><%= link_to 'Edit', edit_achievement_path(achievement) %></td>
-        <td><%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <div class="achievements">
+            <%= link_to achievement, class: 'test' do %>
+                <div class="achievement-desc">
+                    <%= achievement.description %>
+                </div>
+                <div class="achievement-score">
+                    <%= achievement.score %>
+                </div>
+                <div class="achievement-actions">
+                    <%= link_to 'Edit', edit_achievement_path(achievement) %><br>
+                    <%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+                </div>
+            <% end %>
+        </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Achievement', new_achievement_path %>
+</div>
