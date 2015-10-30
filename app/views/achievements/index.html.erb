@@ -20,6 +20,7 @@
                     <%= achievement.score %>
                 </div>
                 <div class="achievement-actions">
+                    <%= link_to 'Add to Bucket list', add_achievement_bucket_list_path(achievement.id), id: 'add-achievement' %><br>
                     <%= link_to 'Edit', edit_achievement_path(achievement) %><br>
                     <%= link_to 'Destroy', achievement, method: :delete, data: { confirm: 'Are you sure?' } %><br>
                 </div>

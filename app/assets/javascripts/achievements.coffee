@@ -34,6 +34,7 @@ $(document).on 'click', '#add-achievement', (e) ->
   e.preventDefault()
   $.ajax
     url: $(this).attr('href')
+    data: $(this).serialize()
     method: 'PUT'
     success: ->
       return
@@ -43,7 +44,8 @@ $(document).on 'click', '#remove-achievement', (e) ->
   e.preventDefault()
   $.ajax
     url: $(this).attr('href')
-    method: 'PUT'
+    data: $(this).serialize()
+    method: 'DELETE'
     success: ->
       return
   return

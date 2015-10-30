@@ -12,8 +12,9 @@ Rails.application.routes.draw do
     get :autocomplete_user_name, :on => :collection
   end
   
-  put 'bucket_list/add_achievement/:id', to: 'bucket_lists#add_achievement', :as => 'add_achievement_bucket_list'
-  put 'bucket_list/remove_achievement/:id', to: 'bucket_lists#remove_achievement', :as => 'update_bucket_list'
+  put 'bucket_list/add_achievement/:id', to: 'bucket_lists#add_achievement', as: 'add_achievement_bucket_list'
+  put 'bucket_list/remove_achievement/:id', to: 'bucket_lists#remove_achievement', as: 'update_bucket_list'
+  delete 'bucket_list/remove_bucket_list_item/:id', to: 'bucket_lists#remove_bucket_list_item', as: 'remove_bucket_list_item'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   end
   
   def show
+    @user = User.find(params[:id])
+    #@bucket_list = @user.bucket_list
   end
   
   def edit
