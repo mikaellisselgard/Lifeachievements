@@ -1,0 +1,8 @@
+<p><%= @post.image %></p>
+<p><%= @post.message %></p>
+<p><%= @post.user.name %></p>
+<p><%= @post.achievement.description %></p>
+
+<%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+<%= link_to 'Edit', edit_post_path(@post), class: 'button success radius expand' %><br>
+<%= link_to 'Back', posts_path, class: 'button success radius expand'  %>
