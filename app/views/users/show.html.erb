@@ -1,2 +1,14 @@
-<%= @user.name %><br>
+<h2><%= @user.name %></h2>
 
+<strong>Bucket list:</strong><br>
+
+<% @user.bucket_list_achievements.each do |achievement| %>
+
+    <%= achievement.description %>
+
+    <% if check_user_bucket_list %>
+        <%= link_to 'Ta bort', update_bucket_list_path(achievement.id), method: 'PUT' %>
+    <% end %>
+
+    <br>
+<% end %>

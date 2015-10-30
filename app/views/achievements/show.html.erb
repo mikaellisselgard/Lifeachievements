@@ -17,6 +17,6 @@
   <% end %>
 </p>
 
-<%= link_to "Add to bucket-list", '/bucket_list/add_achievement/' + @achievement.id.to_s, :method => :post %><br><br>
+<%= link_to "Add to bucket-list", add_achievement_bucket_list_path, method: 'PUT' %><br><br>
 <%= link_to 'Edit', edit_achievement_path(@achievement) %> |
 <%= link_to 'Back', achievements_path %>
