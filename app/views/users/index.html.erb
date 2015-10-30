@@ -1,3 +1,16 @@
-<% @users.each do |user| %>
-	<%= link_to user.name, user_path(user.id) %><br><br>
-<% end %>
+<div class="user-content">
+
+    <%= render 'search_user' %>
+    <br><br>
+
+    <% @users.each do |user| %>
+        <div class="users">
+          <%= link_to user, class: 'test' do %>
+              <div class="user-name">
+                 <%= user.name %><br>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+
+</div>

@@ -11,7 +11,7 @@ $(document).ready ->
       dataType: 'json'
       success: (response) ->
         if response.length != 0
-          $('.content').children('.achievements').hide()
+          $('.achievement-content').children('.achievements').hide()
           i = 0
           while i < response.length
             obj = response[i]
@@ -20,9 +20,9 @@ $(document).ready ->
             i++
         else
           if $('#search_achievement').val() == ''
-            $('.content').children('.achievements').show()
+            $('.achievement-content').children('.achievements').show()
           else
-            $('.content').children('.achievements').hide()
+            $('.achievement-content').children('.achievements').hide()
         return
     return
   $('#search_achievement_form').submit (e) ->

@@ -1,12 +1,13 @@
-<div class="content">
+<div class="achievement-content">
+
     <p id="notice"><%= notice %></p>
 
     <h1>Listing Achievements</h1>
+
     <%= link_to 'New Achievement', new_achievement_path %>
     <br><br>
 
     <%= render 'search_achievement' %>
-
     <br><br>
 
     <% @achievements.each do |achievement| %>

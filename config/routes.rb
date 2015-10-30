@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     get :autocomplete_achievement_description, :on => :collection
   end
   resources :categories
-  resources :users
+  resources :users do
+    get :autocomplete_user_name, :on => :collection
+  end
   
   post 'bucket_list/add_achievement/:id', to: 'bucket_lists#add_achievement'
   post 'bucket_list/remove_achievement/:id', to: 'bucket_lists#remove_achievement'
