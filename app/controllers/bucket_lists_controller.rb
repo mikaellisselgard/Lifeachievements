@@ -11,7 +11,9 @@ class BucketListsController < ApplicationController
     @achievement_bucket_ids.push(@user_bucket_id)
     @achievement.update_attributes(:bucket_list_ids => @achievement_bucket_ids)
     @achievement.save
-    redirect_to :back
+    respond_to do |format|
+      format.js
+    end
   end
   
   def remove_achievement

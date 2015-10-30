@@ -29,3 +29,13 @@ $(document).ready ->
     e.preventDefault()
     return
   return
+
+$(document).on 'click', '#add-achievement', (e) ->
+  e.preventDefault()
+  $.ajax
+    url: $(this).attr('href')
+    method: 'PUT'
+    success: ->
+      return
+  return
+

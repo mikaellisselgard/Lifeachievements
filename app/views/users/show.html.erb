@@ -1,5 +1,5 @@
 <h2><%= @user.name %></h2>
-<img src="<%= @user.avatar %>" height="150px" width="150px">
+<img src="<%= @user.avatar %>" height="150px" width="150px"><br><br>
 
 <strong>Bucket list:</strong><br>
 
@@ -13,6 +13,5 @@
 
     <br>
 <% end %><br>
-
 
 <%= link_to 'Add profile-picture', edit_user_path(@user), class: 'button success radius expand' %><br>
