@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  mount_uploader :image, ImageUploader
   belongs_to :user
   belongs_to :achievement
   before_create :check_achievement
