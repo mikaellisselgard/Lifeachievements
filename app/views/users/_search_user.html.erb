@@ -1,6 +1,4 @@
-<%= form_for( :user, html: {id: "search_user_form"}) do |f| %>
-
-    <%= f.autocomplete_field :description, autocomplete_user_name_users_path,
-                             value: "", id: "search_user", placeholder: "Sök..." %>
-
+<%= form_for( :user, html: { id: "search_user_form"}) do |f| %>
+    <%= f.autocomplete_field :description, autocomplete_user_name_users_path, id_element: '#user_id',
+                             value: "", id: "search_user", placeholder: "Sök användare..." %>	
 <% end %>
