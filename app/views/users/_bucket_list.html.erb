@@ -2,7 +2,7 @@
 
     <%= achievement.description %>
 
-    <% if @user == current_user %>
+    <% if check_user_bucket_list(@user) %>
         <%= link_to 'Ta bort', remove_bucket_list_item_path(achievement.id), id: 'remove-achievement' %>
     <% end %>
 
