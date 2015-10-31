@@ -16,17 +16,6 @@ class BucketListsController < ApplicationController
     end
   end
 
-  #Auto remove achievement from bucket list when completed
-  def remove_achievement
-    @user_bucket_id = current_user.bucket_list.id
-    @achievement = Achievement.find(params[:id])
-    @achievement_bucket_ids = @achievement.bucket_list_ids
-    @achievement_bucket_ids.delete(@user_bucket_id)
-    @achievement.update_attributes(:bucket_list_ids => @achievement_bucket_ids)
-    @achievement.save
-    redirect_to :back
-  end
-
   #Lets user remove achievement from bucket list
   def remove_bucket_list_item
     @user = current_user # Extra line to be able to pass @user object in bucket_list partial
