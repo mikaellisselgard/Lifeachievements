@@ -15,10 +15,12 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    @achievements = Achievement.all
   end
 
   # GET /categories/1/edit
   def edit
+    @achievements = Achievement.all
   end
 
   # POST /categories
