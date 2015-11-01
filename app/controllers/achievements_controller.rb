@@ -22,6 +22,7 @@ class AchievementsController < ApplicationController
 
   # GET /achievements/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /achievements
