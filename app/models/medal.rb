@@ -1,11 +1,13 @@
 class Medal < ActiveRecord::Base
   belongs_to :user
   
-  def self.score_medal
-    # most gained score medal, weekly
+  def self.score_and_amount_medals
+    # most gained score medal and most achievement done, weekly
     @users = User.all
     @user_with_highest_score = ''
+    @user_with_highest_amount = ''
     @highest_score = 0
+    @highest_amount = 0
     @users.each do |user|
       @score = []
       user.posts.each do |post|
@@ -19,11 +21,16 @@ class Medal < ActiveRecord::Base
         @highest_score = @score.inject(:+)
         @user_with_highest_score = user
       end
+      # checking if achievement amount is higher than previous highest
+      if @score.length > @highest_amount
+        @highest_amount = @score.length
+        @user_with_highest_amount = user
+      end
     end
     # create the medal for the user
     Medal.new({ :user_id => @user_with_highest_score.id, :type => 'score_medal', :image => 'score_medal.png' }).save
+    Medal.new({ :user_id => @user_with_highest_amount.id, :type => 'amount_medal', :image => 'amount_medal.png' }).save
   end
-  
   
   
   private
