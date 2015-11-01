@@ -6,8 +6,10 @@ class Medal < ActiveRecord::Base
     @users = User.all
     @user_with_highest_score = ''
     @user_with_highest_amount = ''
+    @user_with_highest_average = ''
     @highest_score = 0
     @highest_amount = 0
+    @highest_average = 0
     @users.each do |user|
       @score = []
       user.posts.each do |post|
@@ -26,10 +28,16 @@ class Medal < ActiveRecord::Base
         @highest_amount = @score.length
         @user_with_highest_amount = user
       end
+      # checking if score average is higher than previous highest
+      if @score.inject(:+)/@score.length > @highest_average
+        @highest_average = @score.inject(:+)/@score.length
+        @user_with_highest_average = user
+      end
     end
     # create the medal for the user
     Medal.new({ :user_id => @user_with_highest_score.id, :type => 'score_medal', :image => 'score_medal.png' }).save
     Medal.new({ :user_id => @user_with_highest_amount.id, :type => 'amount_medal', :image => 'amount_medal.png' }).save
+    Medal.new({ :user_id => @user_with_highest_average.id, :type => 'average_medal', :image => 'average_medal.png' }).save
   end
   
   
