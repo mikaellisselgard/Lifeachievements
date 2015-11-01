@@ -11,6 +11,7 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def new
     @post = Post.new
+    @achievement_id = params[:achievement_id]
   end
 
   def edit

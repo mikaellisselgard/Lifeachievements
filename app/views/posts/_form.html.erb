@@ -17,10 +17,7 @@
 		<%= f.label :message %><br>
     	<%= f.text_field :message %><br>
 	</div>
-	<div class="field">
-		<%= f.label :achievement_id %><br>
-    	<%= f.text_field :achievement_id %><br>
-	</div>
+	<%= f.hidden_field :achievement_id, value: @achievement_id%>
   	<div class="actions">
     	<%= f.submit class: 'button expand' %>
   	</div>
