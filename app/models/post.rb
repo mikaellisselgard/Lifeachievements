@@ -19,7 +19,10 @@ class Post < ActiveRecord::Base
   def update_achievement
     @achievement = self.achievement
     @user_id_length = @achievement.posts.length
-    @new_score = 105 - (@user_id_length * 5) 
+    @new_score = 100 - (@user_id_length * 5) 
+    if @new_score < 5
+      @new_score = 5
+    end
     @achievement.update_attributes(:score => @new_score)
     @achievement.save!
   end
