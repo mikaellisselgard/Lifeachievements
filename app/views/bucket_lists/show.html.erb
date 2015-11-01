@@ -1,5 +1,4 @@
 <p>Användare: <%= @bucket_list.user.name %></p>
 <% @bucket_list.achievements.each do |achievement| %>
 	<%= achievement.description %><br>
-	<%= link_to "Remove from bucket-list", update_bucket_list_path(achievement.id), method: 'PUT' %><br><br>
 <% end %>
