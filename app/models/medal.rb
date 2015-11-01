@@ -1,7 +1,7 @@
 class Medal < ActiveRecord::Base
   belongs_to :user
   
-  def self.score_and_amount_medals
+  def self.generate_medals
     # most gained score medal and most achievement done, weekly
     @users = User.all
     @user_with_highest_score = ''
