@@ -41,9 +41,9 @@ class Medal < ActiveRecord::Base
       end
     end
     # create the medal for the user
-    Medal.new({ :user_id => @user_with_highest_score.id, :type => 'score_medal', :image => 'score_medal.png' }).save
-    Medal.new({ :user_id => @user_with_highest_amount.id, :type => 'amount_medal', :image => 'amount_medal.png' }).save
-    Medal.new({ :user_id => @user_with_highest_max.id, :type => 'max_medal', :image => 'max_medal.png' }).save
+    Medal.new({ user_id: @user_with_highest_score.id, type: 'score_medal', image: 'score_medal.png' }).save
+    Medal.new({ user_id: @user_with_highest_amount.id, type: 'amount_medal', image: 'amount_medal.png' }).save
+    Medal.new({ user_id: @user_with_highest_max.id, type: 'max_medal', image: 'max_medal.png' }).save
   end
   
   
