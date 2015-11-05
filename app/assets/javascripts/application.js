@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require jquery-ui
 //= require autocomplete-rails
+//= require masonry/jquery.masonry
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

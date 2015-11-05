@@ -1,29 +1,13 @@
-<h1>Listing posts</h1>
+<div id="masonry-container" class="transitions-enabled centered infinite-scroll clearfix">
+  <% @posts.each do |post| %>
+  <div class="box col3">
+	 <%= post.image %><br>
+     <%= post.message %><br>
+	 <%= post.user.name %><br>
+	 <%= post.achievement.description %><br>
+	 <%= link_to 'Show', post_path(post)%><br>
+   </tr>
+  </div>
+  <% end %>
 
-<table width="50%">
-  <thead>
-    <tr>
-      <td>image_url</td>
-	  <td>messsage</td>
-	  <td>user</td>
-	  <td>achievement</td>
-	  <td>link</td>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.image %></td>
-        <td><%= post.message %></td>
-		<td><%= post.user.name %></td>
-		<td><%= post.achievement.description %></td>
-		<td><%= link_to 'Show', post_path(post)%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New post', new_post_path, class: 'button success radius expand' %><br>
