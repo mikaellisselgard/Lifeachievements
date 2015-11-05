@@ -7,14 +7,14 @@ class Medal < ActiveRecord::Base
     @user_with_highest_score = ''
     @user_with_highest_amount = ''
     @user_with_highest_max = ''
-    @highest_score = 0
-    @highest_amount = 0
-    @max_score = 0
-    @amount_of_max_score = 0
+    @highest_score = 0 # highest score gained from achievement achieved
+    @highest_amount = 0 # highest amount of achievements earned
+    @max_score = 0 # score of highest achievement
+    @amount_of_max_score = 0 # times gained achievements with max score
     @users.each do |user|
       @score = []
       user.posts.each do |post|
-        #only fetching achievement gained last 7 days
+        # only fetching achievement gained last 7 days
         if post.created_at + 7.days > Time.now
           @score.push(post.achievement.score)
         end
