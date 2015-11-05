@@ -31,7 +31,7 @@
 				  <li><%= link_to "Lägg till avklarat achievement", new_post_path %></li>
 				  <li><%= link_to "Topplista", highscore_path %></li>
 				  <li><%= link_to "Achievements", achievements_path %></li>
-				  <li><%= link_to "Profil", user_path(current_user.id) %></li>
+				  <li><%= link_to "Profil", user_path(current_user.name) %></li>
 				  <li><%= link_to "Logga ut", destroy_user_session_path, method: 'DELETE' %></li>
 			    </ul>
 			<% else%>
