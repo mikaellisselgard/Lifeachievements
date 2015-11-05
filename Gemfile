@@ -51,3 +51,4 @@ gem 'rails4-autocomplete'
 gem 'carrierwave'
 gem 'foundation-rails'
 gem 'whenever', :require => false
+gem 'masonry-rails'
