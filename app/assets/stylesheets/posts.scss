@@ -4,11 +4,12 @@
 
 #masonry-container {
   background: #FFF;
-  width: auto;
   margin-bottom: 20px;
   border-radius: 5px;
-  margin-left: 10px;
   clear: both;
+  width: auto;
+  margin: 0 auto; /* this is the css that keeps the container centered in page */
+  margin-left:0px;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
@@ -19,9 +20,10 @@
 .clearfix { zoom: 1; }
 
 .col3 { 
+	float:left;
+	margin:5px;
 	width: 280px; 
 	height:auto;
-	padding: 0px!important;
 }
 
 .post_user {
@@ -41,18 +43,42 @@
 	height:30px;
 }
 
-.post_image {
-	position: relative;
-    height:auto;
-}
-
-.post_image img {
-	width:280px;
-	height: auto;
-}
-
 .post_info {
-	height:50px;
-	width:auto;
 	margin-left:5px;
+}
+
+@media only screen and (min-width: 1800px) {
+	#masonry-container {
+		margin-left: 70px;
+	}
+}
+
+@media only screen and (min-width: 1300px) and (max-width:1500px) {
+	#masonry-container {
+		margin-left: 115px;
+	}
+}
+
+@media only screen and (min-width: 1100px) and (max-width:1290px) {
+	#masonry-container {
+		margin-left: 40px;
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
+	#masonry-container {
+		margin-left: 120px;
+	}
+}
+
+@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : landscape) {
+	#masonry-container {
+		margin-left: 60px;
+	}
+}
+
+@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : portrait) {
+	#masonry-container {
+		margin-left: 80px;
+	}
 }

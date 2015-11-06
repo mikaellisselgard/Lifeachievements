@@ -1,20 +1,23 @@
-<div id="masonry-container" class="transitions-enabled centered infinite-scroll clearfix">
-  <% @posts.each do |post| %>
-  <div class="box col3">
-  	<div class="post_user">
-		<%= image_tag(post.user.avatar, width: "30px", height: "30px")%>
-		<h3><%= post.user.name %></h3>
+
+	<div class="medium-12 medium-centered large-12 large-centered columns">
+		<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+		  <% @posts.each do |post| %>
+		  <div class="box col3">
+		  	<div class="post_user">
+				<%= image_tag(post.user.avatar, width: "30px", height: "30px")%>
+				<h3><%= link_to post.user.name, user_path(post.user) %></h3>
+			</div>
+			<div class="post_image" height="<%= post.height %>px!important">
+				<%= image_tag(post.image, width: post.width, height: post.height) %><br>
+			</div>
+			<div class="post_info">
+				Achievement: <%= post.achievement.description %><br>
+		     	Meddelande: <%= post.message %><br><br>
+			</div>
+		 </div>
+		 <% end %>
+		</div>
 	</div>
-	<div class="post_image">
-		<%= image_tag(post.image, width: post.width, height: post.height class: "post_image_img") %><br>
-	</div>
-	<div class="post_info">
-		<%= post.achievement.description %><br>
-     	<%= post.message %><br>
-	</div>
- </div>
- <% end %>
-</div>
 
 
 
