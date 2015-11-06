@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
-
+  process :store_dimensions
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -47,5 +47,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  private
 
+  def store_dimensions
+    if file && model
+      @height = 280
+      @width_before, @height_before = `identify -format "%wx%h" #{file.path}`.split(/x/)
+      @dimension = @height_before.to_f / @width_before.to_f
+      model.width = @height
+      model.height = @height * @dimension
+    end
+  end
+  
 end

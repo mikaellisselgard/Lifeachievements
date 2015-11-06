@@ -1,13 +1,20 @@
 <div id="masonry-container" class="transitions-enabled centered infinite-scroll clearfix">
   <% @posts.each do |post| %>
   <div class="box col3">
-	 <%= post.image %><br>
-     <%= post.message %><br>
-	 <%= post.user.name %><br>
-	 <%= post.achievement.description %><br>
-	 <%= link_to 'Show', post_path(post)%><br>
-   </tr>
-  </div>
-  <% end %>
+  	<div class="post_user">
+		<%= image_tag(post.user.avatar, width: "30px", height: "30px")%>
+		<h3><%= post.user.name %></h3>
+	</div>
+	<div class="post_image">
+		<%= image_tag(post.image, width: post.width, height: post.height class: "post_image_img") %><br>
+	</div>
+	<div class="post_info">
+		<%= post.achievement.description %><br>
+     	<%= post.message %><br>
+	</div>
+ </div>
+ <% end %>
+</div>
+
 
 
