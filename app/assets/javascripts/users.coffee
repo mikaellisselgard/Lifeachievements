@@ -22,9 +22,11 @@ $(document).on 'ready page:load', ->
           if $('#search_user').val() == ''
             $('.user-content').children('.users').show()
           else
-			  $('.user-content').children('.users').hide()
-			  return
-			  return		  
+			        $('.user-content').children('.users').hide()
+			        return
+		        return
+
+
   $('#search_user_form').submit (e) ->
     e.preventDefault()
     return
@@ -40,4 +42,4 @@ $(document).on 'ready page:load', ->
   $("#search_user").keypress (e) ->
     if e.which == 13
       $(location).attr('href', 'http://localhost:3000/users/' + $("#search_user").val())
-	return
+      return
