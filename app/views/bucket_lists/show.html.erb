@@ -1,4 +1,25 @@
-<p>Användare: <%= @bucket_list.user.name %></p>
-<% @bucket_list.achievements.each do |achievement| %>
-	<%= achievement.description %><br>
-<% end %>
+<div id="bucketlist-container" class="bucketlist-content medium-12 medium-centered large-12 large-centered columns">
+    <% @bucket_list.achievements.each do |achievement| %>
+        <div class="achievements">
+            <%= link_to achievement.description, achievement, class: 'hide'  %>
+
+			<div class="achievement_categories">
+		    <%= image_tag 'circle.png', size: "30" %>
+			<h3>Score: <%= achievement.score %></h3>
+			</div>
+			<div class="achievement_description">
+    			<h3><%= achievement.description %></h3>
+            </div>
+            <div class="achievement_posts">
+            <%= image_tag 'post.png', size: "85" %>
+			<%= image_tag 'post.png', size: "85" %>
+			<%= image_tag 'post.png', size: "85" %>
+            </div>
+            <div class="achievement_info">
+                Antal användare som klarat detta achievement: <%= achievement.posts.length %><br>
+				<%= link_to 'Post achievement', new_post_path(achievement_id: achievement.id)%><br>
+				<%= link_to 'Add to Bucket list', add_achievement_bucket_list_path(achievement.id), id: 'add-achievement' %><br>
+            </div>
+		</div>
+    <% end %>
+</div>
