@@ -2,7 +2,6 @@
     <%= render 'search_achievement' %>	
 </div>
 <div id="achievement-container" class="achievement-content medium-12 medium-centered large-12 large-centered columns">
-	<% 5.times do %>
     <% @achievements.each do |achievement| %>
         <div class="achievements">
             <%= link_to achievement.description, achievement, class: 'hide'  %>
@@ -26,5 +25,4 @@
             </div>
 		</div>
     <% end %>
-	<% end %>
 </div>
