@@ -28,7 +28,6 @@
 			<% if user_signed_in? %>
 			    <ul class="right">
 			      <li><%= link_to "Hem", root_path %></li>
-				  <li><%= link_to "Lägg till avklarat achievement", new_post_path %></li>
 				  <li><%= link_to "Topplista", highscore_path %></li>
 				  <li><%= link_to "Achievements", achievements_path %></li>
 				  <li><%= link_to "Profil", user_path(current_user.name) %></li>
