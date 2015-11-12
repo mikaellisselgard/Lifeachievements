@@ -29,7 +29,6 @@ class AchievementsController < ApplicationController
   # POST /achievements.json
   def create
     @achievement = Achievement.new(achievement_params)
-
     respond_to do |format|
       if @achievement.save
         format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }
