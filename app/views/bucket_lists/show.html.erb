@@ -30,7 +30,7 @@
             <div class="achievement_info">
                 Antal användare som klarat detta achievement: <%= achievement.posts.length %><br>
 				<%= link_to 'Post achievement', new_post_path(achievement_id: achievement.id)%><br>
-				<%= link_to 'Add to Bucket list', add_achievement_bucket_list_path(achievement.id), id: 'add-achievement' %><br>
+				<%= link_to 'Remove from bucket-list', remove_bucket_list_item_path(achievement.id), id: 'remove-achievement' %>
             </div>
 		</div>
     <% end %>

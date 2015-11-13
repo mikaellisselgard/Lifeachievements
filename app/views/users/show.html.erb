@@ -2,14 +2,27 @@
 <img src="<%= @user.avatar %>" height="150px" width="150px"><br><br>
 Amount of medals: <%= @user.medals.length %><br>
 
-<strong>Bucket list:</strong><br>
-
-<div id="bucket-list">
-    <%= render 'bucket_list' %>
-</div>
-
 <%= link_to 'Add profile-picture', edit_user_path(@user), class: 'button success radius expand' %><br>
 
+<div class="medium-12 medium-centered large-12 large-centered columns">
+	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+	  <% @user.posts.each do |post| %>
+	  <div class="box col3">
+	  	<div class="post_user">
+			<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
+			<h3><%= link_to post.user.name, user_path(post.user) %></h3>
+		</div>
+		<div class="post_image" height="<%= post.height %>px!important">
+			<%= image_tag(post.image, width: post.width, height: post.height) %><br>
+		</div>
+		<div class="post_info">
+			<p>Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %></p>
+	     	<p>Meddelande: <%= post.message %></p><br><br>
+		</div>
+	 </div>
+	 <% end %>
+	</div>
+</div>
 
-<h3> Under konstruktion </h3>
-<br><br>
+
+
