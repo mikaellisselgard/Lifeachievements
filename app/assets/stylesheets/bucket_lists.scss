@@ -13,57 +13,6 @@
   height:auto;
 }
 
-.achievements {
-	padding: 0px;
-	background: #666; 
-	float:left;
-	margin:5px;
-	width: 280px; 
-	height:auto;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
-
-.achievement_categories {
-	border-bottom:1px solid black;
-	padding:5px;
-	width:280px;
-
-	h3 {
-		float:right;
-		margin-top:0px;
-	}
-}
-
-
-
-.achievement_description {
-	height:120px;
-	padding:5px;
-}
-
-.achievement_posts {
-	border-top:1px solid black;
-	border-bottom:1px solid black;
-	img {
-		margin-left:0px;
-	}
-}
-
-
-
-
-.achievement_info {
-	padding:5px;
-	
-	a:link, a:visited, a:hover, a:active {
-	    color: black!important;
-	}
-}
-
-
-
 @media only screen and (min-width: 1800px) {
 	#bucketlist-container {
 		margin-left: 70px;

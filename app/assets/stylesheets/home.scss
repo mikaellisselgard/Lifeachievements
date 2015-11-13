@@ -18,7 +18,8 @@
 
 .highscores {
 	padding: 0px;
-	background: #666; 
+	background: #008CBA;
+	color: #FFFFFF;
 	float:left;
 	margin:5px;
 	width: 280px; 
@@ -28,14 +29,9 @@
     border-radius: 5px;
 }
 
-.highscores { 
-	a:link, a:visited, a:active {
-	 	color:#000000; 
+.highscores a:link, a:visited, a:active, a:hover {
+	 	color:#FFFFFF!important; 
 	}
-	a:hover {
-	 	color:white; 
-	}
-  }
 
 
 .highscore_position {

@@ -13,9 +13,13 @@
   height:auto;
 }
 
+h1, h2, h3 {
+	color: #FFFFFF!important;
+}
 .achievements {
 	padding: 0px;
-	background: #666; 
+	background: #008CBA;
+	color:white;
 	float:left;
 	margin:5px;
 	width: 280px; 
@@ -62,7 +66,7 @@
 	padding:5px;
 	
 	a:link, a:visited, a:hover, a:active {
-	    color: black!important;
+	    color: #FFFFFF!important;
 	}
 }
 
