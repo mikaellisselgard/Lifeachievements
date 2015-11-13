@@ -46,8 +46,12 @@
 .achievement_posts {
 	border-top:1px solid black;
 	border-bottom:1px solid black;
+	height:80px;
 	img {
-		margin-left:4px;
+		height:100%;
+		width:33.3%;
+		float:left;
+		margin-left:0px;
 	}
 }
 

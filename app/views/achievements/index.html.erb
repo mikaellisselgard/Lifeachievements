@@ -14,9 +14,21 @@
     			<h3><%= achievement.description %></h3>
             </div>
             <div class="achievement_posts">
-            <%= image_tag 'post.png', size: "85" %>
-			<%= image_tag 'post.png', size: "85" %>
-			<%= image_tag 'post.png', size: "85" %>
+            <% if achievement.posts[-1] %> 
+				<%= image_tag achievement.posts[-1].image %>
+			<% else %>
+				<%= image_tag 'post.png', size: "85" %>
+			<% end %>
+			<% if achievement.posts[-2] %>
+				<%= image_tag achievement.posts[-2].image, size: "85x65" %>
+			<% else %>
+				<%= image_tag 'post.png', size: "85" %>
+			<% end %>
+			<% if achievement.posts[-3] %>
+				<%= image_tag achievement.posts[-3].image, size: "85x65" %>
+			<% else %>
+				<%= image_tag 'post.png', size: "85" %>
+			<% end %>
             </div>
             <div class="achievement_info">
                 Antal användare som klarat detta achievement: <%= achievement.posts.length %><br>
