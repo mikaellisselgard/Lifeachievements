@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   after_create :set_bucket_list
 
+  validates :name, presence: true
+  
   delegate :achievements, to: :bucket_list, prefix: true
   
   def set_bucket_list
