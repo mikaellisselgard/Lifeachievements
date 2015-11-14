@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
 
   before_create :check_achievement
   after_create :update_achievement
+  
+  validates :image, presence: true
 
   def check_achievement
     @achievement = self.achievement
