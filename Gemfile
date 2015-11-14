@@ -52,3 +52,4 @@ gem 'carrierwave'
 gem 'foundation-rails'
 gem 'whenever', :require => false
 gem 'masonry-rails'
+gem 'mini_magick'

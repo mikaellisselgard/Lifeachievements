@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
   process :store_dimensions
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -15,6 +16,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  
+  def fix_exif_rotation #this is my attempted solution
+      manipulate! do |img|
+        img.tap(&:auto_orient)
+      end
+  end
+  
+  process :fix_exif_rotation
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -48,6 +57,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
   private
+  
+
 
   def store_dimensions
     if file && model
