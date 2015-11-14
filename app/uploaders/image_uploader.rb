@@ -20,10 +20,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   
   
   def fix_exif_rotation #this is my attempted solution
-     manipulate! do |img|
-       img = img.auto_orient!
-     end
-   end
+    manipulate! do |img|
+      img = img.auto_orient
+    end
+  end
   
   
 
