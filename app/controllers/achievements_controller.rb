@@ -6,7 +6,7 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.json
   def index
-    @achievements = Achievement.all
+    @achievements = Achievement.order("id DESC").all
   end
 
   # GET /achievements/1

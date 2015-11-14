@@ -2,6 +2,7 @@ class BucketListsController < ApplicationController
   
   def show
     @bucket_list = BucketList.find(params[:id])
+    @bucket_list_achievements = @bucket_list.achievements.reverse
   end
   
   def add_achievement
