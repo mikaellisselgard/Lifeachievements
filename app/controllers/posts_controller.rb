@@ -20,12 +20,6 @@ before_action :set_post, only: [:show, :edit, :update, :destroy]
   def create
     @user = current_user
     @post = @user.posts.create(post_params)
-    @user_bucket_id = @user.bucket_list.id
-    @achievement = Achievement.find(post_params[:achievement_id])
-    @achievement_bucket_ids = @achievement.bucket_list_ids
-    @achievement_bucket_ids.delete(@user_bucket_id)
-    @achievement.update_attributes(:bucket_list_ids => @achievement_bucket_ids)
-    @achievement.save
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
