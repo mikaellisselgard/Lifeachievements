@@ -6,7 +6,11 @@
 		    <h2><%= (index + 1) %><h2>
 			</div>
 			<div class="highscore_user">
-				<%= image_tag user[0].avatar, size: "100" %>
+				<% if user[0].avatar.length > 0 %>
+					<%= image_tag user[0].avatar %>
+				<% else %>
+					<%= image_tag 'avatar.png' %>
+				<% end %>
     			<h3><%= link_to user[0].name, user_path(user[0]) %></h3>
             </div>
             <div class="highscore_stats">
