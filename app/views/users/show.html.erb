@@ -3,10 +3,18 @@
 		<div class="user-avatar">
 			<% if @user.avatar.length > 0 %>
 				<%= image_tag @user.avatar, width: 280, height: 175 %>
-				<%= link_to 'Change profile-picture', edit_user_path(@user), class: 'button success radius expand' %><br>
+				<% if @user == current_user %>
+					<%= link_to 'Ändra profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
+				<% else %>
+					<%= link_to 'Följ användare', root_path, class: 'button success radius expand'%>
+				<% end %>
 			<% else %>
 				<%= image_tag 'avatar.png', width: 280, height: 175 %>
-				<%= link_to 'Add profile-picture', edit_user_path(@user), class: 'button success radius expand' %><br>
+				<% if @user == current_user %>
+					<%= link_to 'Lägg till profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
+				<% else %>
+					<%= link_to 'Följ användare', root_path, class: 'button success radius expand'%>
+				<% end %>
 			<% end %>
 		</div>
 		<div class="user-info">
