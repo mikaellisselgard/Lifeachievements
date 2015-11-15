@@ -10,9 +10,7 @@
   margin-bottom: 20px;
   border-radius: 5px;
   clear: both;
-  width: auto;
-  margin: 0 auto; /* this is the css that keeps the container centered in page */
-  margin-left:0px;
+  width: auto;x
   height:auto;
 }
 
@@ -61,40 +59,3 @@
 }
 
 
-
-
-@media only screen and (min-width: 1800px) {
-	#highscore-container {
-		margin-left: 70px;
-	}
-}
-
-@media only screen and (min-width: 1300px) and (max-width:1500px) {
-	#highscore-container {
-		margin-left: 115px;
-	}
-}
-
-@media only screen and (min-width: 1100px) and (max-width:1290px) {
-	#highscore-container {
-		margin-left: 40px;
-	}
-}
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
-	#highscore-container {
-		margin-left: 120px;
-	}
-}
-
-@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : landscape) {
-	#highscore-container {
-		margin-left: 60px;
-	}
-}
-
-@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : portrait) {
-	#highscore-container {
-		margin-left: 80px;
-	}
-}

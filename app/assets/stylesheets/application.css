@@ -22,3 +22,40 @@
  *= require_self
  *= require foundation_and_overrides
  */
+
+
+@media only screen and (min-width: 1800px) {
+	.media-container {
+		margin-left: 70px!important;
+	}
+}
+
+@media only screen and (min-width: 1300px) and (max-width:1500px) {
+	.media-container {
+		margin-left: 115px!important;
+	}
+}
+
+@media only screen and (min-width: 1100px) and (max-width:1290px) {
+	.media-container {
+		margin-left: 40px!important;
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
+	.media-container {
+		margin-left: 120px!important;
+	}
+}
+
+@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : landscape) {
+	.media-container {
+		margin-left: 60px!important;
+	}
+}
+
+@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : portrait) {
+	.media-container {
+		margin-left: 80px!important;
+	}
+}

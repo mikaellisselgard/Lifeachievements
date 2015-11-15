@@ -8,8 +8,6 @@
   border-radius: 5px;
   clear: both;
   width: auto;
-  margin: 0 auto; /* this is the css that keeps the container centered in page */
-  margin-left:0px;
   height:auto;
 }
 
@@ -70,40 +68,3 @@ h1, h2, h3, p {
 	}
 }
 
-
-
-@media only screen and (min-width: 1800px) {
-	#achievement-container {
-		margin-left: 70px;
-	}
-}
-
-@media only screen and (min-width: 1300px) and (max-width:1500px) {
-	#achievement-container {
-		margin-left: 115px;
-	}
-}
-
-@media only screen and (min-width: 1100px) and (max-width:1290px) {
-	#achievement-container {
-		margin-left: 40px;
-	}
-}
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
-	#achievement-container {
-		margin-left: 120px;
-	}
-}
-
-@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : landscape) {
-	#achievement-container {
-		margin-left: 60px;
-	}
-}
-
-@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : portrait) {
-	#achievement-container {
-		margin-left: 80px;
-	}
-}

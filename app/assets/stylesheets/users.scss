@@ -7,7 +7,6 @@
   margin-bottom: 5px;
   clear: both;
   width: auto;
-  margin: 0 auto; /* this is the css that keeps the container centered in page */
   height:280px;
   border-bottom:1px solid black;
 }
@@ -51,40 +50,4 @@
 
 .marginfix {
 	margin-top:20px;
-}
-
-@media only screen and (min-width: 1800px) {
-	#user-container {
-		margin-left: 70px;
-	}
-}
-
-@media only screen and (min-width: 1300px) and (max-width:1500px) {
-	#user-container {
-		margin-left: 115px;
-	}
-}
-
-@media only screen and (min-width: 1100px) and (max-width:1290px) {
-	#user-container {
-		margin-left: 40px;
-	}
-}
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
-	#user-container {
-		margin-left: 120px;
-	}
-}
-
-@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : landscape) {
-	#user-container {
-		margin-left: 60px;
-	}
-}
-
-@media only screen and (min-device-width : 700px) and (max-device-width : 800px) and (orientation : portrait) {
-	#user-container {
-		margin-left: 80px;
-	}
 }

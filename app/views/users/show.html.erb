@@ -1,5 +1,5 @@
 <div class="medium-8 medium-centered large-8 large-centered columns">
-	<div id="user-container">
+	<div id="user-container" class="media-container">
 		<div class="user-avatar">
 			<% if @user.avatar.length > 0 %>
 				<%= image_tag @user.avatar, width: 280, height: 175 %>
@@ -23,7 +23,7 @@
 	</div>
 </div>
 <div class="medium-12 medium-centered large-12 large-centered columns marginfix">
-	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">
 	  <% @user.posts.each do |post| %>
 	  <div class="box col3">
 	  	<div class="post_user">
