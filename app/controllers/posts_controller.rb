@@ -16,11 +16,13 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
   def like_post
     @like = Like.create(user_id: current_user.id, post_id: @post.id)
     @like.save!
+    redirect_to :back
   end
   
   def unlike_post
     @like = @post.likes.find_by_user_id(current_user.id)
     @like.destroy
+    redirect_to :back
   end
   
   def edit
