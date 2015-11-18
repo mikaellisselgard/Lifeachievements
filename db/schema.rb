@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118091320) do
+ActiveRecord::Schema.define(version: 20151118145435) do
 
   create_table "achievements", force: :cascade do |t|
     t.text     "description"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20151118091320) do
     t.datetime "updated_at",     null: false
     t.string   "height"
     t.string   "width"
+    t.integer  "likes_count"
   end
 
   add_index "posts", ["achievement_id"], name: "index_posts_on_achievement_id"
