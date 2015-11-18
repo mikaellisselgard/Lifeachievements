@@ -1,19 +1,28 @@
 class PostsController < ApplicationController
-before_action :set_post, only: [:show, :edit, :update, :destroy]
+before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update, :destroy]
 
   def index
     @posts = Post.order("id DESC").all
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def new
     @post = Post.new
     @achievement_id = params[:achievement_id]
   end
-
+  
+  def like_post
+    @like = Like.create(user_id: current_user.id, post_id: @post.id)
+    @like.save!
+  end
+  
+  def unlike_post
+    @like = @post.likes.find_by_user_id(current_user.id)
+    @like.destroy
+  end
+  
   def edit
   end
 

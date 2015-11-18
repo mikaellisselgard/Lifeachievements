@@ -35,6 +35,10 @@ class Post < ActiveRecord::Base
     @bucket_list.achievements.delete(self.achievement)
     @bucket_list.save!
   end
+  
+  def check_like(user)
+    self.likes.find_by_user_id(user.id)
+  end
 
 end
 

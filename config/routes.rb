@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   
   put 'bucket_list/add_achievement/:id', to: 'bucket_lists#add_achievement', as: 'add_achievement_bucket_list'
   delete 'bucket_list/remove_bucket_list_item/:id', to: 'bucket_lists#remove_bucket_list_item', as: 'remove_bucket_list_item'
+  put 'posts/like/:id', to: 'posts#like_post', as: 'like_post'
+  delete 'posts/unlike/:id', to: 'posts#unlike_post', as: 'unlike_post'
   get 'highscore', to: 'home#highscore'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
