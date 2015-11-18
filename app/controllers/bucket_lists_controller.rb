@@ -2,15 +2,13 @@ class BucketListsController < ApplicationController
   
   def show
     @bucket_list = BucketList.find(params[:id])
+    @bucket_list_achievements = @bucket_list.achievements.reverse
   end
   
   def add_achievement
-    @user_bucket_id = current_user.bucket_list.id
+    @user_bucket_list = current_user.bucket_list
     @achievement = Achievement.find(params[:id])
-    @achievement_bucket_ids = @achievement.bucket_list_ids
-    @achievement_bucket_ids.push(@user_bucket_id)
-    @achievement.update_attributes(:bucket_list_ids => @achievement_bucket_ids)
-    @achievement.save
+    @user_bucket_list.add_achievement(@achievement)
     respond_to do |format|
       format.js
     end
@@ -19,11 +17,9 @@ class BucketListsController < ApplicationController
   #Lets user remove achievement from bucket list
   def remove_bucket_list_item
     @user = current_user # Extra line to be able to pass @user object in bucket_list partial
-    @bucket_list = @user.bucket_list
-    @achievements = @bucket_list.achievements
+    @user_bucket_list = @user.bucket_list
     @achievement = Achievement.find(params[:id])
-    @achievements.delete(@achievement)
-    @bucket_list.save
+    @user_bucket_list.remove_achievement(@achievement)
     respond_to do |format|
       format.js
     end

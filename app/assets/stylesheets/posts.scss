@@ -3,13 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #masonry-container {
-  margin: 0 auto;
   background: #FFF;
-  padding: 5px;
-  width: auto;
   margin-bottom: 20px;
   border-radius: 5px;
   clear: both;
+  width: auto;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
@@ -20,5 +18,34 @@
 .clearfix { zoom: 1; }
 
 .col3 { 
-	width: 308px; 
+	float:left;
+	margin:5px;
+	width: 280px; 
+	height:auto;
+	background: #008CBA;
+}
+
+.post_user {
+	height:35px;
+	width:auto;
+	margin:5px;
+}
+
+.post_user h3 {
+	position:absolute;
+	margin-top:-35px;
+	margin-left:35px;
+}
+
+.post_user img {
+	width:30px;
+	height:30px;
+}
+
+.post_info {
+	margin-left:5px;
+}
+
+.hide {
+	display:none;
 }

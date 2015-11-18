@@ -1,15 +1,43 @@
-<h2><%= @user.name %></h2>
-<img src="<%= @user.avatar %>" height="150px" width="150px"><br><br>
-Amount of medals: <%= @user.medals.length %><br>
-
-<strong>Bucket list:</strong><br>
-
-<div id="bucket-list">
-    <%= render 'bucket_list' %>
+<div class="medium-8 medium-centered large-8 large-centered columns">
+	<div id="user-container" class="media-container">
+		<div class="user-avatar">
+			<% if @user.avatar.length > 0 %>
+				<%= image_tag @user.avatar, width: 280, height: 175 %>
+				<% if @user == current_user %>
+					<%= link_to 'Ändra profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
+				<% else %>
+					<%= link_to 'Följ användare', root_path, class: 'button success radius expand'%>
+				<% end %>
+			<% else %>
+				<%= image_tag 'avatar.png', width: 280, height: 175 %>
+				<% if @user == current_user %>
+					<%= link_to 'Lägg till profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
+				<% else %>
+					<%= link_to 'Följ användare', root_path, class: 'button success radius expand'%>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="user-info">
+			<%= @user.name %>
+		</div>
+	</div>
 </div>
-
-<%= link_to 'Add profile-picture', edit_user_path(@user), class: 'button success radius expand' %><br>
-
-
-
-<br><br>
+<div class="medium-12 medium-centered large-12 large-centered columns marginfix">
+	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">
+	  <% @user.posts.each do |post| %>
+	  <div class="box col3">
+	  	<div class="post_user">
+			<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
+			<h3><%= link_to post.user.name, user_path(post.user) %></h3>
+		</div>
+		<div class="post_image" height="<%= post.height %>px!important">
+			<%= image_tag(post.image, width: post.width, height: post.height) %><br>
+		</div>
+		<div class="post_info">
+			<p>Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %></p>
+	     	<p>Meddelande: <%= post.message %></p><br><br>
+		</div>
+	 </div>
+	 <% end %>
+	</div>
+</div>

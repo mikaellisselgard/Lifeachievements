@@ -1,7 +1,9 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
-
+  include CarrierWave::RMagick
+  process :store_dimensions
+  process :fix_exif_rotation
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -15,6 +17,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  
+  
+  def fix_exif_rotation #this is my attempted solution
+    manipulate! do |img|
+      img = img.auto_orient
+    end
+  end
+  
+  
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -47,5 +58,18 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  private
+  
 
+
+  def store_dimensions
+    if file && model
+      @height = 280
+      @width_before, @height_before = `identify -format "%wx%h" #{file.path}`.split(/x/)
+      @dimension = @height_before.to_f / @width_before.to_f
+      model.width = @height
+      model.height = @height * @dimension
+    end
+  end
+  
 end

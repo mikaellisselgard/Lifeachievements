@@ -1,3 +1,61 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// Place all the styles related to the Achievements controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#highscore-container {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  clear: both;
+  width: auto;
+  height:auto;
+}
+
+.highscores {
+	padding: 0px;
+	background: #008CBA;
+	color: #FFFFFF;
+	float:left;
+	margin:5px;
+	width: 280px; 
+	height:auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.highscores a:link, a:visited, a:active, a:hover {
+	 	color:#FFFFFF!important; 
+	}
+
+
+.highscore_position {
+	border-bottom:1px solid black;
+	padding:5px;
+	width:280px;
+	h3 {
+		float:right;
+	}
+}
+
+
+
+.highscore_user {
+	height:120px;
+	padding:5px;
+	img {
+		height:100%;
+		width:50%;
+		float:left;
+		margin-left:0px;
+	}
+}
+
+.highscore_stats {
+	border-top:1px solid black;
+}
+
+

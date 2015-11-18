@@ -6,7 +6,7 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.json
   def index
-    @achievements = Achievement.all
+    @achievements = Achievement.order("id DESC").all
   end
 
   # GET /achievements/1
@@ -29,7 +29,6 @@ class AchievementsController < ApplicationController
   # POST /achievements.json
   def create
     @achievement = Achievement.new(achievement_params)
-
     respond_to do |format|
       if @achievement.save
         format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }

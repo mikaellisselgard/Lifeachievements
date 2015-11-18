@@ -4,7 +4,9 @@ class Post < ActiveRecord::Base
   belongs_to :achievement
 
   before_create :check_achievement
-  after_create :update_achievement
+  after_create :update_achievement, :remove_from_bucketlist
+  
+  validates :image, presence: true
 
   def check_achievement
     @achievement = self.achievement
@@ -18,13 +20,22 @@ class Post < ActiveRecord::Base
   
   def update_achievement
     @achievement = self.achievement
-    @user_id_length = @achievement.posts.length
-    @new_score = 100 - (@user_id_length * 5) 
+    @users_with_achievement = @achievement.posts.length
+    @new_score = 100 - (@users_with_achievement * 5) 
     if @new_score < 5
       @new_score = 5
     end
-    @achievement.update_attributes(:score => @new_score)
+    @achievement.score = @new_score
     @achievement.save!
+  end
+  
+  def remove_from_bucketlist
+    @bucket_list = self.user.bucket_list
+    @bucket_list.achievements.delete(self.achievement)
+    @bucket_list.save!
   end
 
 end
+
+
+

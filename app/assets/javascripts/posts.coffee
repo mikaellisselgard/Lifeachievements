@@ -3,9 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'ready page:load', ->
-  $('#masonry-container').masonry
-    itemSelector: '.box'
-    columnWidth: 318.3333
-    gutterWidth: 0
-	isFitWidth: true
-	return
+  $('#masonry-container').imagesLoaded ->
+    $('#masonry-container').masonry
+      itemSelector: '.box'
+      columnWidth: 290
+	  isFitWidth: true
+	  return
+	

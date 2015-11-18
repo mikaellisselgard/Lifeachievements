@@ -2,8 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+#user-container {
+  margin-bottom: 5px;
+  clear: both;
+  width: auto;
+  height:280px;
+  border-bottom:1px solid black;
+}
+
+.user-avatar {
+	padding: 0px;
+	background: black;
+	color:white;
+	float:left;
+	margin:5px;
+	width: 280px; 
+	height:175px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+	img {
+		height:100%;
+		width:100%;
+		float:left;
+		margin-left:0px;
+	}
+}
+
+.user-info {
+	padding: 0px;
+	color:black;
+	float:left;
+	margin:5px;
+	width: 280px; 
+	height:175px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
 .users {
   border: 1px solid black;
   padding: 15px;
   margin-bottom: 5px;
+}
+
+.marginfix {
+	margin-top:20px;
 }
