@@ -12,11 +12,13 @@
 		<div class="post_info">
 			Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %><br>
 	     	Meddelande: <%= post.message %><br><br>
-			<% if post.check_like(current_user) %>
-				<%= link_to 'Sluta gilla', unlike_post_path(post.id), method: :DELETE, remote: true %>
-			<% else %>
-				<%= link_to "Gilla", like_post_path(post.id), method: :PUT, remote: true %>
-			<% end %>
+			<div id="like-button-<%= post.id %>">
+				<% if post.check_like(current_user) %>
+					<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+				<% else %>
+					<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+				<% end %>
+			</div>
 		</div>
 	 </div>
 	 <% end %>
