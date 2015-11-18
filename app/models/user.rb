@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_one :bucket_list
   has_many :medals
+  has_many :likes
 
   after_create :set_bucket_list
 

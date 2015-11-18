@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   belongs_to :user
   belongs_to :achievement
+  has_many :likes
 
   before_create :check_achievement
   after_create :update_achievement, :remove_from_bucketlist
