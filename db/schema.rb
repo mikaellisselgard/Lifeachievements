@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118085415) do
+ActiveRecord::Schema.define(version: 20151118091320) do
 
   create_table "achievements", force: :cascade do |t|
     t.text     "description"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20151118085415) do
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "post_id"
   end
 
   create_table "medals", force: :cascade do |t|
