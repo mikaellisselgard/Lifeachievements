@@ -10,3 +10,10 @@ $(document).on 'ready page:load', ->
 	  isFitWidth: true
 	  return
 	
+$(document).on 'click', '.like', (e) ->
+  $(this).html (index, oldHtml) ->
+    if oldHtml == 'Gilla'
+      $(this).html('Sluta gilla')
+    else
+      $(this).html('Gilla')
+    return
