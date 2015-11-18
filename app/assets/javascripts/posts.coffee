@@ -14,6 +14,12 @@ $(document).on 'click', '.like', (e) ->
   $(this).html (index, oldHtml) ->
     if oldHtml == 'Gilla'
       $(this).html('Sluta gilla')
+      oldNumber = $(this).parent().parent().children('.counter_info').html()
+      newNumber = Number(oldNumber) + 1
+      $(this).parent().parent().children('.counter_info').html(newNumber)
     else
       $(this).html('Gilla')
+      oldNumber = $(this).parent().parent().children('.counter_info').html()
+      newNumber = Number(oldNumber) - 1
+      $(this).parent().parent().children('.counter_info').html(newNumber)
     return
