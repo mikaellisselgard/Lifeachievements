@@ -17,12 +17,15 @@
 			<%= post.likes_count %>
 		</div>	
 		<div id="like-button-<%= post.id %>">
-			<% if post.check_like(current_user) %>
-				<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+			<% if user_signed_in? %>
+				<% if post.check_like(current_user) %>
+					<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+				<% else %>
+					<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+				<% end %>
 			<% else %>
-				<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like' %>
-			<% end %>
-		</div>
+				<%= link_to "Gilla", new_user_registration_path %>
+			<% end %>	
 		</div>
 	 </div>
 	 <% end %>
