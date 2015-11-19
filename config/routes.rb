@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   delete 'bucket_list/remove_bucket_list_item/:id', to: 'bucket_lists#remove_bucket_list_item', as: 'remove_bucket_list_item'
   put 'posts/like/:id', to: 'posts#like_post', as: 'like_post'
   get 'highscore', to: 'home#highscore'
+  post 'comments' => 'comments#create', defaults: { format: 'js' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

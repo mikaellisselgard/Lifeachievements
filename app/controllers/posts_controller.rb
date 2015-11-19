@@ -7,6 +7,7 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
 
   def show
     @comment = Comment.new
+    @comments = @post.comments.order("id DESC")
   end
 
   def new

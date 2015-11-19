@@ -1,0 +1,6 @@
+$("#comment_list").html("<%= escape_javascript(render(:partial => "list")) %>");
+
+$('#movie_comment_message').val('');
+$('#m_message_notice').show();
+$('#m_message_notice').html('Kommentar skickad!');
+$('#m_message_notice').fadeOut(3000);

@@ -13,6 +13,7 @@ class AchievementsController < ApplicationController
   # GET /achievements/1.json
   def show
     @comment = Comment.new
+    @comments = @achievement.comments.order("id DESC")
   end
 
   # GET /achievements/new
