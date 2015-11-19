@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :achievement
   has_many :likes
+  has_many :comments, as: :imageable  
 
   before_create :check_achievement
   after_create :update_achievement, :remove_from_bucketlist
