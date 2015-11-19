@@ -3,6 +3,10 @@
 <p><%= @post.user.name %></p>
 <p><%= @post.achievement.description %></p>
 
+<%= form_for @comment, :url => commenter_url do |f| %>
+  <%= f.text_field :comment %>
+<% end %>
+
 <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><br>
 <%= link_to 'Edit', edit_post_path(@post), class: 'button success radius expand' %><br>
 <%= link_to 'Back', posts_path, class: 'button success radius expand'  %>

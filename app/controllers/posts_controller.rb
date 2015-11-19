@@ -6,6 +6,7 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
   end
 
   def show
+    @comment = Comment.new
   end
 
   def new

@@ -12,6 +12,7 @@ class AchievementsController < ApplicationController
   # GET /achievements/1
   # GET /achievements/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /achievements/new
