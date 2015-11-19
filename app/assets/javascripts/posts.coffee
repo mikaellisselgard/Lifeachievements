@@ -12,14 +12,23 @@ $(document).on 'ready page:load', ->
 	
 $(document).on 'click', '.like', (e) ->
   $(this).html (index, oldHtml) ->
+    popupDivId = "counter_info_popup-" + $(this).parent().attr("id").split("-").pop()
+    outsideDivId = "counter_info-" + $(this).parent().attr("id").split("-").pop()
+    popupHtml = "like-button-popup-" + $(this).parent().attr("id").split("-").pop()
+    outsideHtml = "like-button-" + $(this).parent().attr("id").split("-").pop()
     if oldHtml == 'Gilla'
-      $(this).html('Sluta gilla')
-      oldNumber = $(this).parent().parent().children('.counter_info').html()
+      $("#" + outsideHtml).find('a:first').html('Sluta gilla')
+      $("#" + popupHtml).find('a:first').html('Sluta gilla')
+      oldNumber = $("#" + outsideDivId).html()
+      console.log oldNumber
       newNumber = Number(oldNumber) + 1
-      $(this).parent().parent().children('.counter_info').html(newNumber)
+      $("#" + outsideDivId).html(newNumber)
+      $("#" + popupDivId).html(newNumber)
     else
-      $(this).html('Gilla')
-      oldNumber = $(this).parent().parent().children('.counter_info').html()
+      $("#" + outsideHtml).find('a:first').html('Gilla')
+      $("#" + popupHtml).find('a:first').html('Gilla')
+      oldNumber = $("#" + outsideDivId).html()
       newNumber = Number(oldNumber) - 1
-      $(this).parent().parent().children('.counter_info').html(newNumber)
+      $("#" + outsideDivId).html(newNumber)
+      $("#" + popupDivId).html(newNumber)
     return

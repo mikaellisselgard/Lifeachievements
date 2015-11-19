@@ -19,7 +19,6 @@
 
 .col3 { 
 	float:left;
-	margin:5px;
 	width: 280px; 
 	height:auto;
 	background: #008CBA;
@@ -28,7 +27,6 @@
 .post_user {
 	height:35px;
 	width:auto;
-	margin:5px;
 }
 
 .post_user h3 {
@@ -52,11 +50,32 @@
 }
 
 .counter_info {
-	position:absolute;
-	bottom:20px;
-	left:45px;
+	position:relative;
+	bottom:15px;
+	left:35px;
 }
 
 .hide {
 	display:none;
+}
+
+#post {
+	margin-top:5px;
+	float:left;
+	width: 280px; 
+	height:auto;
+	background: #008CBA;
+}
+
+#comments {
+	float:left;
+	width:280px;
+	min-height:500px;
+	border:1px solid black;
+}
+
+.post-modal {
+	width:562px;
+	padding:0px;
+	background: #008CBA;
 }
