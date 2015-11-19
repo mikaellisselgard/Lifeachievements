@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_one :bucket_list
   has_many :medals
   has_many :likes
+  has_many :comments
 
   after_create :set_bucket_list
 

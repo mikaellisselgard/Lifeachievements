@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119092633) do
+ActiveRecord::Schema.define(version: 20151119101353) do
 
   create_table "achievements", force: :cascade do |t|
     t.text     "description"
@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 20151119092633) do
     t.string   "imageable_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "user_id"
   end
 
   add_index "comments", ["imageable_type", "imageable_id"], name: "index_comments_on_imageable_type_and_imageable_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", null: false
