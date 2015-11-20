@@ -11,7 +11,8 @@
 			</div>
 			<div class="post_info">
 				Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %><br>
-	     		Meddelande: <%= post.message %><br><br>
+	     		Meddelande: <%= post.message %><br>
+				Kommentarer: <%= post.comments.count %><br>
 				Likes:
 				<div id="counter_info-<%=post.id%>" class="counter-fix">
 					<%= post.likes_count %>
@@ -19,14 +20,14 @@
 				<div id="like-button-<%= post.id %>">
 					<% if user_signed_in? %>
 						<% if post.check_like(current_user) %>
-							<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+							<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like button success button-size' %>
 						<% else %>
-							<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+							<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like button success button-size' %>
 						<% end %>
-						<%= link_to 'Kommentera', post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} %>
+						<%= link_to 'Kommentera', post, remote: true, class: 'button success button-size', data: {:"reveal-id" => "reveal-#{post.id}"} %>
 					<% else %>
-						<%= link_to "Gilla", new_user_registration_path %>
-						<%= link_to "Kommentera", new_user_registration_path %>
+						<%= link_to "Gilla", new_user_registration_path, class: 'button success button-size' %>
+						<%= link_to "Kommentera", new_user_registration_path, class: 'button success button-size' %>
 					<% end %>	
 				</div>
 			</div>
@@ -43,19 +44,21 @@
 					</div>
 					<div class="post_info">
 						Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %><br>
-				     	Meddelande: <%= post.message %><br><br>
+				     	Meddelande: <%= post.message %><br>
+						Kommentarer: <%= post.comments.count %><br>
+						Likes:
 						<div id="counter_info_popup-<%= post.id%>" class="counter-fix-popup">
 							<%= post.likes_count %>
 						</div>	
 						<div id="like-button-popup-<%= post.id %>">
 							<% if user_signed_in? %>
 								<% if post.check_like(current_user) %>
-									<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+									<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like button success button-size' %>
 								<% else %>
-									<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+									<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like button success button-size' %>
 								<% end %>
 							<% else %>
-								<%= link_to "Gilla", new_user_registration_path %>
+								<%= link_to "Gilla", new_user_registration_path, class: 'button success button-size' %>
 							<% end %>	
 						</div>
 					</div>

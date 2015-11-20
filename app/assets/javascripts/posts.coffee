@@ -32,3 +32,4 @@ $(document).on 'click', '.like', (e) ->
       $("#" + popupDivId).html(newNumber)
     return
 	
+$('.comment-input').val('test')

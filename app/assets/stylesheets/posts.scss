@@ -49,16 +49,16 @@
 	float:left;
 }
 
-.counter_info {
+.counter-fix {
 	position:relative;
 	bottom:15px;
 	left:35px;
 }
 
-.counter_info {
+.counter-fix-popup {
 	position:relative;
-	bottom:15px;
-	left:35px;
+	bottom:18px;
+	left:40px;
 }
 
 .like-fix {
@@ -76,6 +76,7 @@
 	max-width:560px;
 	height:auto;
 	background: #008CBA;
+	border-bottom:1px solid black;
 }
 
 .comments {
@@ -121,4 +122,14 @@
 
 .comment_content {
 	margin-left:5px;
+}
+
+.button-size {
+    background-color: #1D1D1D!important;
+    border-color: #368a55!important;
+    color: #FFFFFF!important;
+    padding: 15px!important;
+	margin-left: -2px!important;
+	width:130px;
+	height:50px;
 }
