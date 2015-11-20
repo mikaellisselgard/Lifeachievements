@@ -1,3 +1,4 @@
+<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 <div class="medium-12 medium-centered large-12 large-centered columns">
 	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">
 		<% @posts.each do |post| %>
@@ -32,7 +33,7 @@
 				</div>
 			</div>
  		</div>
-		<div class="reveal-modal post-modal large-12 columns" id="reveal-<%=post.id%>" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		<div id="reveal-<%=post.id%>" class="reveal-modal post-modal large-12 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 				<div class="large-8 columns">
 				<div id="post">
 				  	<div class="post_user">
@@ -78,5 +79,3 @@
 	<% end %>
 	</div>
 </div>
-
-
