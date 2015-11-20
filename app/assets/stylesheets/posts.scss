@@ -78,19 +78,21 @@
 	background: #008CBA;
 }
 
-#comment_list {
+.comments {
 	margin-top:40px;
 	margin-left:auto;
 	margin-right:auto;
 	width:100%;
 	min-height:500px;
-	overflow-y:scroll;
+	margin-bottom:10px;
+	border-bottom:1px solid black;
 }
 
 .post-modal {
 	max-width:900px;
 	padding:0px;
 	background: #008CBA;
+	margin-bottom:50px;
 }
 
 .bordered {
@@ -104,6 +106,19 @@
 		max-width:560px;
 		min-width:200px;
 		height: auto;
-		max-height:700px;
+		max-height:500px;
 	}
+}
+
+.comment-input {
+	border-top:1px solid black;
+	margin-bottom:0px;
+}
+
+.comment_user {
+	float:left;
+}
+
+.comment_content {
+	margin-left:5px;
 }

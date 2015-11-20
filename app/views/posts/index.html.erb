@@ -31,7 +31,7 @@
 				</div>
 			</div>
  		</div>
-		<div class="reveal-modal post-modal large-12 columns" id="reveal-<%=post.id%>" data-reveal-id="<%= post.id %>" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		<div class="reveal-modal post-modal large-12 columns" id="reveal-<%=post.id%>" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 				<div class="large-8 columns">
 				<div id="post">
 				  	<div class="post_user">
@@ -62,7 +62,7 @@
 				</div>
 			</div>
 			<div class="large-4 columns">
-				<div id="comment_list-<%= post.id %>">
+				<div id="comment_list-<%= post.id %>" class="comments">
 					<% @comments = post.comments %>
 					<% @model = post.id %>
 					<%= render 'comments/list', object: @comments %>

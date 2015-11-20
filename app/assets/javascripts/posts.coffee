@@ -20,7 +20,6 @@ $(document).on 'click', '.like', (e) ->
       $("#" + outsideHtml).find('a:first').html('Sluta gilla')
       $("#" + popupHtml).find('a:first').html('Sluta gilla')
       oldNumber = $("#" + outsideDivId).html()
-      console.log oldNumber
       newNumber = Number(oldNumber) + 1
       $("#" + outsideDivId).html(newNumber)
       $("#" + popupDivId).html(newNumber)
