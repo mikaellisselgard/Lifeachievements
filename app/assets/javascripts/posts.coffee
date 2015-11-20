@@ -34,3 +34,4 @@ $(document).on 'click', '.like', (e) ->
 	
 $(document).on 'click tap touchstart', '.reveal-modal-bg', ->
   $('[data-reveal]').foundation 'reveal', 'close'
+  

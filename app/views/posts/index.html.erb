@@ -1,4 +1,3 @@
-<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 <div class="medium-12 medium-centered large-12 large-centered columns">
 	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">
 		<% @posts.each do |post| %>
@@ -33,8 +32,8 @@
 				</div>
 			</div>
  		</div>
-		<div id="reveal-<%=post.id%>" class="reveal-modal post-modal large-12 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-				<div class="large-8 columns">
+		<div id="reveal-<%=post.id%>" class="reveal-modal post-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+				<div class="large-6 columns media-hide">
 				<div id="post">
 				  	<div class="post_user">
 						<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
@@ -66,6 +65,7 @@
 				</div>
 			</div>
 			<div class="large-4 columns">
+				<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
 				<div id="comment_list-<%= post.id %>" class="comments">
 					<% @comments = post.comments %>
 					<% @model = post.id %>
