@@ -32,6 +32,6 @@ $(document).on 'click', '.like', (e) ->
       $("#" + popupDivId).html(newNumber)
     return
 	
-$(document).on 'click tap touchstart', '.reveal-modal-bg', ->
-  $('[data-reveal]').foundation 'reveal', 'close'
+#$(document).on 'click tap touchstart', '.reveal-modal-bg', ->
+  #$('[data-reveal]').foundation 'reveal', 'close'
   
