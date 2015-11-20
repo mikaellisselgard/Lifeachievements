@@ -3,6 +3,7 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
 
   def index
     @posts = Post.order("id DESC").all
+    @comment = Comment.new
   end
 
   def show

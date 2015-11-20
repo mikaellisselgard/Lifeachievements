@@ -55,27 +55,55 @@
 	left:35px;
 }
 
+.counter_info {
+	position:relative;
+	bottom:15px;
+	left:35px;
+}
+
+.like-fix {
+	
+}
+
 .hide {
 	display:none;
 }
 
 #post {
 	margin-top:5px;
-	float:left;
-	width: 280px; 
+	margin-left:auto;
+	margin-right:auto;
+	max-width:560px;
 	height:auto;
 	background: #008CBA;
 }
 
 #comments {
-	float:left;
-	width:280px;
+	margin-top:40px;
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
 	min-height:500px;
-	border:1px solid black;
+	overflow-y:scroll;
 }
 
 .post-modal {
-	width:562px;
+	max-width:900px;
 	padding:0px;
 	background: #008CBA;
+}
+
+.bordered {
+	border:1px solid black;
+}
+
+.post_image_popup{
+	text-align:center;
+ 	img {
+		width: 100%;
+		max-width:560px;
+		min-width:200px;
+		height: auto;
+		max-height:700px;
+	}
 }

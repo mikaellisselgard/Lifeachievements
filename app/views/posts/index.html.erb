@@ -1,39 +1,8 @@
 <div class="medium-12 medium-centered large-12 large-centered columns">
 	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">
-	  <% @posts.each do |post| %>
-	  <div class="box col3">
-	  	<div class="post_user">
-			<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
-			<h3><%= link_to post.user.name, user_path(post.user) %></h3>
-		</div>
-		<div class="post_image" height="<%= post.height %>px!important">
-			<%= image_tag(post.image, width: post.width, height: post.height) %><br>
-		</div>
-		<div class="post_info">
-			Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %><br>
-	     	Meddelande: <%= post.message %><br><br>
-			Likes:
-			<div id="counter_info-<%=post.id%>">
-				<%= post.likes_count %>
-			</div>	
-			<div id="like-button-<%= post.id %>">
-				<% if user_signed_in? %>
-					<% if post.check_like(current_user) %>
-						<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like' %>
-					<% else %>
-						<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like' %>
-					<% end %>
-					<%= link_to 'Kommentera', post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} %>
-				<% else %>
-					<%= link_to "Gilla", new_user_registration_path %>
-					<%= link_to "Kommentera", new_user_registration_path %>
-				<% end %>	
-			</div>
-		</div>
- 	</div>
-	<div class="reveal-modal post-modal" id="reveal-<%=post.id%>" data-reveal-id="<%= post.id %>" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-		<div id="post">
-		  	<div class="post_user">
+		<% @posts.each do |post| %>
+	  	<div class="box col3">
+	  		<div class="post_user">
 				<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
 				<h3><%= link_to post.user.name, user_path(post.user) %></h3>
 			</div>
@@ -42,27 +11,64 @@
 			</div>
 			<div class="post_info">
 				Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %><br>
-		     	Meddelande: <%= post.message %><br><br>
+	     		Meddelande: <%= post.message %><br><br>
 				Likes:
-				<div id="counter_info_popup-<%= post.id%>" class="like-fix">
+				<div id="counter_info-<%=post.id%>" class="counter-fix">
 					<%= post.likes_count %>
 				</div>	
-				<div id="like-button-popup-<%= post.id %>">
+				<div id="like-button-<%= post.id %>">
 					<% if user_signed_in? %>
 						<% if post.check_like(current_user) %>
 							<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like' %>
 						<% else %>
 							<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like' %>
 						<% end %>
+						<%= link_to 'Kommentera', post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} %>
 					<% else %>
 						<%= link_to "Gilla", new_user_registration_path %>
+						<%= link_to "Kommentera", new_user_registration_path %>
 					<% end %>	
 				</div>
 			</div>
+ 		</div>
+		<div class="reveal-modal post-modal large-12 columns" id="reveal-<%=post.id%>" data-reveal-id="<%= post.id %>" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+				<div class="large-8 columns">
+				<div id="post">
+				  	<div class="post_user">
+						<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
+						<h3><%= link_to post.user.name, user_path(post.user) %></h3>
+					</div>
+					<div class="post_image_popup">
+						<%= image_tag(post.image, width: post.width, height: post.height) %><br>
+					</div>
+					<div class="post_info">
+						Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %><br>
+				     	Meddelande: <%= post.message %><br><br>
+						<div id="counter_info_popup-<%= post.id%>" class="counter-fix-popup">
+							<%= post.likes_count %>
+						</div>	
+						<div id="like-button-popup-<%= post.id %>">
+							<% if user_signed_in? %>
+								<% if post.check_like(current_user) %>
+									<%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+								<% else %>
+									<%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like' %>
+								<% end %>
+							<% else %>
+								<%= link_to "Gilla", new_user_registration_path %>
+							<% end %>	
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="large-4 columns">
+				<div id="comments">
+					<% @comments = post.comments %>
+					<%= render 'comments/list', object: @comments %>
+					<%= render 'comments/form' %>
+				</div>
+			</div>
 		</div>
-		<div id="comments">
-		</div>
-	</div>
 	<% end %>
 	</div>
 </div>
