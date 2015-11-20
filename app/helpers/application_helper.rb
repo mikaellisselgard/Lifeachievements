@@ -1,8 +1,8 @@
 module ApplicationHelper
   
-  def commenter_url
+  def commenter_url(id)
     commenter = controller.controller_name.singularize
-    comments_path(:commenter_type => commenter, :commenter_id => controller.instance_variable_get("@#{commenter}").id)
+    comments_path(:commenter_type => commenter, :commenter_id => id)
   end
   
 end

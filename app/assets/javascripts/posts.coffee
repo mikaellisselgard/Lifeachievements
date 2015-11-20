@@ -32,3 +32,4 @@ $(document).on 'click', '.like', (e) ->
       $("#" + outsideDivId).html(newNumber)
       $("#" + popupDivId).html(newNumber)
     return
+	

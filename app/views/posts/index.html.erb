@@ -62,13 +62,18 @@
 				</div>
 			</div>
 			<div class="large-4 columns">
-				<div id="comments">
+				<div id="comment_list-<%= post.id %>">
 					<% @comments = post.comments %>
+					<% @model = post.id %>
 					<%= render 'comments/list', object: @comments %>
-					<%= render 'comments/form' %>
 				</div>
+				<div class="comment-input">
+					<%= render 'comments/form', object: @model%>
+				</div class="comment-input">
 			</div>
 		</div>
 	<% end %>
 	</div>
 </div>
+
+
