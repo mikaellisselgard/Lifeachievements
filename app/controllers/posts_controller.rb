@@ -34,6 +34,8 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
   def create
     @user = current_user
     @post = @user.posts.create(post_params)
+    @post.likes_count = 0
+    @post.save!
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
