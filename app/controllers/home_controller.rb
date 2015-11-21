@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     @users = User.all
     @user_stats = []
     @users.each do |user|
-      @likes_week = user.likes_week.count
+      @likes_week = user.likes_week
       @highest_score = 0
       @highest_score_count = 0
       @score = []

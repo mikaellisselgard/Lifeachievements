@@ -15,11 +15,9 @@ class Medal < ActiveRecord::Base
     @highest_likes = 0
     @users.each do |user|
       @score = []
-      if user.likes_week != nil
-        if user.likes_week.count > @highest_likes
-          @highest_likes = user.likes_week.count
-          @user_with_most_likes = user
-        end
+      if user.likes_week > @highest_likes
+        @highest_likes = user.likes_week
+        @user_with_most_likes = user
       end
       if user.posts.any?
         user.posts.each do |post|
