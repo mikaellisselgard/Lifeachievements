@@ -25,5 +25,9 @@ class User < ActiveRecord::Base
     self.posts.where(:created_at => Time.now.beginning_of_week..Time.now.end_of_week)
   end
   
+  def likes_week
+    self.likes.where(:created_at => Time.now.beginning_of_week..Time.now.end_of_week)
+  end
+  
   
 end

@@ -18,7 +18,11 @@
 			<% end %>
 		</div>
 		<div class="user-info">
-			<%= @user.name %>
+			<% if @user.medals %>
+				<% @user.medals.each do |medal| %>
+					<%= image_tag 'medal.png', width:50, height: 50 %>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 </div>
