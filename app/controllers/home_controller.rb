@@ -8,8 +8,8 @@ class HomeController < ApplicationController
     @user_stats = []
     @users.each do |user|
       @score = []
-      if user.posts.length > 0
-        user.posts.each do |post|
+      if user.posts_week.length > 0
+        user.posts_week.each do |post|
           @score.push(post.achievement.score)
         end
       end

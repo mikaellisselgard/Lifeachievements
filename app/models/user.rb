@@ -21,4 +21,9 @@ class User < ActiveRecord::Base
     BucketList.new({ :user_id => self.id }).save
   end
   
+  def posts_week
+    self.posts.where(:created_at => Time.now.beginning_of_week..Time.now.end_of_week)
+  end
+  
+  
 end
