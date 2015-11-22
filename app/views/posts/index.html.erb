@@ -1,6 +1,7 @@
 <div class="medium-12 medium-centered large-12 large-centered columns">
 	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">
 		<% @posts.each do |post| %>
+		<% 20.times do %>
 	  	<div class="box col3">
 	  		<div class="post_user">
 				<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
@@ -76,6 +77,7 @@
 				</div class="comment-input">
 			</div>
 		</div>
+	<% end %>
 	<% end %>
 	</div>
 </div>
