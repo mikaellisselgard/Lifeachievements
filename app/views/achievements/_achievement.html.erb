@@ -1,0 +1,33 @@
+<div class="achievements" data-id="<%= achievement.id %>">
+    <%= link_to achievement.description, achievement, class: 'hide'  %>
+
+	<div class="achievement_categories">
+    <%= image_tag 'circle.png', size: "30" %>
+	<h3>Score: <%= achievement.score %></h3>
+	</div>
+	<div class="achievement_description">
+		<h3><%= achievement.description %></h3>
+    </div>
+    <div class="achievement_posts">
+    <% if achievement.posts[-1] %> 
+		<%= image_tag achievement.posts[-1].image %>
+	<% else %>
+		<%= image_tag 'post.png', size: "85" %>
+	<% end %>
+	<% if achievement.posts[-2] %>
+		<%= image_tag achievement.posts[-2].image, size: "85x65" %>
+	<% else %>
+		<%= image_tag 'post.png', size: "85" %>
+	<% end %>
+	<% if achievement.posts[-3] %>
+		<%= image_tag achievement.posts[-3].image, size: "85x65" %>
+	<% else %>
+		<%= image_tag 'post.png', size: "85" %>
+	<% end %>
+    </div>
+    <div class="achievement_info">
+        Antal användare som klarat detta achievement: <%= achievement.posts.length %><br>
+		<%= link_to 'Post achievement', new_post_path(achievement_id: achievement.id)%><br>
+		<%= link_to 'Add to Bucket list', add_achievement_bucket_list_path(achievement.id), id: 'add-achievement' %><br>
+    </div>
+</div>
