@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
   after_create :update_achievement, :remove_from_bucketlist
   
   validates :image, presence: true
+  
+  default_scope { order('created_at DESC') }
 
   def check_achievement
     @achievement = self.achievement

@@ -2,10 +2,21 @@ class PostsController < ApplicationController
 before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update, :destroy]
 
   def index
-    @posts = Post.order("id DESC").all
+    # if the id params is present
+    if params[:id]
+      # get all records with id less than 'our last id'
+      # and limit the results to 5
+      @posts = Post.where('id < ?', params[:id]).limit(6)
+    else
+      @posts = Post.limit(6)
+    end
     @comment = Comment.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
-
+  
   def show
     @comment = Comment.new
     @comments = @post.comments.order("id DESC")

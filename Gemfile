@@ -54,3 +54,4 @@ gem 'whenever', :require => false
 gem 'masonry-rails'
 gem 'mini_magick'
 gem 'rmagick'
+gem 'will_paginate', '~> 3.0.5'
