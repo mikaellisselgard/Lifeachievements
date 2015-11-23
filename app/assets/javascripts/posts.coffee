@@ -35,7 +35,6 @@ $(document).on 'click', '.like', (e) ->
 #$(document).on 'click tap touchstart', '.reveal-modal-bg', ->
   #$('[data-reveal]').foundation 'reveal', 'close'
   
-  
 $(document).on 'ready page:load', ->
   # when the load more link is clicked
   $('a.load-more').click (e) ->
@@ -67,7 +66,7 @@ $(document).on 'ready page:load', ->
 masonryAdd = (items) ->
   setTimeout (->
     $('#masonry-container').masonry( 'reload' )
-  ), 500
+  ), 1000
 
 	
 	

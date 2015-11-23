@@ -6,15 +6,7 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.json
   def index
-    if params[:id]
-      @achievements = Achievement.where('id < ?', params[:id])
-    else
-      @achievements = Achievement.all
-    end
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @achievements = Achievement.all - current_user.achievements
   end
 
   # GET /achievements/1

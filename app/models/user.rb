@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_and_belongs_to_many :achievements
   has_many :posts
+  has_many :achievements, through: :posts
   has_one :bucket_list
   has_many :medals
   has_many :likes
