@@ -6,9 +6,9 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
     if params[:id]
       # get all records with id less than 'our last id'
       # and limit the results to 5
-      @posts = Post.where('id < ?', params[:id]).limit(6)
+      @posts = Post.where('id < ?', params[:id]).limit(20)
     else
-      @posts = Post.limit(6)
+      @posts = Post.limit(20)
     end
     @comment = Comment.new
     respond_to do |format|

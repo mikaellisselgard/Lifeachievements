@@ -54,6 +54,8 @@ $(document).on 'ready page:load', ->
       data: id: last_id
       dataType: 'script'
       success: ->
+        items = $(this)
+        masonryAdd(items)
         # hide the loading gif
         $('.loading-gif').hide()
         # show our load more link
@@ -61,8 +63,11 @@ $(document).on 'ready page:load', ->
         return
     return
   return
-  
-$(document).on 'click', '#masonry', (e) ->
-  $('#masonry-container').masonry( 'reload' )
+
+masonryAdd = (items) ->
+  setTimeout (->
+    $('#masonry-container').masonry( 'reload' )
+  ), 50
+
 	
 	
