@@ -67,7 +67,7 @@ $(document).on 'ready page:load', ->
 masonryAdd = (items) ->
   setTimeout (->
     $('#masonry-container').masonry( 'reload' )
-  ), 50
+  ), 500
 
 	
 	
