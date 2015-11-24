@@ -12,7 +12,11 @@
 		Kommentarer: <%= post.comments.count %><br>
 		Likes:
 		<div id="counter_info-<%=post.id%>" class="counter-fix">
-			<%= post.likes_count %>
+			<% if post.likes_count != nil %> 
+				<%= post.likes_count %>
+			<% else %>
+				0
+			<% end %>
 		</div>	
 		<div id="like-button-<%= post.id %>">
 			<% if user_signed_in? %>
