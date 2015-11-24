@@ -7,6 +7,12 @@ class UsersController < ApplicationController
   end
   
   def show
+    if params[:-]
+      @posts = @user.posts.where('id < ?', params[:id]).limit(20)
+    else
+      @posts = @user.posts.limit(20)
+    end
+    @comment = Comment.new
   end
   
   def edit
