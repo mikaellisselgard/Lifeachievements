@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119101353) do
+ActiveRecord::Schema.define(version: 20151125165626) do
 
   create_table "achievements", force: :cascade do |t|
     t.text     "description"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20151119101353) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
