@@ -2,6 +2,9 @@
 	<div class="post_user">
 		<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
 		<h3><%= link_to post.user.name, user_path(post.user) %></h3>
+		<% if post.user == current_user || current_user.admin %>
+			<h2><%= link_to 'X', post, method: 'DELETE', data: { confirm: 'Vill du ta bort detta inlägg?'}%></h2>
+		<% end %>
 	</div>
 	<div class="post_image" height="<%= post.height %>px!important">
 		<%= image_tag(post.image, width: post.width, height: post.height) %><br>
