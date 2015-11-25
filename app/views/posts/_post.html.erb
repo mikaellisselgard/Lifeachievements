@@ -1,6 +1,10 @@
 <div class="box col3 masonry-brick" data-id="<%= post.id %>">
 	<div class="post_user">
-		<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
+		<% if post.user.avatar.length > 0 %>
+			<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
+		<% else %>
+			<%= link_to image_tag('avatar.png', width: "30px", height: "30px"), user_path(post.user)%>
+		<% end %>
 		<h3><%= link_to post.user.name, user_path(post.user) %></h3>
 		<% if user_signed_in? %>
 			<% if post.user == current_user || current_user.admin %>
