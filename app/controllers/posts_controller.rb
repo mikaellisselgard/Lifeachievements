@@ -1,23 +1,25 @@
 class PostsController < ApplicationController
 before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update, :destroy]
 
-def index
-  # if the id params is present
-  if params[:id]
+  def index
+    # index for posts after fetching
+    if params[:id] and params[:follow_ids].nil? and params[:user].nil?
+      @posts = Post.where('id < ?', params[:id]).limit(20)
+    # index for posts pre fetching
+    elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil?
+      @posts = Post.limit(20)
+    end
+    # index for users after fetching
     if params[:user]
       @posts = User.find(params[:user]).posts.where('id < ?', params[:id]).limit(20)
-    else
-      @posts = Post.where('id < ?', params[:id]).limit(20)
     end
-  else
-    @posts = Post.limit(20)
+    # index for follows after fetching
+    if params[:follow_ids]
+      @follow_ids = params[:follow_ids]
+      @posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(20)
+    end
+    @comment = Comment.new
   end
-  @comment = Comment.new
-  respond_to do |format|
-    format.html
-    format.js
-  end
-end
   
   def show
     @comment = Comment.new
@@ -73,7 +75,7 @@ end
   end
 
   def destroy
-    if @post.user_id == current_user.id
+    if @post.user_id == current_user.id || current_user.admin
       @post.destroy
       respond_to do |format|
         format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
@@ -83,6 +85,21 @@ end
       respond_to do |format|
         format.html { redirect_to :back, notice: 'No permission' }
       end
+    end
+  end
+  
+  def follow_index
+    # fetch all user_ids from users following current_user
+    @follow_ids = current_user.follows.pluck(:followable_id)
+    @posts = Post.where('user_id IN (?)', @follow_ids).limit(20)
+    @comment = Comment.new
+    # check if no result for sending nil-params to index
+    if @posts.length == 0
+      @follow_ids = 'nil'
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

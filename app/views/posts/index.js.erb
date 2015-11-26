@@ -1,1 +1,3 @@
-$('#masonry-container').append('<%= escape_javascript(render(:partial => @posts)) %>')
+<% unless @posts.nil? %>
+	$('#masonry-container').append('<%= escape_javascript(render(:partial => @posts)) %>')
+<% end %>
