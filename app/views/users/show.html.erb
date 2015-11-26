@@ -6,14 +6,22 @@
 				<% if @user == current_user %>
 					<%= link_to 'Ändra profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
 				<% else %>
-					<%= link_to 'Följ användare', root_path, class: 'button success radius expand'%>
+					<% if current_user.following?(@user)%>
+						<%= link_to 'Sluta följ användare', user_unfollow_path(@user), method: :put, class: 'button success radius expand'%>
+					<% else %>
+						<%= link_to 'Följ användare', user_follow_path(@user), method: :put, class: 'button success radius expand'%>
+					<% end %>
 				<% end %>
 			<% else %>
 				<%= image_tag 'avatar.png', width: 280, height: 175 %>
 				<% if @user == current_user %>
 					<%= link_to 'Lägg till profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
 				<% else %>
-					<%= link_to 'Följ användare', root_path, class: 'button success radius expand'%>
+					<% if current_user.following?(@user)%>
+						<%= link_to 'Sluta följ användare', user_unfollow_path(@user), method: :put, class: 'button success radius expand'%>
+					<% else %>
+						<%= link_to 'Följ användare', user_follow_path(@user), method: :put, class: 'button success radius expand'%>
+					<% end %>
 				<% end %>
 			<% end %>
 		</div>

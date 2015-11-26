@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   autocomplete :user, :name, full: true
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_follow, only: [:follow, :unfollow]
   
   def index
     @users = User.all
@@ -30,10 +31,24 @@ class UsersController < ApplicationController
     end
   end
   
+  def follow
+    current_user.follow(@follow_user)
+    redirect_to :back
+  end
+  
+  def unfollow
+    current_user.stop_following(@follow_user)
+    redirect_to :back
+  end
+    
   private
   
   def set_user
     @user = User.find(params[:id])
+  end
+  
+  def set_follow
+    @follow_user = User.find(params[:user_id])
   end
   
   def user_params

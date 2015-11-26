@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125165626) do
+ActiveRecord::Schema.define(version: 20151126082526) do
 
   create_table "achievements", force: :cascade do |t|
     t.text     "description"
@@ -55,6 +55,19 @@ ActiveRecord::Schema.define(version: 20151125165626) do
 
   add_index "comments", ["imageable_type", "imageable_id"], name: "index_comments_on_imageable_type_and_imageable_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "followable_id",                   null: false
+    t.string   "followable_type",                 null: false
+    t.integer  "follower_id",                     null: false
+    t.string   "follower_type",                   null: false
+    t.boolean  "blocked",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables"
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows"
 
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", null: false

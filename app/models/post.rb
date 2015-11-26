@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
   mount_uploader :image, ImageUploader
+  acts_as_followable
+  acts_as_follower
   belongs_to :user
   belongs_to :achievement
   has_many :likes
