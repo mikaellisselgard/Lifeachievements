@@ -33,11 +33,13 @@ class UsersController < ApplicationController
   
   def follow
     current_user.follow(@user)
+    Notice.follow(current_user, @user, true)
     redirect_to :back
   end
   
   def unfollow
     current_user.stop_following(@user)
+    Notice.follow(current_user, @user, false)
     redirect_to :back
   end
   

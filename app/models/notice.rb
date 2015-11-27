@@ -39,5 +39,18 @@ class Notice < ActiveRecord::Base
     end
   end
   
+  def self.follow(follower, following, bool)
+    @follow_notice = Notice.new
+    @follow_notice.user_ids = [following.id]
+    @follow_notice.user_id = follower.id
+    @follow_notice.link = follower.id
+    if bool
+      @follow_notice.message = "Follow"
+    else
+      @follow_notice.message = "Unfollow"
+    end
+    @follow_notice.save
+  end
+  
   
 end
