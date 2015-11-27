@@ -88,6 +88,6 @@
 	<div id="reveal-likes-<%=post.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
 		<% @likes = post.likes %>
-		<%= render 'likes', object: @likes %>
+		<%= render 'posts/likes', object: @likes %>
 	</div>
 </div>

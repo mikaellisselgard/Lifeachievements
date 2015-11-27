@@ -1,6 +1,8 @@
 class Notice < ActiveRecord::Base
   has_and_belongs_to_many :users
   
+  default_scope { order('created_at DESC') }
+  
   def self.comment(comment)
     @comment_model = comment.imageable_type.constantize
     @comment_users = @comment_model.find(comment.imageable_id).comments.pluck(:user_id).uniq

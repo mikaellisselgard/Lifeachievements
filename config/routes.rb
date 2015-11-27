@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get :autocomplete_user_name, :on => :collection
     put 'follow', to: 'users#follow'
     put 'unfollow', to: 'users#unfollow'
+    post 'noticed', to: 'users#noticed'
   end
   
   put 'bucket_list/add_achievement/:id', to: 'bucket_lists#add_achievement', as: 'add_achievement_bucket_list'

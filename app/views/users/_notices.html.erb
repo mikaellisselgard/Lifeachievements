@@ -1,0 +1,4 @@
+<% @notices.each do |notice| %>
+	<li<% if notice.seen.nil? %> class="active"<% end %>><a href="#"><%= notice.message %></a></li>
+<% end %>
+	

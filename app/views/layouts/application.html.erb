@@ -14,7 +14,7 @@
 
   <body>
 	<div class="fixed" height="45px">
-		<nav class="top-bar" data-topbar role="navigation">
+		<nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
 		  <ul class="title-area">
 		    <li class="name">
 		      <h1><%= link_to "Life Achievements", root_path %></h1>
@@ -35,6 +35,15 @@
 				  	<li<% if current_page? user_path(current_user) %> class="active"<% end %>><%= link_to "Profil", user_path(current_user) %></li>
 				  	<li><%= link_to "Logga ut", destroy_user_session_path, method: 'DELETE' %></li>
 			    </ul>
+			    <ul class="right">
+			         <li id="notices-<%= current_user.id%>" class="notices has-dropdown">
+			           <a href="#" id="notishref">Notiser <% if @notices.any? %>(<%= @notices.count %>) <% end %></a>
+			           <ul class="dropdown">
+						 <% @notices = current_user.notices.limit(10) %>
+			             <%= render 'users/notices', object: @notices %>
+			           </ul>
+			         </li>
+			       </ul>
 			<% else%>
 				<ul class="right">
    					<li><%= link_to "Logga in", new_user_session_path %></li>
@@ -43,7 +52,7 @@
 			<% end %>
 		    <!-- Left Nav Section -->
 		    <ul class="left">
-				<%= render '/users/search_user'%>
+				<%= render 'users/search_user'%>
 		    </ul>
 		  </section>
 		</nav>
