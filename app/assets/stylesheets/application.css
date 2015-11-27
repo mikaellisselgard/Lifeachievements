@@ -23,6 +23,11 @@
  *= require foundation_and_overrides
  */
 
+.extrawidth {
+	min-width:300px!important;
+}
+
+
 @media only screen and (min-width: 1800px) {
 	.media-container {
 		margin-left: 70px!important;
