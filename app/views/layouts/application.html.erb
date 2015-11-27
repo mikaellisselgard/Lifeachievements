@@ -37,7 +37,7 @@
 			    </ul>
 			    <ul class="right">
 			         <li id="notices-<%= current_user.id%>" class="notices has-dropdown">
-			           <a href="#" id="notishref" class="extrawidth">Notiser <% if @notices.any? %>(<%= @notices.count %>) <% end %></a>
+			           <a href="#" id="notishref">Notiser <% if @notices.any? %>(<%= @notices.count %>) <% end %></a>
 			           <ul class="dropdown">
 						 <% @notices = current_user.notices.limit(10) %>
 			             <%= render 'users/notices', object: @notices %>
