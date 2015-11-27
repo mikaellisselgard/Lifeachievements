@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.comment = params[:comment][:comment]
     @comment.user_id = current_user.id
     @comment.save!
-    Notice.comment_notice(@comment)
+    Notice.comment(@comment)
     @comments = @class.find(params[:commenter_id]).comments
   end
   
