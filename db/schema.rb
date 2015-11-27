@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126082526) do
+ActiveRecord::Schema.define(version: 20151127084400) do
 
   create_table "achievements", force: :cascade do |t|
     t.text     "description"
@@ -85,6 +85,16 @@ ActiveRecord::Schema.define(version: 20151126082526) do
   end
 
   add_index "medals", ["user_id"], name: "index_medals_on_user_id"
+
+  create_table "notices", force: :cascade do |t|
+    t.string   "message"
+    t.integer  "user_id"
+    t.datetime "seen"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "notices", ["user_id"], name: "index_notices_on_user_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "image"
