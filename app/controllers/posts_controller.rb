@@ -35,7 +35,9 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
     @like = Like.create(user_id: current_user.id, post_id: @post.id)
     @like.save
     if @like.save
+      Notice.like(@like, true)
     else
+      Notice.like(@like, false)
       @like = @post.likes.find_by_user_id(current_user.id)
       @like.destroy
     end
