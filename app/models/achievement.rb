@@ -7,4 +7,13 @@ class Achievement < ActiveRecord::Base
   
   default_scope { order('created_at DESC') }
   
+  validates :description, length: { maximum: 45 }
+  
+  after_create :set_score
+  
+  def set_score
+    self.score = 100
+    self.save!
+  end
+  
 end
