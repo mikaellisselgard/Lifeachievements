@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   get 'home/index'
 
   devise_for :users
@@ -10,11 +11,17 @@ Rails.application.routes.draw do
   resources :categories
   resources :users do
     get :autocomplete_user_name, :on => :collection
+    put 'follow', to: 'users#follow'
+    put 'unfollow', to: 'users#unfollow'
+    post 'noticed', to: 'users#noticed'
   end
   
   put 'bucket_list/add_achievement/:id', to: 'bucket_lists#add_achievement', as: 'add_achievement_bucket_list'
   delete 'bucket_list/remove_bucket_list_item/:id', to: 'bucket_lists#remove_bucket_list_item', as: 'remove_bucket_list_item'
+  put 'posts/like/:id', to: 'posts#like_post', as: 'like_post'
   get 'highscore', to: 'home#highscore'
+  post 'comments' => 'comments#create', defaults: { format: 'js' }
+  get 'friends', to: 'posts#follow_index', as: 'follow_posts'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

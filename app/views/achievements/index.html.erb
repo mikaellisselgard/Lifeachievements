@@ -2,39 +2,15 @@
     <%= render 'search_achievement' %>	
 </div>
 <div id="achievement-container" class="achievement-content medium-12 medium-centered large-12 large-centered columns media-container">
-    <% @achievements.each do |achievement| %>
-        <div class="achievements">
-            <%= link_to achievement.description, achievement, class: 'hide'  %>
-
-			<div class="achievement_categories">
-		    <%= image_tag 'circle.png', size: "30" %>
-			<h3>Score: <%= achievement.score %></h3>
-			</div>
-			<div class="achievement_description">
-    			<h3><%= achievement.description %></h3>
-            </div>
-            <div class="achievement_posts">
-            <% if achievement.posts[-1] %> 
-				<%= image_tag achievement.posts[-1].image %>
-			<% else %>
-				<%= image_tag 'post.png', size: "85" %>
-			<% end %>
-			<% if achievement.posts[-2] %>
-				<%= image_tag achievement.posts[-2].image, size: "85x65" %>
-			<% else %>
-				<%= image_tag 'post.png', size: "85" %>
-			<% end %>
-			<% if achievement.posts[-3] %>
-				<%= image_tag achievement.posts[-3].image, size: "85x65" %>
-			<% else %>
-				<%= image_tag 'post.png', size: "85" %>
-			<% end %>
-            </div>
-            <div class="achievement_info">
-                Antal användare som klarat detta achievement: <%= achievement.posts.length %><br>
-				<%= link_to 'Post achievement', new_post_path(achievement_id: achievement.id)%><br>
-				<%= link_to 'Add to Bucket list', add_achievement_bucket_list_path(achievement.id), id: 'add-achievement' %><br>
-            </div>
-		</div>
-    <% end %>
+   <%= render @achievements %>
 </div>
+
+
+<!-- for loading more posts
+<div class="load-more-container">
+      hide our loading gif image so that we show it when making ajax call via jquery 
+	<%= image_tag "loading-gif.gif", style: "display:none;", class: "loading-gif", height: 30, width: 30 %>
+	<%= link_to "Load More", achievements_path, class: "load-more button expand" %>
+</div>
+ -->
+

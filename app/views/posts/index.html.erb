@@ -1,22 +1,10 @@
 <div class="medium-12 medium-centered large-12 large-centered columns">
 	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">
-	  <% @posts.each do |post| %>
-	  <div class="box col3">
-	  	<div class="post_user">
-			<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
-			<h3><%= link_to post.user.name, user_path(post.user) %></h3>
-		</div>
-		<div class="post_image" height="<%= post.height %>px!important">
-			<%= image_tag(post.image, width: post.width, height: post.height) %><br>
-		</div>
-		<div class="post_info">
-			Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %><br>
-	     	Meddelande: <%= post.message %><br><br>
-		</div>
-	 </div>
-	 <% end %>
+		<%= render @posts %>
 	</div>
 </div>
-
-
-
+<div class="load-more-container medium-4 centered">
+        <!-- hide our loading gif image so that we show it when making ajax call via jquery -->
+	<%= image_tag "loading-gif.gif", style: "display:none;", class: "loading-gif" %>
+	<%= link_to "Load More", posts_path, class: "load-more button expand" %>
+</div>

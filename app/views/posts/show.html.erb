@@ -1,8 +1,5 @@
-<p><img src="<%= @post.image %>" width="50px" height="50px"></p>
-<p><%= @post.message %></p>
-<p><%= @post.user.name %></p>
-<p><%= @post.achievement.description %></p>
-
-<%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-<%= link_to 'Edit', edit_post_path(@post), class: 'button success radius expand' %><br>
-<%= link_to 'Back', posts_path, class: 'button success radius expand'  %>
+<div class="medium-12 medium-centered large-12 large-centered columns">
+	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">
+		<%= render @post %>
+	</div>
+</div>

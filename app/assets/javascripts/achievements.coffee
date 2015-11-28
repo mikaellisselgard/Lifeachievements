@@ -50,5 +50,6 @@ $(document).on 'click', '#remove-achievement', (e) ->
       return
   return
 
-	  
+
+
 	

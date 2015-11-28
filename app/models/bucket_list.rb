@@ -3,7 +3,7 @@ class BucketList < ActiveRecord::Base
   has_and_belongs_to_many :achievements
   
   def add_achievement(achievement)
-    self.achievements << achievement
+    self.achievements << achievement unless self.achievements.include?(achievement)
     self.save!
   end
   

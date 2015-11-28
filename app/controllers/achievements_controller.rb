@@ -6,12 +6,14 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.json
   def index
-    @achievements = Achievement.order("id DESC").all
+    @achievements = Achievement.all - current_user.achievements
   end
 
   # GET /achievements/1
   # GET /achievements/1.json
   def show
+    @comment = Comment.new
+    @comments = @achievement.comments.order("id DESC")
   end
 
   # GET /achievements/new

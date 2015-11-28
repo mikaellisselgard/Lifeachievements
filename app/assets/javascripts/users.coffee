@@ -42,5 +42,5 @@ $(document).on 'ready page:load', ->
   $("#search_user").keypress (e) ->
     if e.which == 13
       $(location).attr('href', 'http://178.62.99.216/users/' + $("#search_user").val())
-	  return
+	return
 

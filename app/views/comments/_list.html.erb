@@ -1,0 +1,8 @@
+<% @comments.each do |comment| %>
+    <div class="comments_list">
+		<div id="comment">
+      		<div class="comment_user"><%= link_to comment.user.name + ':', user_path(comment.user) %></div>
+			<div class="comment_content"><%= comment.comment %></div>
+		</div>
+    </div>
+<% end %>

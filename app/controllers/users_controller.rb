@@ -1,12 +1,19 @@
 class UsersController < ApplicationController
   autocomplete :user, :name, full: true
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user_id, only: [:follow, :unfollow, :noticed]
   
   def index
     @users = User.all
   end
   
   def show
+    @posts = @user.posts.limit(20)
+    @comment = Comment.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def edit
@@ -24,10 +31,31 @@ class UsersController < ApplicationController
     end
   end
   
+  def follow
+    current_user.follow(@user)
+    Notice.follow(current_user, @user, true)
+    redirect_to :back
+  end
+  
+  def unfollow
+    current_user.stop_following(@user)
+    Notice.follow(current_user, @user, false)
+    redirect_to :back
+  end
+  
+  def noticed
+    @user.notices.where(seen: nil).update_all(seen: Time.now)
+    redirect_to :back
+  end
+    
   private
   
   def set_user
     @user = User.find(params[:id])
+  end
+  
+  def set_user_id
+    @user = User.find(params[:user_id])
   end
   
   def user_params

@@ -1,0 +1,9 @@
+<% @notices.each do |notice| %>
+	<% if notice.link.to_i > 0%>
+		<% @link = post_path(notice.link) %>
+	<% else %>
+		<% @link = user_path(notice.user_id)%>
+	<% end %>
+	<li<% if notice.seen.nil? %> class="active"<% end %>><%= link_to notice.message, @link %></li>
+<% end %>
+	

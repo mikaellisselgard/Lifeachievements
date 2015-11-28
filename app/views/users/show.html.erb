@@ -6,38 +6,45 @@
 				<% if @user == current_user %>
 					<%= link_to 'Ändra profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
 				<% else %>
-					<%= link_to 'Följ användare', root_path, class: 'button success radius expand'%>
+					<% if user_signed_in? %>
+						<% if current_user.following?(@user)%>
+							<%= link_to 'Sluta följ användare', user_unfollow_path(@user), method: :put, class: 'button success radius expand'%>
+						<% else %>
+							<%= link_to 'Följ användare', user_follow_path(@user), method: :put, class: 'button success radius expand'%>
+						<% end %>
+					<% end %>
 				<% end %>
 			<% else %>
 				<%= image_tag 'avatar.png', width: 280, height: 175 %>
 				<% if @user == current_user %>
 					<%= link_to 'Lägg till profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
 				<% else %>
-					<%= link_to 'Följ användare', root_path, class: 'button success radius expand'%>
+					<% if user_signed_in? %>
+						<% if current_user.following?(@user)%>
+							<%= link_to 'Sluta följ användare', user_unfollow_path(@user), method: :put, class: 'button success radius expand'%>
+						<% else %>
+							<%= link_to 'Följ användare', user_follow_path(@user), method: :put, class: 'button success radius expand'%>
+						<% end %>
+					<% end %>
 				<% end %>
 			<% end %>
 		</div>
 		<div class="user-info">
-			<%= @user.name %>
+			<% if @user.medals %>
+				<% @user.medals.each do |medal| %>
+					<%= image_tag 'medal.png', width:50, height: 50 %>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 </div>
-<div class="medium-12 medium-centered large-12 large-centered columns marginfix">
+<div class="medium-12 medium-centered large-12 large-centered columns">
 	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">
-	  <% @user.posts.each do |post| %>
-	  <div class="box col3">
-	  	<div class="post_user">
-			<%= link_to image_tag(post.user.avatar, width: "30px", height: "30px"), user_path(post.user)%>
-			<h3><%= link_to post.user.name, user_path(post.user) %></h3>
-		</div>
-		<div class="post_image" height="<%= post.height %>px!important">
-			<%= image_tag(post.image, width: post.width, height: post.height) %><br>
-		</div>
-		<div class="post_info">
-			<p>Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %></p>
-	     	<p>Meddelande: <%= post.message %></p><br><br>
-		</div>
-	 </div>
-	 <% end %>
+		<%= render @posts %>
 	</div>
+</div>
+<div class="load-more-container medium-4 centered">
+        <!-- hide our loading gif image so that we show it when making ajax call via jquery -->
+	<%= image_tag "loading-gif.gif", style: "display:none;", class: "loading-gif" %>
+	<%= link_to "Load More", posts_path(user: @user), class: "load-more button expand" %>
 </div>
