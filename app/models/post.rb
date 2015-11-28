@@ -12,6 +12,8 @@ class Post < ActiveRecord::Base
   after_create :update_achievement, :remove_from_bucketlist
 
   default_scope { order('created_at DESC') }
+  
+  validate :image_or_video
 
   def check_achievement
     @achievement = self.achievement
@@ -46,6 +48,15 @@ class Post < ActiveRecord::Base
 
   def set_success(format, opts)
     self.success = true
+  end
+  
+  def image_or_video
+    if image.blank? && video.blank?
+      errors.add(:image, "Finns ingen bild eller video")
+    end
+    unless image.blank? || video.blank?
+      errors.add(:image, "Du kan inte ladda upp både bild och video")
+    end
   end
   
 end
