@@ -1,4 +1,4 @@
-<div class="achievements" data-id="<%= achievement.id %>">
+<div class="achievements" data-id="<%= achievement.id %>" id="achievement-id">
     <%= link_to achievement.description, achievement, class: 'hide'  %>
 
 	<div class="achievement_categories">
@@ -28,10 +28,8 @@
     <div class="achievement_info">
         Antal användare som klarat detta achievement: <%= achievement.posts.length %><br>
 		<%= link_to 'Post achievement', new_post_path(achievement_id: achievement.id)%><br>
-	    <% if already_in_bucket_list(achievement) %>
-	    	<%= link_to 'Ta bort', remove_bucket_list_item_path(achievement.id), id: 'remove-achievement' %>
-	    <% else %>
-			<%= link_to 'Add to Bucket list', add_achievement_bucket_list_path(achievement.id), id: 'add-achievement' %><br>
-	    <% end %>
+		<div id="achievement_<%=achievement.id%>">
+			<%= render partial: 'bucket_lists/bucket_list_actions', locals: {achievement: achievement} %>
+	    </div>
     </div>
 </div>

@@ -49,7 +49,3 @@ $(document).on 'click', '#remove-achievement', (e) ->
     success: ->
       return
   return
-
-
-
-	
