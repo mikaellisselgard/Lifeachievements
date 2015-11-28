@@ -1,0 +1,9 @@
+<% @user_ids.each do |user| %>
+	<% @user = User.find(user) %>
+	<% if @user.avatar.length > 0 %>
+		<%= link_to image_tag(@user.avatar, width: "50px", height: "50px"), user_path(@user)%>
+	<% else %>
+		<%= link_to image_tag('avatar.png', width: "50px", height: "50px"), user_path(@user)%>
+	<% end %>
+	<%= @user.name %><br>
+<% end %>

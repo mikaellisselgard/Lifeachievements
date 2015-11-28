@@ -26,8 +26,14 @@
 	<% end %>
     </div>
     <div class="achievement_info">
-        Antal användare som klarat detta achievement: <%= achievement.posts.length %><br>
+		<%= link_to 'Antal användare som klarat detta achievement: ' + achievement.posts.length.to_s, achievement, remote: true, data: {:"reveal-id" => "reveal-users-#{achievement.id}"} %><br>
+        
 		<%= link_to 'Post achievement', new_post_path(achievement_id: achievement.id)%><br>
 		<%= link_to 'Add to Bucket list', add_achievement_bucket_list_path(achievement.id), id: 'add-achievement' %><br>
     </div>
+	<div id="reveal-users-<%=achievement.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
+		<% @user_ids = achievement.posts.pluck(:user_id) %>
+		<%= render 'achievements/users', object: @user_ids %>
+	</div>
 </div>
