@@ -10,17 +10,29 @@
     </div>
     <div class="achievement_posts">
     <% if achievement.posts[0] %> 
-		<%= link_to (image_tag achievement.posts[0].image, size:"85x65"), achievement.posts[0] %>
+		<% if achievement.posts[0].height == nil %>
+			<%= link_to (video_tag achievement.posts[0].video, size:"85x65"), achievement.posts[0] %>
+		<% else %>
+			<%= link_to (image_tag achievement.posts[0].image, size:"85x65"), achievement.posts[0] %>
+		<% end %>
 	<% else %>
 		<%= image_tag 'post.png', size: "85" %>
 	<% end %>
 	<% if achievement.posts[1] %>
-		<%= link_to (image_tag achievement.posts[1].image, size:"85x65"), achievement.posts[1] %>
+		<% if achievement.posts[1].height == nil %>
+			<%= link_to (video_tag achievement.posts[1].video, size:"85x65"), achievement.posts[1] %>
+		<% else %>
+			<%= link_to (image_tag achievement.posts[1].image, size:"85x65"), achievement.posts[1] %>
+		<% end %>
 	<% else %>
 		<%= image_tag 'post.png', size: "85" %>
 	<% end %>
 	<% if achievement.posts[2] %>
-		<%= link_to (image_tag achievement.posts[2].image, size:"85x65"), achievement.posts[2] %>
+		<% if achievement.posts[2].height == nil %>
+			<%= link_to (video_tag achievement.posts[2].video, size:"85x65"), achievement.posts[2] %>
+		<% else %>
+			<%= link_to (image_tag achievement.posts[2].image, size:"85x65"), achievement.posts[2] %>
+		<% end %>
 	<% else %>
 		<%= image_tag 'post.png', size: "85" %>
 	<% end %>
