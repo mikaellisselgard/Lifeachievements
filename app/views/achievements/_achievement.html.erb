@@ -10,17 +10,17 @@
     </div>
     <div class="achievement_posts">
     <% if achievement.posts[0] %> 
-		<%= image_tag achievement.posts[0].image %>
+		<%= link_to (image_tag achievement.posts[0].image, size:"85x65"), achievement.posts[0] %>
 	<% else %>
 		<%= image_tag 'post.png', size: "85" %>
 	<% end %>
 	<% if achievement.posts[1] %>
-		<%= image_tag achievement.posts[1].image, size: "85x65" %>
+		<%= link_to (image_tag achievement.posts[1].image, size:"85x65"), achievement.posts[1] %>
 	<% else %>
 		<%= image_tag 'post.png', size: "85" %>
 	<% end %>
 	<% if achievement.posts[2] %>
-		<%= image_tag achievement.posts[2].image, size: "85x65" %>
+		<%= link_to (image_tag achievement.posts[2].image, size:"85x65"), achievement.posts[2] %>
 	<% else %>
 		<%= image_tag 'post.png', size: "85" %>
 	<% end %>
