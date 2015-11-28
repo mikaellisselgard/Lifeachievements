@@ -1,29 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @achievement.description %>
-</p>
-
-<p>
-  <strong>Score:</strong>
-  <%= @achievement.score %>
-</p>
-
-<p>
-  <strong>Categories: </strong><br>
-  <% @achievement.categories.each do |category| %>
-    <%= category.name %><br>
-  <% end %>
-</p>
-
-<%= render 'comments/form'%>
-
-<div id="comment_list">
-	<%= render 'comments/list' %>
+<div id="achievement-container" class="achievement-content medium-12 medium-centered large-12 large-centered columns media-container">
+   <%= render @achievement %>
 </div>
-
-
-<%= link_to "Add to bucket-list", add_achievement_bucket_list_path(@achievement.id), id: 'add-achievement' %><br><br>
-<%= link_to 'Edit', edit_achievement_path(@achievement) %> |
-<%= link_to 'Back', achievements_path %>
