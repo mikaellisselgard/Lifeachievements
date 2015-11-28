@@ -55,5 +55,14 @@ class Notice < ActiveRecord::Base
     @follow_notice.save
   end
   
+  def self.medal(user, type)
+    @medal_user = User.find(user)
+    @all_user_ids = User.all.pluck(:id)
+    @medal_notice = Notice.new
+    @medal_notice.user_ids = @all_user_ids
+    @medal_notice.user_id = user
+    @medal_notice.message = @medal_user.name + " vann medalj för " + type
+    @medal_notice.save
+  end
   
 end

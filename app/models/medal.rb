@@ -38,21 +38,27 @@ class Medal < ActiveRecord::Base
         end
         # checking if highest score gained is higher than previous highest 
         if @score.max > @max_score
+          @max_score = @score.max
           @user_with_highest_max = user
           @amount_of_max_score = @score.count(@score.max)
         end
         # checking if highest score gained is the same but achieved more times
-        if @score.max == @max_score && @score.count(@score.max) > @amount_of_max_score
+        if (@score.max == @max_score) and (@score.count(@score.max) > @amount_of_max_score)
           @user_with_highest_max = user
           @amount_of_max_score = @score.count(@score.max)
         end
       end
     end
     # create the medal for the user
-    Medal.new({ user_id: @user_with_highest_score.id, type: 'score_medal', image: 'score_medal.png' }).save
-    Medal.new({ user_id: @user_with_highest_amount.id, type: 'amount_medal', image: 'amount_medal.png' }).save
-    Medal.new({ user_id: @user_with_highest_max.id, type: 'max_medal', image: 'max_medal.png' }).save
-    Medal.new({ user_id: @user_with_most_likes.id, type: 'likes_medal', image: 'likes_medal.png' }).save
+    Medal.new({ user_id: @user_with_highest_score.id, type: 'mest poäng', image: 'score_medal.png' }).save
+    Medal.new({ user_id: @user_with_highest_amount.id, type: 'flest antal', image: 'amount_medal.png' }).save
+    Medal.new({ user_id: @user_with_highest_max.id, type: 'flest ovanliga', image: 'max_medal.png' }).save
+    Medal.new({ user_id: @user_with_most_likes.id, type: 'flest likes', image: 'likes_medal.png' }).save
+    # create notice for each medal
+    Notice.medal(@user_with_highest_score.id, 'mest poäng')
+    Notice.medal(@user_with_highest_amount.id, 'flest antal')
+    Notice.medal(@user_with_highest_max.id, 'flest ovanliga')
+    Notice.medal(@user_with_most_likes.id, 'flest likes')
   end
   
   
