@@ -112,7 +112,7 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
   end
 
   def post_params
-    params.require(:post).permit(:image, :message, :user_id, :achievement_id)
+    params.require(:post).permit(:image, :video, :message, :user_id, :achievement_id)
   end
   
 end

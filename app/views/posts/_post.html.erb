@@ -13,7 +13,11 @@
 		<% end %>
 	</div>
 	<div class="post_image" height="<%= post.height %>px!important">
-		<%= image_tag(post.image, width: post.width, height: post.height) %><br>
+		<% if post.width == nil %>
+			<%= video_tag(post.video, controls: true, autobuffer: true, width: 270, height: 350) %>
+		<% else %>
+			<%= image_tag(post.image, width: post.width, height: post.height) %><br>
+		<% end %>
 	</div>
 	<div class="post_info">
 		Achievement: <%= link_to post.achievement.description, achievement_path(post.achievement) %><br>
