@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def show
     @posts = @user.posts.limit(20)
     @comment = Comment.new
+    @bucket_list = @user.bucket_list
+    @achievements = @bucket_list.achievements.reverse
     respond_to do |format|
       format.html
       format.js
