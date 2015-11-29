@@ -1,9 +1,9 @@
 <% @user_ids.each do |user| %>
-	<% @user = User.find(user) %>
-	<% if @user.avatar.length > 0 %>
-		<%= link_to image_tag(@user.avatar, width: "50px", height: "50px"), user_path(@user)%>
+	<% @achievement_user = User.find(user) %>
+	<% if @achievement_user.avatar.length > 0 %>
+		<%= link_to image_tag(@achievement_user.avatar, width: "50px", height: "50px"), user_path(@achievement_user)%>
 	<% else %>
-		<%= link_to image_tag('avatar.png', width: "50px", height: "50px"), user_path(@user)%>
+		<%= link_to image_tag('avatar.png', width: "50px", height: "50px"), user_path(@achievement_user)%>
 	<% end %>
-	<%= @user.name %><br>
+	<%= @achievement_user.name %><br>
 <% end %>
