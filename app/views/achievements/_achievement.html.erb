@@ -6,7 +6,7 @@
 	<h3>Score: <%= achievement.score %></h3>
 	</div>
 	<div class="achievement_description">
-		<h3><%= achievement.description %></h3>
+		<h3><%= link_to achievement.description, achievement %></h3>
     </div>
     <div class="achievement_posts">
     <% if achievement.posts[0] %> 
