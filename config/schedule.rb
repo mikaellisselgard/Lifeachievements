@@ -19,9 +19,13 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :environment, "development"
+set :environment, "production"
 set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
 every :sunday, :at => '12pm' do # Many shortcuts available: :hour, :day, :month, :year, :reboot
   runner "Medal.generate_medals"
+end
+
+every :minute do 
+  runner "Medal.create"
 end
