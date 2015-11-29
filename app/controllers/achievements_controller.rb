@@ -14,6 +14,7 @@ class AchievementsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @achievement.comments.order("id DESC")
+    @posts = @achievement.posts.limit(20)
   end
 
   # GET /achievements/new

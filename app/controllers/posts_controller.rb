@@ -3,10 +3,10 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
 
   def index
     # index for posts after fetching
-    if params[:id] and params[:follow_ids].nil? and params[:user].nil?
+    if params[:id] and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
       @posts = Post.where('id < ?', params[:id]).limit(20)
     # index for posts pre fetching
-    elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil?
+    elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
       @posts = Post.limit(20)
     end
     # index for users after fetching
@@ -17,6 +17,9 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
     if params[:follow_ids]
       @follow_ids = params[:follow_ids]
       @posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(20)
+    end
+    if params[:achievement]
+      @posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(20)
     end
     @comment = Comment.new
   end
