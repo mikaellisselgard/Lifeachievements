@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
 
   before_create :check_achievement
   after_create :update_achievement, :remove_from_bucketlist
+  after_save :process_video
 
   default_scope { order('created_at DESC') }
   
@@ -56,6 +57,15 @@ class Post < ActiveRecord::Base
     end
     unless image.blank? || video.blank?
       errors.add(:image, "Du kan inte ladda upp både bild och video")
+    end
+  end
+  
+  def process_video
+    unless self.video.content_type == "application/mp4"
+      @video = FFMPEG::Movie.new("public" + self.video.url)
+      @video.transcode("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".mp4")
+      self.video = Rails.root.join("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".mp4").open
+      self.save!
     end
   end
   
