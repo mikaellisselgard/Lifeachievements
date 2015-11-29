@@ -26,6 +26,3 @@ every :sunday, :at => '12pm' do # Many shortcuts available: :hour, :day, :month,
   runner "Medal.generate_medals"
 end
 
-every :minute do 
-  runner "Medal.create"
-end
