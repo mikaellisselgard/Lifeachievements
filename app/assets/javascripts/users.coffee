@@ -22,15 +22,29 @@ $(document).on 'ready page:load', ->
           if $('#search_user').val() == ''
             $('.user-content').children('.users').show()
           else
-			  $('.user-content').children('.users').hide()
-			  return
-			  return		  
+			        $('.user-content').children('.users').hide()
+			        return
+		        return
+
+
   $('#search_user_form').submit (e) ->
     e.preventDefault()
     return
   return
+
+$(document).on 'click', '#toggle-bucketlist', ->
+  $('#toggle-achievements').removeClass('toggle-active')
+  $('#toggle-bucketlist').addClass('toggle-active')
+  $('.done-achievements').hide()
+  $('.bucketlist-achievements').toggle()
+
+$(document).on 'click', '#toggle-achievements', ->
+  $('#toggle-bucketlist').removeClass('toggle-active')
+  $('#toggle-achievements').addClass('toggle-active')
+  $('.bucketlist-achievements').hide()
+  $('.done-achievements').toggle()
   
-  
+
 $(document).on 'ready page:load', ->
 	$('#search_user').bind 'railsAutocomplete.select', (event, data) ->
 		$(location).attr('href', 'http://178.62.99.216/users/' + data.item.id)
@@ -41,4 +55,3 @@ $(document).on 'ready page:load', ->
     if e.which == 13
       $(location).attr('href', 'http://178.62.99.216/users/' + $("#search_user").val())
 	return
-	

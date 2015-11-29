@@ -1,1 +1,7 @@
-$("#bucket-list").html("<%= escape_javascript(render(:partial => "users/bucket_list", :object => @user)) %>");
+var pathname = window.location.pathname.split( '/' )
+if (pathname[1] == 'users') {
+	$("#achievement_<%=@achievement.id%>").parent().parent().hide();
+}
+else {
+	$("#achievement_<%=@achievement.id%>").html("<%= escape_javascript(render partial: 'bucket_lists/bucket_list_actions', locals: {achievement: @achievement}) %>");
+}
