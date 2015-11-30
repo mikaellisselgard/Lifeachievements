@@ -15,8 +15,8 @@ class Medal < ActiveRecord::Base
     @highest_likes = 0
     @users.each do |user|
       @score = []
-      if user.likes_week > @highest_likes
-        @highest_likes = user.likes_week
+      if user.posts.where(:created_at => Time.now - 7.days..Time.now).sum(:likes_count) > @highest_likes
+        @highest_likes = user.posts.where(:created_at => Time.now - 7.days..Time.now).sum(:likes_count)
         @user_with_most_likes = user
       end
       if user.posts.any?
