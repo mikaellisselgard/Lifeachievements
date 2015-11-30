@@ -13,13 +13,15 @@ class HomeController < ApplicationController
       @score = []
       if user.posts_week.length > 0
         user.posts_week.each do |post|
-          @score.push(post.achievement.score)
-          if post.achievement.score > @highest_score
-            @highest_score_count = 0
-            @highest_score = post.achievement.score
-          end
-          if post.achievement.score == @highest_score
-            @highest_score_count += 1
+          if post.achievement.created_at + 7.days > Time.now 
+            @score.push(post.achievement.score)
+            if post.achievement.score > @highest_score
+              @highest_score_count = 0
+              @highest_score = post.achievement.score
+            end
+            if post.achievement.score == @highest_score
+              @highest_score_count += 1
+            end
           end
         end
       end

@@ -25,8 +25,8 @@ class Medal < ActiveRecord::Base
           if post.created_at + 7.days > Time.now
             # 8 days in case of medal generate is late
             if achievement.created_at + 8.days > Time.now
-            @score.push(post.achievement.score)
-          end
+              @score.push(post.achievement.score)
+            end
           end
         end
         # checking if score is higher than previous highest
