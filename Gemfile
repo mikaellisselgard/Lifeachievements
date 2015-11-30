@@ -59,3 +59,4 @@ gem 'faker'
 gem 'acts_as_follower'
 gem 'carrierwave-video'
 gem 'streamio-ffmpeg'
+gem "chartkick"

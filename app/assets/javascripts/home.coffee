@@ -10,6 +10,3 @@ $(document).on 'click', '.notices', (e) ->
     url: 'users/' + user_id + '/noticed/',
   });
   
-  
-  
-  
