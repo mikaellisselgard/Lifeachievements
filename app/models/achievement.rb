@@ -7,7 +7,7 @@ class Achievement < ActiveRecord::Base
   
   default_scope { order('created_at DESC') }
   
-  validates :description, length: { maximum: 45 }
+  validates :description, presence: true
   
   after_create :set_score
   
@@ -24,7 +24,7 @@ class Achievement < ActiveRecord::Base
         @new_achievement = self.new
         # chomp for removing line-breaks
         @new_achievement.description = line.chomp
-        @new_achievement.save!
+        @new_achievement.save
       end
     end
     # rename and save file in used
