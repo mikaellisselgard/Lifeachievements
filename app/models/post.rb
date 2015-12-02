@@ -17,34 +17,21 @@ class Post < ActiveRecord::Base
   validate :image_or_video
 
   def check_achievement
-    @achievement = self.achievement
-    @user = self.user
-    @achievement.posts.each do |post|
-      if post.user_id == @user.id
-        return false
-      end
-    end
+    self.achievement.users.exclude? self.user
   end
   
   def update_achievement
-    @achievement = self.achievement
-    @users_with_achievement = @achievement.posts.length
-    @new_score = 100 - (@users_with_achievement * 5) 
-    if @new_score < 5
-      @new_score = 5
+    if self.achievement.score != 5 && self.achievement.users.count > 1
+      self.achievement.update_attributes(score: self.achievement.score - 5)
     end
-    @achievement.score = @new_score
-    @achievement.save!
   end
   
   def remove_from_bucketlist
-    @bucket_list = self.user.bucket_list
-    @bucket_list.achievements.delete(self.achievement)
-    @bucket_list.save!
+    self.user.bucket_list.achievements.destroy(self.achievement)
   end
   
   def check_like(user)
-    self.likes.find_by_user_id(user.id)
+    self.likes.find_by_user_id(user)
   end
 
   def set_success(format, opts)
@@ -62,8 +49,8 @@ class Post < ActiveRecord::Base
   
   def process_video
     unless self.video.content_type == "application/mp4" || video.blank?
-      @video = FFMPEG::Movie.new("public" + self.video.url)
-      @video.transcode("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".mp4")
+      uploaded_video = FFMPEG::Movie.new("public" + self.video.url)
+      uploaded_video.transcode("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".mp4")
       self.video = Rails.root.join("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".mp4").open
       self.save!
     end
