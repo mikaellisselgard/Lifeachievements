@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   delegate :achievements, to: :bucket_list, prefix: true
   
   def set_bucket_list
-    BucketList.new({ :user_id => self.id }).save
+    self.build_bucket_list
   end
   
   def posts_week
