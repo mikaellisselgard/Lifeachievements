@@ -5,22 +5,27 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
     # index for posts after fetching
     if params[:id] and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
       @posts = Post.where('id < ?', params[:id]).limit(20)
+    
     # index for posts pre fetching
     elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
       @posts = Post.limit(20)
     end
+    
     # index for users after fetching
     if params[:user]
       @posts = User.find(params[:user]).posts.where('id < ?', params[:id]).limit(20)
     end
+    
     # index for follows after fetching
     if params[:follow_ids]
       @follow_ids = params[:follow_ids]
       @posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(20)
     end
+    
     if params[:achievement]
       @posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(20)
     end
+    
     @comment = Comment.new
   end
   
@@ -35,25 +40,23 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
   end
   
   def like_post
-    @like = Like.create(user_id: current_user.id, post_id: @post.id)
-    @like.save
-    if @like.save
-      Notice.like(@like, true)
+    like = Like.create(user_id: current_user.id, post_id: @post.id)
+    like.save
+    if like.save
+      Notice.like(like, true)
     else
-      Notice.like(@like, false)
-      @like = @post.likes.find_by_user_id(current_user.id)
-      @like.destroy
+      Notice.like(like, false)
+      like = @post.likes.find_by_user_id(current_user.id)
+      like.destroy
     end
     redirect_to :back
   end
-  
-  
+
   def edit
   end
 
   def create
-    @user = current_user
-    @post = @user.posts.create(post_params)
+    @post = current_user.posts.create(post_params)
     @post.likes_count = 0
     @post.save!
     respond_to do |format|
@@ -95,12 +98,12 @@ before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update,
   
   def follow_index
     # fetch all user_ids from users following current_user
-    @follow_ids = current_user.follows.pluck(:followable_id)
-    @posts = Post.where('user_id IN (?)', @follow_ids).limit(20)
+    follow_ids = current_user.follows.pluck(:followable_id)
+    @posts = Post.where('user_id IN (?)', follow_ids).limit(20)
     @comment = Comment.new
     # check if no result for sending nil-params to index
     if @posts.length == 0
-      @follow_ids = 'nil'
+      follow_ids = 'nil'
     end
     respond_to do |format|
       format.html
