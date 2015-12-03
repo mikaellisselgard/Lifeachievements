@@ -18,14 +18,13 @@ class HomeController < ApplicationController
       total_likes = user_total_posts.sum(:likes_count)
 
       @user_total_stats.push([user,
-                           total_achievements_earned, 
-                           total_score,
-                           total_max_score, 
-                           total_max_score_count, 
-                           total_likes])
+                              total_achievements_earned, 
+                              total_score,
+                              total_max_score, 
+                              total_max_score_count, 
+                              total_likes])
 
       # weekly highscore
-      # user posts where achievement was created this week
       user_week_posts = user.posts.joins(:achievement).
                           where('achievements.created_at between ? and ?',
                           Time.now.beginning_of_week, Time.now)
@@ -37,11 +36,11 @@ class HomeController < ApplicationController
       week_likes = user_week_posts.sum(:likes_count)
 
       @user_week_stats.push([user, 
-                          week_achievements_earned, 
-                          week_score, 
-                          week_max_score, 
-                          week_max_score_count, 
-                          week_likes])
+                             week_achievements_earned, 
+                             week_score, 
+                             week_max_score, 
+                             week_max_score_count, 
+                             week_likes])
     end 
     @user_total_stats = @user_total_stats.sort_by{|k|k[2]}.reverse
     @user_week_stats = @user_week_stats.sort_by{|k|k[2]}.reverse
