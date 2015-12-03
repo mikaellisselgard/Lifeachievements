@@ -3,31 +3,28 @@ class Notice < ActiveRecord::Base
   
   default_scope { order('created_at DESC') }
   
-  def self.commenters(comment)
-    # notice for users who commented same post
-    @com_user = User.find(comment.user_id)
-    @comment_model = comment.imageable_type.constantize
-    @object = @comment_model.find(comment.imageable_id)
-    @comment_users = @object.comments.pluck(:user_id).uniq
-    @commenters_notice = Notice.new
-    # NOTE: Would be better if named recievers
-    @commenters_notice.user_ids = @comment_users - [comment.user_id, @object.user_id]
-    # NOTE: Maybe rename to owner or creator
-    @commenters_notice.user_id = comment.user_id
-    # NOTE: Should be polymorphic
-    #        link should be renamed to `link_id`
-    #        you should also add an `link_type` column that includes the link class like "User" or "Post" or something else
-    #        Then you can whrite it like `@commenters_notice.link = @object`
-    @commenters_notice.link = @object.id
-    @commenters_notice.message = @com_user.name + " har kommenterat samma inlägg som dig" 
-    @commenters_notice.save
-    if @object.user_id != comment.user_id
-      @post_notice = Notice.new
-      @post_notice.user_ids = @object.user_id
-      @post_notice.user_id = comment.user_id
-      @post_notice.link = @object.id
-      @post_notice.message = @com_user.name + " har kommenterat ditt inlägg"
-      @post_notice.save
+  def self.commenters(comment) 
+    # find specific commented record from model
+    commented_record = comment.imageable_type.constantize.find(comment.imageable_id)
+    comment_users = commented_record.comments.pluck(:user_id).uniq
+    
+    # notice for users who commented same record
+    Notice.new({
+      # subtract comment creator and record creator
+      user_ids: comment_users - [comment.user_id, commented_record.user_id],
+      user_id: comment.user_id,
+      link: commented_record.id,
+      message: comment.user.name + " har kommenterat samma inlägg som dig" 
+    }).save
+    
+    # notice for owner of the record
+    if commented_record.user_id != comment.user_id
+      Notice.new({
+        user_ids: commented_record.user_id,
+        user_id: comment.user_id,
+        link: commented_record.id,
+        message: comment.user.name + " har kommenterat ditt inlägg"
+      }).save
     end 
   end
   
