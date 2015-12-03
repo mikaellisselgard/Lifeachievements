@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'home/index'
 
   devise_for :users
-  resources :bucket_lists
   resources :posts
   resources :achievements do
     get :autocomplete_achievement_description, :on => :collection
@@ -16,7 +15,7 @@ Rails.application.routes.draw do
     post 'noticed', to: 'users#noticed'
   end
   
-  put 'bucket_list/add_achievement/:id', to: 'bucket_lists#add_achievement', as: 'add_achievement_bucket_list'
+  put 'bucket_list/add_bucket_list_item/:id', to: 'bucket_lists#add_bucket_list_item', as: 'add_bucket_list_item'
   delete 'bucket_list/remove_bucket_list_item/:id', to: 'bucket_lists#remove_bucket_list_item', as: 'remove_bucket_list_item'
   put 'posts/like/:id', to: 'posts#like_post', as: 'like_post'
   get 'highscore', to: 'home#highscore'
