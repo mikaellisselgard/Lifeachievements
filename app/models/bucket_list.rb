@@ -8,8 +8,7 @@ class BucketList < ActiveRecord::Base
   end
   
   def remove_achievement(achievement)
-    self.achievements.delete(achievement)
-    self.save!
+    self.achievements.destroy(achievement)
   end
   
 end

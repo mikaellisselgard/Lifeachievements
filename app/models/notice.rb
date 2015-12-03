@@ -31,44 +31,47 @@ class Notice < ActiveRecord::Base
     end 
   end
   
-  def self.like(like, bool)
-    @like_user = User.find(like.user_id)
-    if like.user_id != like.post.user_id
-      @like_notice = Notice.new
-      @like_notice.user_ids = [like.post.user_id]
-      @like_notice.user_id = like.user_id
-      @like_notice.link = like.post.id
-      if bool
-        @like_notice.message = @like_user.name + " gillar ett av dina inlägg"
+  def self.like(like, liked)
+    if like.user != like.post.user
+      like_notice = Notice.new({
+        user_ids: [like.post.user_id],
+        user_id: like.user_id,
+        link: like.post.id
+      })
+      if liked
+        like_notice.message = like.user.name + " gillar ett av dina inlägg"
       else 
-        @like_notice.message = @like_user.name + " slutade gilla ett av dina inlägg"
+        like_notice.message = like.user.name + " slutade gilla ett av dina inlägg"
       end
-      @like_notice.save
+      like_notice.save
     end
   end
   
-  def self.follow(follower, following, bool)
-    @follow_user = User.find(follower.id)
-    @follow_notice = Notice.new
-    @follow_notice.user_ids = [following.id]
-    @follow_notice.user_id = follower.id
-    @follow_notice.link = "follow"
-    if bool
-      @follow_notice.message = @follow_user.name + " följer nu dig"
+  def self.follow(follower, following, follow)
+    follow_user = User.find(follower)
+    follow_notice = Notice.new({
+      user_ids: [following.id],
+      user_id: follower.id,
+      link: "follow"
+    })
+    if follow
+      follow_notice.message = follow_user.name + " följer nu dig"
     else
-      @follow_notice.message = @follow_user.name + " har slutat följa dig"
+      follow_notice.message = follow_user.name + " har slutat följa dig"
     end
-    @follow_notice.save
+    follow_notice.save
   end
   
   def self.medal(user, type)
-    @medal_user = User.find(user)
-    @all_user_ids = User.all.pluck(:id)
-    @medal_notice = Notice.new
-    @medal_notice.user_ids = @all_user_ids
-    @medal_notice.user_id = user
-    @medal_notice.message = @medal_user.name + " vann medalj för " + type
-    @medal_notice.save
+    medal_user = User.find(user)
+    recievers = User.all.pluck(:id)
+    Notice.new({
+      user_ids: recievers,
+      user_id: medal_user.id,
+      message: medal_user.name + " vann medalj för " + type
+    }).save
   end
   
 end
+
+
