@@ -3,12 +3,17 @@ class CommentsController < ApplicationController
   respond_to :js, :html, :json
 
   def create
+    comment = @commenter.comments.new({ 
+      comment: params[:comment][:comment],
+      user_id: current_user.id
+    })
+    comment.save!
+
+    Notice.commenters(comment)
+
+    # pass to create.js.erb
     @comment_id = params[:commenter_id]
-    @comment = @commenter.comments.create(params[:comments])
-    @comment.comment = params[:comment][:comment]
-    @comment.user_id = current_user.id
-    @comment.save!
-    Notice.commenters(@comment)
+    # pass to list.html.erb
     @comments = @class.find(params[:commenter_id]).comments
   end
   
