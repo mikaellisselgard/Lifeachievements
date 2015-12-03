@@ -9,8 +9,10 @@ class Post < ActiveRecord::Base
   has_many :comments, as: :imageable  
 
   before_create :check_achievement
-  after_create :update_achievement, :remove_from_bucketlist
+  after_create :lower_achievement_score, :remove_from_bucketlist
   after_save :process_video
+
+  after_destroy :higher_achievement_score
 
   default_scope { order('created_at DESC') }
   
@@ -20,9 +22,15 @@ class Post < ActiveRecord::Base
     self.achievement.users.exclude? self.user
   end
   
-  def update_achievement
+  def lower_achievement_score
     if self.achievement.score != 5 && self.achievement.users.count > 1
       self.achievement.update_attributes(score: self.achievement.score - 5)
+    end
+  end
+
+  def higher_achievement_score
+    if self.achievement.score < 100 && self.achievement.users.count - 1
+      self.achievement.update_attributes(score: self.achievement.score + 5)
     end
   end
   
