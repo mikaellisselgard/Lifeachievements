@@ -1,11 +1,6 @@
 class BucketListsController < ApplicationController
-  
-  def show
-    @bucket_list = BucketList.find(params[:id])
-    @achievements = @bucket_list.achievements.reverse
-  end
-  
-  def add_achievement
+
+  def add_bucket_list_item
     @user_bucket_list = current_user.bucket_list
     @achievement = Achievement.find(params[:id])
     @user_bucket_list.add_achievement(@achievement)
@@ -14,7 +9,6 @@ class BucketListsController < ApplicationController
     end
   end
 
-  #Lets user remove achievement from bucket list
   def remove_bucket_list_item
     @user_bucket_list = current_user.bucket_list
     @achievement = Achievement.find(params[:id])
