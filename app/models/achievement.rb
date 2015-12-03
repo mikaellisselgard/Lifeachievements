@@ -18,8 +18,8 @@ class Achievement < ActiveRecord::Base
   
   def self.generate_new_achievements
     # first file in lib/assets/not_used/
-    @first_file = Dir.glob("lib/assets/not_used/*").first
-    File.open(@first_file) do |file|
+    first_file = Dir.glob("lib/assets/not_used/*").first
+    File.open(first_file) do |file|
       file.each_line do |line|
         @new_achievement = self.new
         # chomp for removing line-breaks
@@ -28,7 +28,7 @@ class Achievement < ActiveRecord::Base
       end
     end
     # rename and save file in used
-    File.rename @first_file, "lib/assets/used/#{@new_achievement.id}"
+    File.rename first_file, "lib/assets/used/#{@new_achievement.id}"
   end
   
 end
