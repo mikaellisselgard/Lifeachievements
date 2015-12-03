@@ -24,12 +24,4 @@ class User < ActiveRecord::Base
     self.build_bucket_list
   end
   
-  def posts_week
-    self.posts.where(created_at: Time.now.beginning_of_week..Time.now.end_of_week)
-  end
-  
-  def likes_week
-    self.posts.where(created_at: Time.now.beginning_of_week..Time.now.end_of_week).sum(:likes_count)
-  end
-
 end
