@@ -1,3 +1,4 @@
+<div class="medium-8 medium-centered large-8 large-centered columns">
 <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -19,12 +20,12 @@
 		<%= f.file_field :video %>
 	</div>
 	<div class="field">
-		<%= f.label :message %><br>
+		<%= f.label 'Meddelande:' %><br>
     	<%= f.text_field :message %><br>
 	</div>
 	<%= f.hidden_field :achievement_id, value: @achievement_id%>
   	<div class="actions">
-    	<%= f.submit class: 'button expand' %>
+    	<%= f.submit "Skapa inlägg", class: 'button expand' %>
   	</div>
 <% end %>
-
+</div>
