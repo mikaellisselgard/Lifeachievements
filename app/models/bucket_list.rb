@@ -1,5 +1,5 @@
 class BucketList < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   has_and_belongs_to_many :achievements
   
   def add_achievement(achievement)

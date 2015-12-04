@@ -2,7 +2,9 @@ class UsersController < ApplicationController
   autocomplete :user, :name, full: true
   before_action :set_user, only: [:show, :edit, :update]
   before_action :set_user_id, only: [:follow, :unfollow, :noticed]
-  
+
+  before_filter :authenticate_user! 
+
   def index
     @users = User.all
   end

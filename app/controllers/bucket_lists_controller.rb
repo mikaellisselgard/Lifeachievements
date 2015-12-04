@@ -1,5 +1,6 @@
 class BucketListsController < ApplicationController
-
+  before_filter :authenticate_user! 
+  
   def add_bucket_list_item
     @user_bucket_list = current_user.bucket_list
     @achievement = Achievement.find(params[:id])

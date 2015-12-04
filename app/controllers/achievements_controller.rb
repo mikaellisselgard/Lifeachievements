@@ -3,6 +3,7 @@ class AchievementsController < ApplicationController
 
   autocomplete :achievement, :description, full: true
 
+  before_filter :authenticate_user! 
   # GET /achievements
   # GET /achievements.json
   def index

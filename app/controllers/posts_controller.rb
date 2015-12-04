@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
 before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update, :destroy]
 
+before_filter :authenticate_user!, except: :index
+
   def index
     # index for posts after fetching
     if params[:id] and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
