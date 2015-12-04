@@ -40,7 +40,7 @@
     <div class="achievement_info">
 		<%= link_to 'Antal användare som klarat detta achievement: ' + achievement.posts.length.to_s, achievement, remote: true, data: {:"reveal-id" => "reveal-users-#{achievement.id}"} %><br>
         
-		<%= link_to 'Post achievement', new_post_path(achievement_id: achievement.id)%><br>
+		<%= link_to 'Ladda upp bild/video', new_post_path(achievement_id: achievement.id), class: 'button expand success achievement-actions'%>
 		<div id="achievement_<%=achievement.id%>">
 			<%= render partial: 'bucket_lists/bucket_list_actions', locals: {achievement: achievement} %>
 	    </div>

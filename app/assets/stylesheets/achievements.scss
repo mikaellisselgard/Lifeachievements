@@ -38,8 +38,6 @@ h1, h2, h3, p {
 	}
 }
 
-
-
 .achievement_description {
 	height:120px;
 	padding:5px;
@@ -64,14 +62,19 @@ h1, h2, h3, p {
 	}
 }
 
-
-
-
 .achievement_info {
 	padding:5px;
+	padding-left: 8px;
+	padding-right: 8px;
 	
 	a:link, a:visited, a:hover, a:active {
 	    color: #FFFFFF!important;
 	}
 }
 
+.achievement-actions {
+	margin-top: 5px!important;
+	margin-bottom: 2px!important;
+	text-align: center;
+	background-color: #1D1D1D!important;
+}
