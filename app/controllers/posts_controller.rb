@@ -101,7 +101,7 @@ before_filter :authenticate_user!, except: :index
   def follow_index
     # fetch all user_ids from users following current_user
     @follow_ids = current_user.follows.pluck(:followable_id)
-    @posts = Post.where('user_id IN (?)', follow_ids).limit(20)
+    @posts = Post.where('user_id IN (?)', @follow_ids).limit(20)
     @comment = Comment.new
     # check if no result for sending nil-params to index
     if @posts.length == 0
