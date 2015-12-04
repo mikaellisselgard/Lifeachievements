@@ -2,66 +2,54 @@ class Medal < ActiveRecord::Base
   belongs_to :user
   
   def self.generate_medals
-    # most gained score medal and most achievement done, weekly
-    @users = User.all
-    @user_with_highest_score = ''
-    @user_with_highest_amount = ''
-    @user_with_highest_max = ''
-    @user_with_most_likes = ''
-    @highest_score = 0 # highest score gained from achievement achieved
-    @highest_amount = 0 # highest amount of achievements earned
-    @max_score = 0 # score of highest achievement
-    @amount_of_max_score = 0 # times gained achievements with max score
-    @highest_likes = 0
-    @users.each do |user|
-      @score = []
-      if user.posts.where(:created_at => Time.now - 7.days..Time.now).sum(:likes_count) > @highest_likes
-        @highest_likes = user.posts.where(:created_at => Time.now - 7.days..Time.now).sum(:likes_count)
-        @user_with_most_likes = user
+    @user_stats = []
+    @highest_max_score = 0
+    @highest_max_score_count = 0
+    @user_with_highest_max = ""
+    
+    User.all.each do |user|
+      user_posts = user.posts.joins(:achievement).
+                          where('achievements.created_at between ? and ?',
+                          Time.now - 10.days, Time.now)
+                          
+      achievements_earned = user_posts.length
+      score = user_posts.sum(:score)
+      max_score = user_posts.maximum(:score).to_f
+      max_score_count = user_posts.where('achievements.score = ?', max_score).count
+      likes = user_posts.sum(:likes_count)  
+      
+      @user_stats.push({
+        "user_id" => user.id,
+        "achievements_earned" => achievements_earned,
+        "score" => score,
+        "likes" => likes
+        })
+        
+        # check if user has higher max_score or more max_score_counts
+        if max_score >= @highest_max_score && max_score_count > @highest_max_score_count
+          @highest_max_score = max_score
+          @user_with_highest_max = user.id
+          @highest_max_score_count = max_score_count
+        end
+      
       end
-      if user.posts.any?
-        user.posts.each do |post|
-          # only fetching achievement gained last 7 days
-          if post.created_at + 7.days > Time.now
-            # 8 days in case of medal generate is late
-            if achievement.created_at + 8.days > Time.now
-              @score.push(post.achievement.score)
-            end
-          end
-        end
-        # checking if score is higher than previous highest
-        if @score.inject(:+) > @highest_score
-          @highest_score = @score.inject(:+)
-          @user_with_highest_score = user
-        end
-        # checking if achievement amount is higher than previous highest
-        if @score.length > @highest_amount
-          @highest_amount = @score.length
-          @user_with_highest_amount = user
-        end
-        # checking if highest score gained is higher than previous highest 
-        if @score.max > @max_score
-          @max_score = @score.max
-          @user_with_highest_max = user
-          @amount_of_max_score = @score.count(@score.max)
-        end
-        # checking if highest score gained is the same but achieved more times
-        if (@score.max == @max_score) and (@score.count(@score.max) > @amount_of_max_score)
-          @user_with_highest_max = user
-          @amount_of_max_score = @score.count(@score.max)
-        end
-      end
-    end
+      
+    user_with_highest_achievements_earned = @user_stats.max_by { |k| k["achievements_earned"] }["user_id"]
+    user_with_highest_score = @user_stats.max_by { |k| k["score"] }["user_id"]
+    user_with_highest_likes = @user_stats.max_by { |k| k["likes"] }["user_id"]
+    
     # create the medal for the user
-    Medal.new({ user_id: @user_with_highest_score.id, type: 'mest poäng', image: 'score_medal.png' }).save
-    Medal.new({ user_id: @user_with_highest_amount.id, type: 'flest antal', image: 'amount_medal.png' }).save
-    Medal.new({ user_id: @user_with_highest_max.id, type: 'flest ovanliga', image: 'max_medal.png' }).save
-    Medal.new({ user_id: @user_with_most_likes.id, type: 'flest likes', image: 'likes_medal.png' }).save
+    Medal.new({ user_id: user_with_highest_score, type: 'mest poäng', image: 'score_medal.png' }).save
+    Medal.new({ user_id: user_with_highest_achievements_earned, type: 'flest antal', image: 'amount_medal.png' }).save
+    Medal.new({ user_id: @user_with_highest_max, type: 'flest ovanliga', image: 'max_medal.png' }).save
+    Medal.new({ user_id: user_with_highest_likes, type: 'flest likes', image: 'likes_medal.png' }).save
+    
     # create notice for each medal
-    Notice.medal(@user_with_highest_score.id, 'mest poäng')
-    Notice.medal(@user_with_highest_amount.id, 'flest antal')
-    Notice.medal(@user_with_highest_max.id, 'flest ovanliga')
-    Notice.medal(@user_with_most_likes.id, 'flest likes')
+    Notice.medal(user_with_highest_score, 'mest poäng')
+    Notice.medal(user_with_highest_achievements_earned, 'flest antal')
+    Notice.medal(@user_with_highest_max, 'flest ovanliga')
+    Notice.medal(user_with_highest_likes, 'flest likes')
+    
   end
   
   
