@@ -1,5 +1,5 @@
 class Medal < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   
   def self.generate_medals
     # most gained score medal and most achievement done, weekly

@@ -3,8 +3,8 @@ class Post < ActiveRecord::Base
   mount_uploader :video, VideoUploader
   acts_as_followable
   acts_as_follower
-  belongs_to :user
-  belongs_to :achievement
+  belongs_to :user, dependent: :destroy
+  belongs_to :achievement, dependent: :destroy
   has_many :likes
   has_many :comments, as: :imageable  
 
