@@ -29,7 +29,7 @@ class Post < ActiveRecord::Base
   end
 
   def higher_achievement_score
-    if self.achievement.score < 100 && self.achievement.users.count - 1
+    if self.achievement.score < 100 && self.achievement.users.count < 20
       self.achievement.update_attributes(score: self.achievement.score + 5)
     end
   end
