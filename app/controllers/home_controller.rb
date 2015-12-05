@@ -4,6 +4,9 @@ class HomeController < ApplicationController
   end
   
   def highscore
+    @total_achievements_count = Achievement.count
+    @week_achievements_count = Achievement.where(created_at: Time.now.beginning_of_week..Time.now).count
+    
     @user_week_stats = []
     @user_total_stats = []
 
