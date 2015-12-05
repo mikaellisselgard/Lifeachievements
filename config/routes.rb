@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     put 'follow', to: 'users#follow'
     put 'unfollow', to: 'users#unfollow'
     post 'noticed', to: 'users#noticed'
+    post 'tip', to: 'users#tip'
   end
   
   put 'bucket_list/add_bucket_list_item/:id', to: 'bucket_lists#add_bucket_list_item', as: 'add_bucket_list_item'

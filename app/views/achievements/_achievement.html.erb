@@ -39,7 +39,7 @@
     </div>
     <div class="achievement_info">
 		<%= link_to 'Antal användare som klarat detta achievement: ' + achievement.posts.length.to_s, achievement, remote: true, data: {:"reveal-id" => "reveal-users-#{achievement.id}"} %><br>
-        
+		<%= link_to 'Tipsa någon!', achievement, remote: true, data: {:"reveal-id" => "reveal-follows-#{achievement.id}"} %><br>
 		<%= link_to 'Ladda upp bild/video', new_post_path(achievement_id: achievement.id), class: 'button expand success achievement-actions'%>
 		<div id="achievement_<%=achievement.id%>">
 			<%= render partial: 'bucket_lists/bucket_list_actions', locals: {achievement: achievement} %>
@@ -49,5 +49,9 @@
 		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
 		<% @user_ids = achievement.posts.pluck(:user_id) %>
 		<%= render 'achievements/users', object: @user_ids %>
+	</div>
+	<div id="reveal-follows-<%=achievement.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
+		<%= render 'users/follows' %>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   autocomplete :user, :name, full: true
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :set_user_id, only: [:follow, :unfollow, :noticed]
+  before_action :set_user_id, only: [:follow, :unfollow, :noticed, :tip]
 
   before_filter :authenticate_user! 
 
@@ -43,6 +43,11 @@ class UsersController < ApplicationController
   def unfollow
     current_user.stop_following(@user)
     Notice.follow(current_user, @user, false)
+    redirect_to :back
+  end
+  
+  def tip
+    Notice.tip(current_user, @user)
     redirect_to :back
   end
   
