@@ -47,7 +47,8 @@ class UsersController < ApplicationController
   end
   
   def tip
-    Notice.tip(current_user, @user)
+    achievement_id = params[:achievement]
+    Notice.tip(current_user, @user, achievement_id)
     redirect_to :back
   end
   

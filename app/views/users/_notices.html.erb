@@ -1,6 +1,10 @@
 <% @notices.each do |notice| %>
 	<% if notice.link.to_i > 0%>
-		<% @link = post_path(notice.link) %>
+		<% if notice.notice_type == "tip" %>
+			<% @link = achievement_path(notice.link) %>
+		<% else %>
+			<% @link = post_path(notice.link) %>
+		<% end %>
 	<% else %>
 		<% @link = user_path(notice.user_id)%>
 	<% end %>

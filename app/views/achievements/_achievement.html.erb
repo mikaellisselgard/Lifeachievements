@@ -52,6 +52,7 @@
 	</div>
 	<div id="reveal-follows-<%=achievement.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
-		<%= render 'users/follows' %>
+		<% @achievement = achievement %>
+		<%= render 'users/follows', object: @achievement %>
 	</div>
 </div>

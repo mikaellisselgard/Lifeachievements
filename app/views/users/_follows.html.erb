@@ -1,4 +1,4 @@
 <% current_user.follows.each do |follow| %>
 	<!-- follow.followable to get the users you follow -->
-	<%= link_to follow.followable.name, user_tip_path(follow.followable), method: :post %><br>
+	<%= link_to follow.followable.name, user_tip_path(follow.followable, achievement: @achievement), method: :post %><br>
 <% end %>
