@@ -61,6 +61,12 @@ before_filter :authenticate_user!, except: :index
     @post = current_user.posts.create(post_params)
     @post.likes_count = 0
     @post.save!
+    if @post.latitude == nil
+      lat_lng = cookies[:lat_lng].split("|") rescue nil
+      @post.latitude = lat_lng[0] rescue nil
+      @post.longitude = lat_lng[1] rescue nil
+      @post.save!
+    end
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }

@@ -35,7 +35,7 @@ class Post < ActiveRecord::Base
   end
   
   def remove_from_bucketlist
-    self.user.bucket_list.achievements.destroy(self.achievement) rescue nil
+    self.user.bucket_list.achievements.destroy(self.achievement)
   end
   
   def check_like(user)

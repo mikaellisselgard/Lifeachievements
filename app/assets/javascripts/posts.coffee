@@ -68,5 +68,13 @@ masonryAdd = (items) ->
     $('#masonry-container').masonry( 'reload' )
   ), 1000
 
+@getGeoLocation = ->
+  navigator.geolocation.getCurrentPosition setGeoCookie
+  return
+
+setGeoCookie = (position) ->
+  cookie_val = position.coords.latitude + '|' + position.coords.longitude
+  document.cookie = 'lat_lng=' + escape(cookie_val)
+  return
 	
 	
