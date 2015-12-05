@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204082441) do
+ActiveRecord::Schema.define(version: 20151205201337) do
 
   create_table "achievements", force: :cascade do |t|
     t.text     "description"
@@ -89,10 +89,11 @@ ActiveRecord::Schema.define(version: 20151204082441) do
   create_table "notices", force: :cascade do |t|
     t.string   "message"
     t.datetime "seen"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.string   "link"
+    t.string   "notice_type"
   end
 
   create_table "notices_users", id: false, force: :cascade do |t|
