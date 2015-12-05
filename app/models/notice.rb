@@ -14,7 +14,8 @@ class Notice < ActiveRecord::Base
       user_ids: comment_users - [comment.user_id, commented_record.user_id],
       user_id: comment.user_id,
       link: commented_record.id,
-      message: comment.user.name + " har kommenterat samma inlägg som dig" 
+      message: comment.user.name + " har kommenterat samma inlägg som dig",
+      notice_type: "comment"
     }).save
     
     # notice for owner of the record
@@ -23,7 +24,8 @@ class Notice < ActiveRecord::Base
         user_ids: commented_record.user_id,
         user_id: comment.user_id,
         link: commented_record.id,
-        message: comment.user.name + " har kommenterat ditt inlägg"
+        message: comment.user.name + " har kommenterat ditt inlägg",
+        notice_type: "comment"
       }).save
     end 
   end
@@ -33,7 +35,8 @@ class Notice < ActiveRecord::Base
       like_notice = Notice.new({
         user_ids: [like.post.user_id],
         user_id: like.user_id,
-        link: like.post.id
+        link: like.post.id,
+        notice_type: "like"
       })
       if liked
         like_notice.message = like.user.name + " gillar ett av dina inlägg"
@@ -49,7 +52,8 @@ class Notice < ActiveRecord::Base
     follow_notice = Notice.new({
       user_ids: [following.id],
       user_id: follower.id,
-      link: "follow"
+      link: "follow",
+      notice_type: "tip"
     })
     if follow
       follow_notice.message = follow_user.name + " följer nu dig"
@@ -65,7 +69,18 @@ class Notice < ActiveRecord::Base
     Notice.new({
       user_ids: recievers,
       user_id: medal_user.id,
-      message: medal_user.name + " vann medalj för " + type
+      message: medal_user.name + " vann medalj för " + type,
+      notice_type: "medal"
+    }).save
+  end
+  
+  def self.tip(tip_from, tip_to, tip_id)
+    Notice.new({
+      user_ids: tip_to.id,
+      user_id: tip_from.id,
+      link: tip_id,
+      message: tip_from.name + " vill tipsa dig om ett achievement",
+      notice_type: "tip"
     }).save
   end
   
