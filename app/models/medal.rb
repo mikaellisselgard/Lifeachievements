@@ -1,5 +1,5 @@
 class Medal < ActiveRecord::Base
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   
   def self.generate_medals
     @user_stats = []

@@ -3,16 +3,16 @@ class Post < ActiveRecord::Base
   mount_uploader :video, VideoUploader
   acts_as_followable
   acts_as_follower
-  belongs_to :user, dependent: :destroy
-  belongs_to :achievement, dependent: :destroy
-  has_many :likes
-  has_many :comments, as: :imageable  
+  belongs_to :user
+  belongs_to :achievement
+  has_many :likes, dependent: :destroy
+  has_many :comments, as: :imageable, dependent: :destroy
 
   before_create :check_achievement
   after_create :lower_achievement_score, :remove_from_bucketlist
   after_save :process_video
 
-  after_destroy :higher_achievement_score
+  before_destroy :higher_achievement_score
 
   default_scope { order('created_at DESC') }
   
@@ -35,7 +35,7 @@ class Post < ActiveRecord::Base
   end
   
   def remove_from_bucketlist
-    self.user.bucket_list.achievements.destroy(self.achievement)
+    self.user.bucket_list.achievements.destroy(self.achievement) rescue nil
   end
   
   def check_like(user)

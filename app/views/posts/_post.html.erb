@@ -65,7 +65,11 @@
 					Kommentarer: <%= post.comments.count %><br>
 					<%= link_to 'Likes:', post, remote: true, data: {:"reveal-id" => "reveal-likes-#{post.id}"} %>
 					<div id="counter_info_popup-<%= post.id%>" class="counter-fix-popup">
-						<%= post.likes_count %>
+						<% if post.likes_count != nil %> 
+							<%= post.likes_count %>
+						<% else %>
+							0
+						<% end %>
 					</div>	
 					<div id="like-button-popup-<%= post.id %>">
 						<% if user_signed_in? %>

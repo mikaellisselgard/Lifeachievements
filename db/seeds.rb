@@ -6,7 +6,44 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-100.times do
-  @achievement = Achievement.create(score: 100, description: Faker::Lorem.word, )
-  @achievement.posts.create(image: Faker::Avatar.image, message: Faker::Lorem.sentence, user_id: 1, height: 300, width: 300, likes_count: 0)
-end
+
+if User.all.empty?
+  User.create!(name: "Admin", email: "admin@la.se", password: "1585otols")
+
+  30.times do
+    User.create!(name: Faker::Name.first_name, email: Faker::Internet.email, password: "1585otols")
+  end
+
+  50.times do 
+    Achievement.create(score: 100, description: Faker::Lorem.word)
+  end
+
+  User.all.each do |user|
+    user.set_bucket_list.save!
+    Achievement.all.each do |achievement|
+      if rand(10) > 8
+        Post.create!(user_id: user.id, achievement_id: achievement.id, image: File.open(File.join(Rails.root, '/public/seed/bigbets.png')))
+      end
+    end
+    User.all.each do |follows|
+      if rand(10) > 8
+        user.follow(follows)
+      end
+    end
+  end
+
+  Post.all.each do |post|
+    rand(10).times do 
+      Comment.create(comment: Faker::Lorem.sentence, imageable_id: post.id, imageable_type: "Post", user_id: rand(1..30))
+    end
+  end
+
+  User.all.each do |user|
+    Post.all.each do |post|
+      if rand(10) > 8 
+        Like.create(user_id: user.id, post_id: post.id)
+      end
+    end
+  end
+  
+end    

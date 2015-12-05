@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
-  belongs_to :imageble, polymorphic: true, dependent: :destroy
-  belongs_to :user, dependent: :destroy
+  belongs_to :imageble, polymorphic: true
+  belongs_to :user
   
   validates :comment, presence: true
   
