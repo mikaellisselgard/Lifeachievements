@@ -1,7 +1,7 @@
 // Place all the styles related to the Achievements controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import "colors";
 
 #achievement-container {
   margin-bottom: 20px;
@@ -11,26 +11,54 @@
   height:auto;
 }
 
-h1, h2, h3, p {
-	color: #FFFFFF!important;
+.achievement-icons {
+	margin-right: 7px;
+	font-size: 50px;
+	color: $blue!important;
 }
+
+.achievement-marker {
+	line-height: 0;
+	font-size: 45px;
+	color: $marker!important;
+}
+
 .achievements {
 	padding: 0px;
-	background: #008CBA;
+	background: $white;
 	color:white;
 	float:left;
 	margin:5px;
 	width: 280px; 
 	height:auto;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+ 	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.score {
+	float: right;
+	background: $success-color;
+	width: 45px;
+	height: 45px;
+	-webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+
+    h3 {
+    	margin-top: 11px!important;
+    	text-align: center;
+    	float: none!important;
+    	color: $white!important;
+    	font-size: 16px;
+    }
 }
 
 .achievement_categories {
-	border-bottom:1px solid black;
+	border-bottom:1px solid #ccc;
 	padding:5px;
 	width:280px;
+	height: 56px;
 
 	h3 {
 		float:right;
@@ -39,13 +67,16 @@ h1, h2, h3, p {
 }
 
 .achievement_description {
-	height:120px;
+	height:100px;
 	padding:5px;
+	h3 {
+		font-size: 20px!important;
+	}
 }
 
 .achievement_posts {
-	border-top:1px solid black;
-	border-bottom:1px solid black;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
 	height:100px;
 	img {
 		height:100%;
@@ -63,18 +94,47 @@ h1, h2, h3, p {
 }
 
 .achievement_info {
-	padding:5px;
+	padding-bottom:5px;
 	padding-left: 8px;
 	padding-right: 8px;
-	
-	a:link, a:visited, a:hover, a:active {
-	    color: #FFFFFF!important;
-	}
+}
+
+.achievements-counters {
+	height: 20px;
+	color: #000000;
+	width: 100%;
+	font-size: 12px;
+}
+
+.users-completed {
+	float: left;
+}
+
+.users-comments {
+	float: right;
 }
 
 .achievement-actions {
 	margin-top: 5px!important;
 	margin-bottom: 2px!important;
 	text-align: center;
-	background-color: #1D1D1D!important;
 }
+
+.add-achievement {
+	width: 50px!important;
+	margin-top: -5px;
+}
+
+.achievement-ul {
+	float: left;
+	text-align: center;
+	margin: 0;
+	li {
+		float: left;
+		list-style-type: none;
+		min-width: 66px;
+		text-align: center;
+	}
+	
+}
+

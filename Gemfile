@@ -50,6 +50,7 @@ gem 'jquery-ui-rails'
 gem 'rails4-autocomplete'
 gem 'carrierwave'
 gem 'foundation-rails'
+gem 'foundation-icons-sass-rails'
 gem 'whenever', :require => false
 gem 'masonry-rails'
 gem 'mini_magick'
