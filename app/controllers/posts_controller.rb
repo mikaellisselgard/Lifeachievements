@@ -51,7 +51,7 @@ before_filter :authenticate_user!, except: :index
       like = @post.likes.find_by_user_id(current_user.id)
       like.destroy
     end
-    redirect_to :back
+    head :no_content
   end
 
   def edit
