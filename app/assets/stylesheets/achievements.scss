@@ -20,7 +20,7 @@
 .achievement-marker {
 	line-height: 0;
 	font-size: 45px;
-	color: $marker!important;
+	color: $red!important;
 }
 
 .achievements {
@@ -52,6 +52,18 @@
     	color: $white!important;
     	font-size: 16px;
     }
+}
+
+.locks {
+	float: right;
+	margin-right: 5px;
+	height: 45px;
+}
+
+.lock-icons {
+	font-size: 45px;
+	color: $blue!important;
+	line-height: 0;
 }
 
 .achievement_categories {
