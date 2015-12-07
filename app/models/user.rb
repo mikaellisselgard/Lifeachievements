@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
     self.build_bucket_list
   end
   
+  def has_achievement(achievement)
+    self.achievements.include? achievement
+  end
+  
 end

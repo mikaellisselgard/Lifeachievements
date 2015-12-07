@@ -7,7 +7,7 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.json
   def index
-    @achievements = Achievement.all - current_user.achievements
+    @achievements = Achievement.all
   end
 
   # GET /achievements/1

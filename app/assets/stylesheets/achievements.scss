@@ -58,13 +58,15 @@
 	float: right;
 	margin-right: 5px;
 	height: 45px;
+	font-size:45px;
+	line-height:0px;
+	color: $blue!important;
 }
 
-.lock-icons {
-	font-size: 45px;
+.locks-icon {
 	color: $blue!important;
-	line-height: 0;
 }
+
 
 .achievement_categories {
 	border-bottom:1px solid #ccc;
