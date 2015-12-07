@@ -1,6 +1,7 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
 
 #masonry-container {
   margin-bottom: 20px;
@@ -16,48 +17,73 @@
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+
 .col3 { 
 	float:left;
 	width: 280px; 
-	background: #008CBA;
+	background: $white;
+ 	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.post_top {
+	height:48px;
+	img {
+		width:20px;
+		height:20px;
+	}
 }
 
 .post_user {
-	height:35px;
-	width:auto;
+	width:75px;
+	display:inline-block;
+	
+	h3 {
+		position:absolute;
+		margin-top:-32px;
+		margin-left:50px;
+		font-size:16px;
+	}
+	
+	img {
+		width:44px;
+		height:44px;
+	}
 }
 
-.post_user h3 {
-	position:absolute;
-	margin-top:-35px;
-	margin-left:35px;
+.delete-button {
+	float:right;
 }
 
-.post_user h2 {
-	position:absolute;
-	margin-top:-25px;
-	margin-left:240px;
-	line-height:20px;
-}
-
-.post_user img {
-	width:30px;
-	height:30px;
+.achievement_description_post {
+	border-top:1px solid #ccc;
+	height:40px;
+	margin-left:5px;
+	width:96%;
+	h3 {
+		font-size: 13px!important;
+	}
 }
 
 .post_info {
+	margin-top:3px;
 	margin-left:5px;
+	width:96%;
 	display:inline-block;
+	font-size:12px;
 }
 
 .post_text {
 	float:left;
 }
 
+.counter-info-comments {
+	float:right;
+}
+
 .counter-fix {
-	position:relative;
-	bottom:15px;
-	left:35px;
+	float:left;
 }
 
 .counter-fix-popup {
@@ -80,8 +106,7 @@
 	margin-right:auto;
 	max-width:560px;
 	height:auto;
-	background: #008CBA;
-	border-bottom:1px solid black;
+	border-bottom:1px solid #ccc;
 }
 
 .comments {
@@ -89,18 +114,18 @@
 	margin-left:auto;
 	margin-right:auto;
 	width:100%;
-	min-height:500px;
+	min-height:490px;
 	margin-bottom:10px;
-	border-bottom:1px solid black;
+	border-bottom:1px solid #ccc;
 }
 
 .post-modal {
 	max-width:900px;
-	padding:0px;
-	background: #008CBA;
 	margin-bottom:50px;
 	min-height:200px;
-	width:102%!important;
+	width:100%!important;
+	padding:0px!important;
+	padding-top:8px!important;
 }
 
 .bordered {
@@ -119,7 +144,6 @@
 }
 
 .comment-input {
-	border-top:1px solid black;
 	margin-bottom:0px;
 }
 
@@ -132,13 +156,22 @@
 }
 
 .button-size {
-    background-color: #1D1D1D!important;
+    background-color: $success-color;
     border-color: #368a55!important;
     color: #FFFFFF!important;
     padding: 15px!important;
 	margin-left: -2px!important;
 	width:130px;
 	height:50px;
+ 	-webkit-border-radius-left: 10px!important;
+    -moz-border-radius-left: 10px!important;
+    border-radius-left: 10px!important;
+}
+
+.post-buttons {
+	margin-left:5px!important;
+	height:55px;
+	margin-top:10px;
 }
 
 .supertiny {

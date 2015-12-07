@@ -12,15 +12,17 @@ $(document).on 'ready page:load', ->
 	
 $(document).on 'click', '.like', (e) ->
   $(this).html (index, oldHtml) ->
-    popupDivId = "counter_info_popup-" + $(this).parent().attr("id").split("-").pop()
-    outsideDivId = "counter_info-" + $(this).parent().attr("id").split("-").pop()
-    popupHtml = "like-button-popup-" + $(this).parent().attr("id").split("-").pop()
-    outsideHtml = "like-button-" + $(this).parent().attr("id").split("-").pop()
+    popupDivId = "counter_info_popup-" + $(this).parent().parent().parent().attr("id").split("-").pop()
+    outsideDivId = "counter_info-" + $(this).parent().parent().parent().attr("id").split("-").pop()
+    popupHtml = "like-button-popup-" + $(this).parent().parent().parent().attr("id").split("-").pop()
+    outsideHtml = "like-button-" + $(this).parent().parent().parent().attr("id").split("-").pop()
     if oldHtml == 'Gilla'
       $("#" + outsideHtml).find('a:first').html('Sluta gilla')
       $("#" + popupHtml).find('a:first').html('Sluta gilla')
       oldNumber = $("#" + outsideDivId).html()
       newNumber = Number(oldNumber) + 1
+      if isNaN(newNumber)
+        newNumber = 1
       $("#" + outsideDivId).html(newNumber)
       $("#" + popupDivId).html(newNumber)
     else
@@ -28,6 +30,8 @@ $(document).on 'click', '.like', (e) ->
       $("#" + popupHtml).find('a:first').html('Gilla')
       oldNumber = $("#" + outsideDivId).html()
       newNumber = Number(oldNumber) - 1
+      if newNumber == 0
+        newNumber = "Ingen"
       $("#" + outsideDivId).html(newNumber)
       $("#" + popupDivId).html(newNumber)
     return
