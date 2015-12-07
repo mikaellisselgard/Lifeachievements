@@ -1,5 +1,5 @@
 <% if already_in_bucket_list(achievement) %>
-	<%= link_to image_tag('bucket-list.png'), remove_bucket_list_item_path(achievement.id), id: 'remove-achievement', class: 'achievement-icons' %>
+	<%= link_to image_tag('bucketlist-remove.png'), remove_bucket_list_item_path(achievement.id), id: 'remove-achievement', class: 'achievement-icons' %>
 <% else %>
-	<%= link_to image_tag('bucket-list.png'), add_bucket_list_item_path(achievement.id), id: 'add-achievement', class: 'achievement-icons' %>
+	<%= link_to image_tag('bucketlist-add.png'), add_bucket_list_item_path(achievement.id), id: 'add-achievement', class: 'achievement-icons' %>
 <% end %>
