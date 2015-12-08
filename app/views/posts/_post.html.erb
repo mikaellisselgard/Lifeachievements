@@ -8,7 +8,7 @@
 			<% end %>
 			<h3><%= link_to post.user.name, user_path(post.user) %></h3>
 		</div>
-		<div class="delete-button">
+		<div class="dropdown-button">
 			<%= link_to image_tag('dropdown.png'), user_path(post.user), remote: true, data: {:"reveal-id" => "reveal-options-#{post.id}"} %>
 		</div>
 		<div class="score">

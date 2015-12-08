@@ -2,6 +2,9 @@
     <%= link_to achievement.description, achievement, class: 'hide'  %>
 	<div class="achievement_categories">
 		<%= link_to '<i class="fi-marker"></i>'.html_safe, '#', class: 'achievement-marker' %>
+		<div class="dropdown-button">
+			<%= link_to image_tag('dropdown.png'), achievement_path(achievement), remote: true, data: {:"reveal-id" => "reveal-options-#{achievement.id}"} %>
+		</div>
 		<div class="score">
 			<h3><%= achievement.score %>p</h3>
 		</div>
@@ -81,5 +84,16 @@
 		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
 		<% @achievement = achievement %>
 		<%= render 'users/follows', object: @achievement %>
+	</div>
+	<div id="reveal-options-<%=achievement.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+		<% if user_signed_in? %>
+			<% if current_user.admin %>
+				<%= link_to 'Ta bort inlägg', achievement, method: :delete %><br>
+				<%= link_to 'Editera inlägg', edit_achievement_path(achievement) %><br>
+			<% else %>
+				<%= link_to 'Rapportera inlägg', '#' %><br>
+			<% end %>
+		<% end %>
 	</div>
 </div>
