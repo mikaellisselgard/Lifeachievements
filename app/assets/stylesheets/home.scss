@@ -4,6 +4,7 @@
 // Place all the styles related to the Achievements controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "colors";
 
 
 #highscore-container {
@@ -15,16 +16,15 @@
 }
 
 .highscores {
-	padding: 0px;
-	background: #008CBA;
-	color: #FFFFFF;
 	float:left;
+	background: $white;
 	margin:5px;
+	padding:5px;
 	width: 280px; 
 	height:auto;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+ 	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .highscore_position {
@@ -37,24 +37,39 @@
 }
 
 h1.black {
-	color: #000000!important;
 	text-align: center;
+}
+
+.completion-bar {
+	margin-top:5px;
+	height:30px;
+	width:100%;
+	border:1px solid #ccc;
+}
+
+.fill {
+	height:30px;
+	background: $success-color;
+	p {
+		margin-left:115px;
+	}
 }
 
 .highscore_user {
 	height:120px;
-	padding:5px;
+	border-top:1px solid #ccc;
 	img {
 		height:100%;
 		width:50%;
 		float:left;
 		margin-left:0px;
 	}
+	a {
+		margin-left:30px;
+	}
+	h3 {
+		margin-top:40px;
+		font-size:18px;
+	}
 }
-
-.highscore_stats {
-	padding:5px;
-	border-top:1px solid black;
-}
-
 
