@@ -36,8 +36,14 @@
 }
 
 .post_user {
-	width:75px;
+	width:125px;
 	display:inline-block;
+	
+	h2 {
+		float:left;
+		font-size:40px;
+		margin-top:-5px;
+	}
 	
 	h3 {
 		position:absolute;

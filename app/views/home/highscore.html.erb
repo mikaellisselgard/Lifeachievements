@@ -2,9 +2,16 @@
 	<h1 class="black">Veckans poäng</h1>
     <% @user_week_stats.each_with_index do |user, index| %>
         <div class="highscores">
-			<div class="highscore_position">
-			<h3>Score: <%= user[2] %></h3>
-		    <h2><%= (index + 1) %></h2>
+			<div class="post_top">
+				<div class="post_user">
+					<h2><%= index + 1 %></h2>
+				</div>
+				<div class="dropdown-button">
+					<%= link_to image_tag('dropdown.png'), user_path(user), remote: true, data: {:"reveal-id" => "reveal-options-#{user[0].id}"} %>
+				</div>
+				<div class="score">
+					<h3><%= user[2] %></h3>
+				</div>
 			</div>
 			<div class="highscore_user">
 				<% if user[0].avatar.length > 0 %>
@@ -14,41 +21,60 @@
 				<% end %>
     			<h3><%= link_to user[0].name, user_path(user[0]) %></h3>
             </div>
-            <div class="highscore_stats">
-				Intjänade Achievements: <%= user[1] %><br>
-				Procent avklarat: <%= ((user[1].to_f / @week_achievements_count.to_f) * 100).round(1) %>%<br>
-				Total poäng: <%= user[2]%><br>
-				Högst avlönade Achievement: <%= user[3] %><br>
-				Antal högst avlönade: <%= user[4] %><br>
-				Likes: <%= user[5] %><br>
-            </div>
+			<%= link_to user_path(user), remote: true, data: {:"reveal-id" => "reveal-progress-#{user[0].id}"} do %>
+	            <div class="completion-bar">
+					<div class="fill" style="width:<%=((user[1].to_f / @week_achievements_count.to_f) * 100).round(1) %>%;">
+						<p><%= user[1].to_s + "/" + @week_achievements_count.to_s %></p> 
+					</div>
+	            </div>
+			<% end %>
+			<div class="highscore_stats">
+				35 gilla-markeringar
+			</div>
 		</div>
 	<% end %>
 </div>
 <div id="highscore-container" class="highscore-content medium-12 medium-centered large-12 large-centered columns media-container">
 	<h1 class="black">Totala poäng</h1>
 	<% @user_total_stats.each_with_index do |user, index| %>
-        <div class="highscores">
-			<div class="highscore_position">
-			<h3>Score: <%= user[2] %></h3>
-		    <h2><%= (index + 1) %></h2>
+     <div class="highscores">
+		<div class="post_top">
+			<div class="post_user">
+				<h2><%= index + 1 %></h2>
 			</div>
-			<div class="highscore_user">
-				<% if user[0].avatar.length > 0 %>
-					<%= image_tag user[0].avatar %>
-				<% else %>
-					<%= image_tag 'avatar.png' %>
-				<% end %>
-    			<h3><%= link_to user[0].name, user_path(user[0]) %></h3>
-            </div>
-            <div class="highscore_stats">
-				Intjänade Achievements: <%= user[1] %><br>
-				Procent avklarat: <%= ((user[1].to_f / @total_achievements_count.to_f) * 100).round(1) %>%<br>
-				Total poäng: <%= user[2]%><br>
-				Högst avlönade Achievement: <%= user[3] %><br>
-				Antal högst avlönade: <%= user[4] %><br>
-				Likes: <%= user[5] %><br>
-            </div>
+			<div class="dropdown-button">
+				<%= link_to image_tag('dropdown.png'), user_path(user), remote: true, data: {:"reveal-id" => "reveal-options-#{user[0].id}"} %>
+			</div>
+			<div class="score">
+				<h3><%= user[2] %></h3>
+			</div>
+		</div>
+		<div class="highscore_user">
+			<% if user[0].avatar.length > 0 %>
+				<%= image_tag user[0].avatar %>
+			<% else %>
+				<%= image_tag 'avatar.png' %>
+			<% end %>
+ 			<h3><%= link_to user[0].name, user_path(user[0]) %></h3>
+         </div>
+		 <%= link_to user_path(user), remote: true, data: {:"reveal-id" => "reveal-progress-#{user[0].id}"} do %>
+	         <div class="completion-bar">
+				<div class="fill" style="width:<%=((user[1].to_f / @total_achievements_count.to_f) * 100).round(1) %>%;">
+					<p><%= user[1].to_s + "/" + @total_achievements_count.to_s %></p> 
+				</div>
+	         </div>
+		 <% end %>
+		<div class="highscore_stats">
+			35 gilla-markeringar
+		</div>
+	</div>
+		<div id="reveal-options-<%=user[0].id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+			<%= link_to 'Rapportera användare', '#' %><br>
+		</div>
+		<div id="reveal-progress-<%=user[0].id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+			In progress
 		</div>
 	<% end %>
 </div>
