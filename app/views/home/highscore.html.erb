@@ -29,7 +29,7 @@
 	            </div>
 			<% end %>
 			<div class="highscore_stats">
-				35 gilla-markeringar
+				<%= count_display(user[5], "Inga") %> gilla-markeringar
 			</div>
 		</div>
 	<% end %>
@@ -65,7 +65,7 @@
 	         </div>
 		 <% end %>
 		<div class="highscore_stats">
-			35 gilla-markeringar
+			<%= count_display(user[5], "Inga") %> gilla-markeringar
 		</div>
 	</div>
 		<div id="reveal-options-<%=user[0].id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
