@@ -4,6 +4,7 @@ class Achievement < ActiveRecord::Base
   has_and_belongs_to_many :bucket_lists
   has_many :posts, dependent: :destroy
   has_many :comments, as: :imageable, dependent: :destroy
+  belongs_to :user
   
   default_scope { order('created_at DESC') }
   
@@ -21,14 +22,11 @@ class Achievement < ActiveRecord::Base
     first_file = Dir.glob("lib/assets/not_used/*").first
     File.open(first_file) do |file|
       file.each_line do |line|
-        @new_achievement = self.new
-        # chomp for removing line-breaks
-        @new_achievement.description = line.chomp
-        @new_achievement.save
+        self.new(description: line.chomp, user_id: 1).save
       end
     end
     # rename and save file in used
-    File.rename first_file, "lib/assets/used/#{@new_achievement.id}"
+    File.rename first_file, "lib/assets/used/#{self.first.id}"
   end
   
 end
