@@ -8,6 +8,7 @@ class AchievementsController < ApplicationController
   # GET /achievements.json
   def index
     @achievements = Achievement.all
+    @comment = Comment.new
   end
 
   # GET /achievements/1
