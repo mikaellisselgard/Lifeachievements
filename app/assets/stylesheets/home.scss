@@ -41,8 +41,10 @@ h1.black {
 }
 
 .completion-bar {
+	margin-top:5px;
 	height:30px;
 	width:100%;
+	border:1px solid #ccc;
 }
 
 .fill {
@@ -55,7 +57,6 @@ h1.black {
 
 .highscore_user {
 	height:120px;
-	border-bottom:1px solid #ccc;
 	border-top:1px solid #ccc;
 	img {
 		height:100%;
@@ -69,10 +70,6 @@ h1.black {
 	h3 {
 		margin-top:40px;
 		font-size:18px;
-	}
-	h2 {
-		font-size:40px;
-		margin-top:-5px;
 	}
 }
 
