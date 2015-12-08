@@ -10,7 +10,7 @@
 					<%= link_to image_tag('dropdown.png'), user_path(user), remote: true, data: {:"reveal-id" => "reveal-options-#{user[0].id}"} %>
 				</div>
 				<div class="score">
-					<h3><%= user[2] %></h3>
+					<h3><%= number_format_k(user[2]) %></h3>
 				</div>
 			</div>
 			<div class="highscore_user">
@@ -46,7 +46,7 @@
 				<%= link_to image_tag('dropdown.png'), user_path(user), remote: true, data: {:"reveal-id" => "reveal-options-#{user[0].id}"} %>
 			</div>
 			<div class="score">
-				<h3><%= user[2] %></h3>
+			<h3><%= number_format_k(user[2]) %></h3>
 			</div>
 		</div>
 		<div class="highscore_user">

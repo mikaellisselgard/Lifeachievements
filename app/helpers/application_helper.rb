@@ -17,4 +17,8 @@ module ApplicationHelper
     end
   end
   
+  def number_format_k(value)
+    number_to_human(value, precision: 1, separator: ',', significant: false, format: '%n%u', units: { thousand: 'K' })
+  end
+  
 end
