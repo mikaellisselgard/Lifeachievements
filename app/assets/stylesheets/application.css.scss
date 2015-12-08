@@ -30,6 +30,19 @@ body {
 	background: $blue;
 }
 
+.body-text {
+	color: $white;
+	font-size: 16px;
+}
+
+a.body-text {
+	color: $white!important;
+}
+
+a.body-text:hover {
+	text-decoration: underline;
+}
+
 a:link, a:visited, a:hover, a:active {
 	text-decoration: none;
 	background: none;
