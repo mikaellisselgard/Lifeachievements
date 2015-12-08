@@ -1,53 +1,90 @@
-<div class="medium-8 medium-centered large-8 large-centered columns">
-	<div id="user-container" class="media-container">
-		<div class="user-avatar">
-			<% if @user.avatar.length > 0 %>
-				<%= image_tag @user.avatar, width: 280, height: 175 %>
-				<% if @user == current_user %>
-					<%= link_to 'Ändra profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
+<div class="medium-6 medium-centered large-6 large-centered columns user-profile">
+	<div id="user-container">
+		<div class="mediun-6 large-6 columns center-children">
+			<div class="user-avatar">
+				<% if @user.avatar.length > 0 %>
+					<%= image_tag @user.avatar, width: 280, height: 175 %>
 				<% else %>
-					<% if user_signed_in? %>
-						<% if current_user.following?(@user)%>
-							<%= link_to 'Sluta följ användare', user_unfollow_path(@user), method: :put, class: 'button success radius expand'%>
-						<% else %>
-							<%= link_to 'Följ användare', user_follow_path(@user), method: :put, class: 'button success radius expand'%>
-						<% end %>
+					<%= image_tag 'avatar.png', width: 280, height: 175 %>
+					<% if @user == current_user %>
+						<%= link_to 'Lägg till profilbild', edit_user_path(@user), class: 'button success rounded-bottom expand' %><br>
+					<% else %>
+						
 					<% end %>
 				<% end %>
-			<% else %>
-				<%= image_tag 'avatar.png', width: 280, height: 175 %>
-				<% if @user == current_user %>
-					<%= link_to 'Lägg till profilbild', edit_user_path(@user), class: 'button success radius expand' %><br>
-				<% else %>
-					<% if user_signed_in? %>
-						<% if current_user.following?(@user)%>
-							<%= link_to 'Sluta följ användare', user_unfollow_path(@user), method: :put, class: 'button success radius expand'%>
-						<% else %>
-							<%= link_to 'Följ användare', user_follow_path(@user), method: :put, class: 'button success radius expand'%>
-						<% end %>
-					<% end %>
-				<% end %>
-			<% end %>
+			</div>
 		</div>
-		<div class="user-info">
-			<% if @user.medals %>
-				<% @user.medals.each do |medal| %>
-					<%= image_tag 'medal.png', width:50, height: 50 %>
-				<% end %>
-			<% end %>
+		<div class="medium-6 large-6 columns center-children">
+			<div class="user-info">
+			    <h3><%= @user.name %></h3>
+			    <%= link_to count_display_medals(@user.medals.length), user_path(@user), data: {:"reveal-id" => "reveal-medals"} %><br/>  
+				<%= link_to "#{@user.followers.length} följare", user_path(@user), data: {:"reveal-id" => "reveal-followers"} %><br/>
+				<%= link_to "Följer #{@user.follows.length}", user_path(@user), data: {:"reveal-id" => "reveal-follows"} %>
+			</div>
 		</div>
 	</div>
 </div>
-<div class="medium-12 medium-centered large-12 large-centered columns">
-	<div class="medium-6 medium-centered large-6 large-centered columns">
-		<button class="button default" id="toggle-bucketlist">Bucket-list</button>
-		<button class="button default toggle-active" id="toggle-achievements">Avklarade Achievements</button>
+<!-- Popups -->
+
+<div id="reveal-medals" class="reveal-modal small medal-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+	<div class="large-12 columns">
+		<% if @user.medals.length > 0 %>
+			<% @user.medals.each do |medal| %>
+				<%= medal %>
+			<% end %>
+		<% else %>
+			<h2 class="popup-text">Den här användaren har inga medaljer ännu.</h2>
+		<% end %>
 	</div>
-	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">	<div class="done-achievements">
+</div>
+
+<div id="reveal-followers" class="reveal-modal small followers-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+	<div class="large-12 columns">
+		<% if @user.followers.length > 0 %>
+			<% @user.followers.each do |user| %>
+				<%= link_to user_path(user) do %>
+					<% if user.avatar.url %>
+				    	<%= user.avatar %>
+				   	<% else %>
+						<%= image_tag('avatar.png', size: "30") %>
+					<%= user.name %><br/>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% else %>
+			<h2 class="popup-text">Den här användaren har inga följare ännu.</h2>
+		<% end %>
+	</div>
+</div>
+
+<div id="reveal-follows" class="reveal-modal small follows-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+	<div class="large-12 columns">
+		<% if @user.follows.length > 0 %>
+			<% @user.follows.each do |user| %>
+				<%= link_to user_path(user) do %>
+					<% if user.followable.avatar.url %>
+				    	<%= user.avatar %>
+				   	<% else %>
+						<%= image_tag('avatar.png', size: "30") %>
+					<%= user.followable.name %><br/>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% else %>
+			<h2 class="popup-text">Den här användaren följer inga ännu.</h2>
+		<% end %>
+	</div>
+</div>
+
+<!-- End popups -->
+
+<div class="medium-12 medium-centered large-12 large-centered columns user-achievements">
+	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">	
+	<div class="done-achievements">
 			<%= render @posts %>
-		</div>
-		<div class="bucketlist-achievements">
-			<%= render @achievements %>
 		</div>
 	</div>
 </div>
