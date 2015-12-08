@@ -16,6 +16,7 @@
 !/log/.keep
 /tmp
 /public/uploads/
+/lib/assets/
 .DS_STORE
 /public/.DS_STORE
 Gemfile.lock
