@@ -24,6 +24,7 @@ before_filter :authenticate_user!, except: :index
       @posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(20)
     end
     
+    # index for achievement after fetching
     if params[:achievement]
       @posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(20)
     end

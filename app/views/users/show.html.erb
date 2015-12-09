@@ -76,7 +76,7 @@
 			<% @user.follows.each do |user| %>
 				<%= link_to user_path(user) do %>
 					<% if user.followable.avatar.url %>
-				    	<%= user.avatar %>
+				    	<%= user.followable.avatar %>
 				   	<% else %>
 						<%= image_tag('avatar.png', size: "30") %>
 					<%= user.followable.name %><br/>
@@ -93,10 +93,6 @@
 	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">	
 	<div class="done-achievements">
 <div class="medium-12 medium-centered large-12 large-centered columns">
-	<div class="medium-6 medium-centered large-6 large-centered columns">
-		<button class="button default" id="toggle-bucketlist">Bucket-list</button>
-		<button class="button default toggle-active" id="toggle-achievements">Avklarade Achievements</button>
-	</div>
 	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">	<div class="done-achievements">
 			<%= render @posts %>
 		</div>
