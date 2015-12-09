@@ -45,7 +45,7 @@ class HomeController < ApplicationController
                              week_max_score_count, 
                              week_likes])
     end 
-    @user_total_stats = @user_total_stats.sort_by{|k|k[2]}.reverse
-    @user_week_stats = @user_week_stats.sort_by{|k|k[2]}.reverse
+    @user_total_stats = @user_total_stats.sort_by{|k|k[2]}.reverse.first(12)
+    @user_week_stats = @user_week_stats.sort_by{|k|k[2]}.reverse.first(12)
   end
 end
