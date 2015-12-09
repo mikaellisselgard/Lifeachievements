@@ -1,3 +1,9 @@
+@media only screen and (min-width: 1700px) and (max-width:2000px) {
+	.media-container {
+		margin-left: 68px!important;
+	}
+}
+
 @media only screen and (min-width: 1400px) and (max-width:1500px) {
 	.media-container {
 		margin-left: 115px!important;
