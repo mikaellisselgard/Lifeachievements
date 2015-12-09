@@ -41,7 +41,7 @@
 	<div class="large-12 columns">
 		<% if @user.medals.length > 0 %>
 			<% @user.medals.each do |medal| %>
-				<%= medal %>
+				<%= medal.image %>
 			<% end %>
 		<% else %>
 			<h2 class="popup-text">Den här användaren har inga medaljer ännu.</h2>

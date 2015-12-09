@@ -24,7 +24,7 @@
 			<%= link_to user_path(user), remote: true, data: {:"reveal-id" => "reveal-progress-#{user[0].id}"} do %>
 	            <div class="completion-bar">
 					<div class="fill" style="width:<%=((user[1].to_f / @week_achievements_count.to_f) * 100).round(1) %>%;">
-						<p><%= user[1].to_s + "/" + @week_achievements_count.to_s %></p> 
+						<p class="black"><%= user[1].to_s + "/" + @week_achievements_count.to_s %></p> 
 					</div>
 	            </div>
 			<% end %>
@@ -60,7 +60,7 @@
 		 <%= link_to user_path(user), remote: true, data: {:"reveal-id" => "reveal-progress-#{user[0].id}"} do %>
 	         <div class="completion-bar">
 				<div class="fill" style="width:<%=((user[1].to_f / @total_achievements_count.to_f) * 100).round(1) %>%;">
-					<p><%= user[1].to_s + "/" + @total_achievements_count.to_s %></p> 
+					<p class="black"><%= user[1].to_s + "/" + @total_achievements_count.to_s %></p> 
 				</div>
 	         </div>
 		 <% end %>
