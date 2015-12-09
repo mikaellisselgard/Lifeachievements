@@ -54,7 +54,7 @@
     			<%= link_to achievement.posts.length.to_s + ' har klarat detta', achievement, remote: true, data: {:"reveal-id" => "reveal-users-#{achievement.id}"} %>
     		</div>
     		<div class="users-comments">
-    			<%= link_to count_display(achievement.comments.count).to_s + ' har kommenterat', achievement, remote: true, data: {:"reveal-id" => "reveal-comments-#{achievement.id}"} %>
+    			<%= link_to count_display(achievement.comments.count, "Ingen").to_s + ' har kommenterat', achievement, remote: true, data: {:"reveal-id" => "reveal-comments-#{achievement.id}"} %>
     		</div>
     	</div>
     	<ul class="achievement-ul">
