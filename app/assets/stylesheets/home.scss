@@ -48,10 +48,19 @@ h1.black {
 }
 
 .fill {
-	height:30px;
+	height:29px;
 	background: $success-color;
 	p {
 		margin-left:115px;
+		color: $white;
+	}
+
+	p.user_profile {
+		margin-left: 65px!important;
+		color: $white;
+		margin: 0;
+		padding: 0;
+		width: 150px;
 	}
 }
 
