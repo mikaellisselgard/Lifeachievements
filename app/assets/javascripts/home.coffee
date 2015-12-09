@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'click', '.notices', (e) ->
+$(document).on 'click, mouseenter', '.notices', (e) ->
   $('#notishref').text('Notiser')
   user_id = this.id.split("-").pop()
   $.ajax({
