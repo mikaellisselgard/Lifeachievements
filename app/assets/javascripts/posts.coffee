@@ -87,5 +87,7 @@ postLoadType = (last_id) ->
     data = { id: last_id, follow_ids: follow_ids }
   else if window.location.pathname.substring(0, 7) == "/users/"
     data = { id: last_id, user: user }
-  else
+  else if window.location.pathname.substring(0, 14) == "/achievements/"
+    data = { id: last_id, achievement: achievement }
+  else 
     data = { id: last_id }
