@@ -89,18 +89,19 @@
 	</div>
 </div>
 
-<!-- End popups -->
-
 <div class="medium-12 medium-centered large-12 large-centered columns user-achievements">
 	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">	
 	<div class="done-achievements">
+<div class="medium-12 medium-centered large-12 large-centered columns">
+	<div class="medium-6 medium-centered large-6 large-centered columns">
+		<button class="button default" id="toggle-bucketlist">Bucket-list</button>
+		<button class="button default toggle-active" id="toggle-achievements">Avklarade Achievements</button>
+	</div>
+	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix media-container">	<div class="done-achievements">
 			<%= render @posts %>
 		</div>
 	</div>
 </div>
-<div class="load-more-container medium-4 centered">
-        <!-- hide our loading gif image so that we show it when making ajax call via jquery -->
-	<%= image_tag "loading-gif.gif", style: "display:none;", class: "loading-gif" %>
-	<%= link_to "Load More", posts_path(user: @user), class: "load-more button expand" %>
-</div>
-<%= @file %>
+<script type="text/javascript">
+	user = <%= @user.id %>;
+</script>

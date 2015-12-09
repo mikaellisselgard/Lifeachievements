@@ -39,38 +39,11 @@ $(document).on 'click', '.like', (e) ->
 #$(document).on 'click tap touchstart', '.reveal-modal-bg', ->
   #$('[data-reveal]').foundation 'reveal', 'close'
   
-$(document).on 'ready page:load', ->
-  # when the load more link is clicked
-  $('a.load-more').click (e) ->
-    # prevent the default click action
-    e.preventDefault()
-    # hide load more link
-    $('.load-more').hide()
-    # show loading gif
-    $('.loading-gif').show()
-    # get the last id and save it in a variable 'last-id'
-    last_id = $('.box').last().attr('data-id')
-    # make an ajax call passing along our last user id
-    $.ajax
-      type: 'GET'
-      url: $(this).attr('href')
-      data: id: last_id
-      dataType: 'script'
-      success: ->
-        items = $(this)
-        masonryAdd(items)
-        # hide the loading gif
-        $('.loading-gif').hide()
-        # show our load more link
-        $('.load-more').show()
-        return
-    return
-  return
 
 masonryAdd = (items) ->
   setTimeout (->
     $('#masonry-container').masonry( 'reload' )
-  ), 1000
+  ), 500
 
 @getGeoLocation = ->
   navigator.geolocation.getCurrentPosition setGeoCookie
@@ -81,4 +54,38 @@ setGeoCookie = (position) ->
   document.cookie = 'lat_lng=' + escape(cookie_val)
   return
 	
-	
+started = false
+
+$(window).scroll ->
+  windowsHeight = $(document).height() - $(window).height()
+  currentScroll = $(window).scrollTop()
+  # scroll more than 80% of page
+  if currentScroll * 100 / windowsHeight > 95 && !started
+    started = true
+    postLoad()
+  else
+  return
+
+postLoad = ->
+  last_id = $('.box').last().attr('data-id')
+  # make an ajax call passing along our last user id
+  $.ajax
+    type: 'GET'
+    url: '/posts/'
+    data: postLoadType(last_id)
+    dataType: 'script'
+    success: ->
+      items = $(this)
+      masonryAdd(items)
+      started = false
+      return
+  return
+  
+  
+postLoadType = (last_id) ->
+  if window.location.pathname == "/friends"
+    data = { id: last_id, follow_ids: follow_ids }
+  else if window.location.pathname.substring(0, 7) == "/users/"
+    data = { id: last_id, user: user }
+  else
+    data = { id: last_id }
