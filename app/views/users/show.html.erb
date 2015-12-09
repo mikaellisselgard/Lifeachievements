@@ -1,4 +1,4 @@
-<div class="medium-6 medium-centered large-6 large-centered columns user-profile radius">
+<div class="large-6 large-centered columns user-profile radius">
 	<div id="user-container">
 		<div class="mediun-6 large-6 columns center-children">
 			<div class="user-avatar">
@@ -14,23 +14,23 @@
 				<% end %>
 			</div>
 		</div>
-		<div class="medium-6 large-6 columns center-children">
+		<div class="mediun-6 large-6 columns center-children">
 			<div class="user-info">
 			    <h3><%= @user.name %></h3>
-			    <%= link_to (@user.medals.length), user_path(@user), data: {:"reveal-id" => "reveal-medals"} %><br/>  
+			    <%= link_to "#{count_display(@user.medals.length, 'Inga')} medaljer", user_path(@user), data: {:"reveal-id" => "reveal-medals"} %><br/>  
 				<%= link_to "#{@user.followers.length} följare", user_path(@user), data: {:"reveal-id" => "reveal-followers"} %><br/>
 				<%= link_to "Följer #{@user.follows.length}", user_path(@user), data: {:"reveal-id" => "reveal-follows"} %>
+				<div class="completion-bar-profile">
+					<div class="fill" style="width:<%=((@week_posts_count.to_f / @week_achievements_count.to_f) * 100).round(1) %>%;">
+						<p class="user_profile"><%= @week_posts_count.to_s + "/" + @week_achievements_count.to_s %></p> 
+					</div>
+        		</div>
+	        	<div class="completion-bar-profile">
+					<div class="fill" style="width:<%=((@total_posts_count.to_f / @total_achievements_count.to_f) * 100).round(1) %>%;">
+						<p class="user_profile"><%= @total_posts_count.to_s + "/" + @total_achievements_count.to_s %></p> 
+					</div>
+	        	</div>
 			</div>
-			<div class="completion-bar">
-				<div class="fill" style="width:<%=((@week_posts_count.to_f / @week_achievements_count.to_f) * 100).round(1) %>%;">
-					<p class="user_profile">Denna vecka <%= @week_posts_count.to_s + "/" + @week_achievements_count.to_s %></p> 
-				</div>
-        	</div>
-        	<div class="completion-bar">
-				<div class="fill" style="width:<%=((@total_posts_count.to_f / @total_achievements_count.to_f) * 100).round(1) %>%;">
-					<p class="user_profile">Total <%= @total_posts_count.to_s + "/" + @total_achievements_count.to_s %></p> 
-				</div>
-        	</div>
 		</div>
 	</div>
 </div>

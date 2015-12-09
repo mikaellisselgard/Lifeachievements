@@ -47,8 +47,15 @@ h1.black {
 	border:1px solid #ccc;
 }
 
+.completion-bar-profile {
+	margin: 10px auto;
+	height:30px;
+	width:280px;
+	border:1px solid #ccc;
+}
+
 .fill {
-	height:29px;
+	height:28px;
 	background: $success-color;
 	p {
 		margin-left:115px;
@@ -56,7 +63,7 @@ h1.black {
 	}
 
 	p.user_profile {
-		margin-left: 65px!important;
+		margin-left: 55px!important;
 		color: $white;
 		margin: 0;
 		padding: 0;
