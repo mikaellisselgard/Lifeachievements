@@ -54,12 +54,14 @@ setGeoCookie = (position) ->
   document.cookie = 'lat_lng=' + escape(cookie_val)
   return
 	
+started = false
+
 $(window).scroll ->
   windowsHeight = $(document).height() - $(window).height()
   currentScroll = $(window).scrollTop()
   # scroll more than 80% of page
-  if currentScroll * 100 / windowsHeight > 95
-    addWindowHeight()
+  if currentScroll * 100 / windowsHeight > 95 && !started
+    started = true
     postLoad()
   else
   return
@@ -75,12 +77,10 @@ postLoad = ->
     success: ->
       items = $(this)
       masonryAdd(items)
+      started = false
       return
   return
   
-addWindowHeight = ->
-  oldSize = $('.box').last().offset().top
-  $('body').height(oldSize + 1000)
   
 postLoadType = (last_id) ->
   if window.location.pathname == "/friends"
