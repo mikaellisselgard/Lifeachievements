@@ -6,7 +6,7 @@
 			<%= link_to image_tag('dropdown.png'), achievement_path(achievement), remote: true, data: {:"reveal-id" => "reveal-options-#{achievement.id}"} %>
 		</div>
 		<div class="score">
-			<h3><%= achievement.score %>p</h3>
+			<h3><%= achievement.score %></h3>
 		</div>
 		<div class="locks">
 			<% if current_user.has_achievement(achievement) %>

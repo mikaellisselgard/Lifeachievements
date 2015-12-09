@@ -12,16 +12,16 @@
     </div>
   <% end %>
 	<div class="field">
-		<%= f.label :Bild %>
-		<%= f.file_field :image %>
+		<%= f.label :Bild, class: 'body-text' %>
+		<%= f.file_field :image, class: 'body-text' %>
 	</div>
 	<div class="field">
-		<%= f.label :Video %>
-		<%= f.file_field :video %>
+		<%= f.label :Video, class: 'body-text' %>
+		<%= f.file_field :video, class: 'body-text' %>
 	</div>
 	<div class="field">
-		<%= f.label 'Meddelande:' %><br>
-    	<%= f.text_field :message %><br>
+		<%= f.label 'Meddelande:', class: 'body-text' %>
+    	<%= f.text_field :message %>
 	</div>
 	<%= f.hidden_field :achievement_id, value: @achievement_id%>
   	<div class="actions">

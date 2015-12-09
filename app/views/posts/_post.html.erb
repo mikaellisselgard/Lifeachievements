@@ -12,7 +12,7 @@
 			<%= link_to image_tag('dropdown.png'), user_path(post.user), remote: true, data: {:"reveal-id" => "reveal-options-#{post.id}"} %>
 		</div>
 		<div class="score">
-			<h3><%= post.achievement.score %>p</h3>
+			<h3><%= post.achievement.score %></h3>
 		</div>
 	</div>
 	<div class="post_image" height="<%= post.height %>px!important">

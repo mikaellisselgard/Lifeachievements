@@ -32,22 +32,6 @@ $(document).on 'ready page:load', ->
     return
   return
 
-$(document).on 'click', '#toggle-bucketlist', ->
-  $('#toggle-achievements').removeClass('toggle-active')
-  $('#toggle-bucketlist').addClass('toggle-active')
-  $('.load-more-container').hide()
-  $('.box').hide()
-  $('.bucketlist-achievements').show()
-
-$(document).on 'click', '#toggle-achievements', ->
-  $('#toggle-bucketlist').removeClass('toggle-active')
-  $('#toggle-achievements').addClass('toggle-active')
-  $('.box').show()
-  $('.load-more-container').show()
-  $('.bucketlist-achievements').hide()
-  $('.done-achievements').show()
-  
-
 $(document).on 'ready page:load', ->
 	$('#search_user').bind 'railsAutocomplete.select', (event, data) ->
 		$(location).attr('href', 'http://178.62.99.216/users/' + data.item.id)

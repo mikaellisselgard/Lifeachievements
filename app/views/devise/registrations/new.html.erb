@@ -3,25 +3,25 @@
 	  <%= devise_error_messages! %>
 
 	  <div class="field">
-	    <%= f.label 'Användarnamn' %><br />
+	    <%= f.label 'Användarnamn', class: 'body-text' %>
 	    <%= f.text_field :name, autofocus: true %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label :email %><br />
+	    <%= f.label "E-postadress", class: 'body-text' %>
 	    <%= f.email_field :email %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label 'Lösenord' %>
+	    <%= f.label 'Lösenord', class: 'body-text' %>
 	    <% if @minimum_password_length %>
-	    <em>Minst (<%= @minimum_password_length %>) tecken</em>
+	    <em class="body-text">Minst (<%= @minimum_password_length %>) tecken</em>
 	    <% end %><br />
 	    <%= f.password_field :password, autocomplete: "off" %>
 	  </div>
 
 	  <div class="field">
-	    <%= f.label 'Upprepa lösenord' %><br />
+	    <%= f.label 'Upprepa lösenord', class: 'body-text' %>
 	    <%= f.password_field :password_confirmation, autocomplete: "off" %>
 	  </div>
 

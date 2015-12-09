@@ -11,8 +11,17 @@ class UsersController < ApplicationController
   
   def show
     @posts = @user.posts.limit(20)
+    
+    @total_achievements_count = Achievement.count
+    @total_posts_count = @user.posts.count
+
+    @week_achievements_count = Achievement.where(created_at: Time.now.beginning_of_week..Time.now).count
+    @week_posts_count = @user.posts.joins(:achievement).
+                          where('achievements.created_at between ? and ?',
+                          Time.now.beginning_of_week, Time.now).count
+
     @comment = Comment.new
-    @achievements = @user.bucket_list.achievements.reverse
+    @achievements = Achievement.all
     respond_to do |format|
       format.html
       format.js
