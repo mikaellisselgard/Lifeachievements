@@ -75,8 +75,7 @@
 		</ul>
 		<%= link_to 'Ladda upp bild/video', new_post_path(achievement_id: achievement.id), class: 'button expand success radius achievement-actions'%>
     </div>
-	<div id="reveal-comments-<%=achievement.id%>" class="reveal-modal post-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-		<div class="large-6 columns">
+	<div id="reveal-comments-<%=achievement.id%>" class="reveal-modal small large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 			<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 			<div id="comment_list-<%= achievement.id %>" class="comments">
 				<% @comments = achievement.comments %>
@@ -86,19 +85,18 @@
 			<div class="comment-input">
 				<%= render 'comments/form', object: @model %>
 			</div>
-		</div>
 	</div>
-	<div id="reveal-users-<%=achievement.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<div id="reveal-users-<%=achievement.id%>" class="reveal-modal small medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
 		<% @user_ids = achievement.posts.pluck(:user_id) %>
 		<%= render 'achievements/users', object: @user_ids %>
 	</div>
-	<div id="reveal-follows-<%=achievement.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<div id="reveal-follows-<%=achievement.id%>" class="reveal-modal small medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
 		<% @achievement = achievement %>
 		<%= render 'users/follows', object: @achievement %>
 	</div>
-	<div id="reveal-options-<%=achievement.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<div id="reveal-options-<%=achievement.id%>" class="reveal-modal small medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 		<% if user_signed_in? %>
 			<% if current_user.admin %>
