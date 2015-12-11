@@ -65,7 +65,7 @@
 	         </div>
 		 <% end %>
 		<div class="highscore_stats">
-			<%= count_display(user[5], "Inga") %> gilla-markeringar
+			<%= t('likes_count', count: user[5]) %>
 		</div>
 	</div>
 		<div id="reveal-options-<%=user[0].id%>" class="reveal-modal medium-2 columns small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
