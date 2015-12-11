@@ -16,6 +16,10 @@ module ApplicationHelper
       return value
     end
   end
+
+  def icon(icon)
+    "<i class='#{icon}'></i>".html_safe
+  end
   
   def number_format_k(value)
     number_to_human(value, precision: 1, separator: ',', significant: false, format: '%n%u', units: { thousand: 'K' })
