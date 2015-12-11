@@ -8,14 +8,11 @@ class AchievementsController < ApplicationController
   # GET /achievements.json
   def index
     @achievements = Achievement.all
-    @comment = Comment.new
   end
 
   # GET /achievements/1
   # GET /achievements/1.json
   def show
-    @comment = Comment.new
-    @comments = @achievement.comments.order("id DESC")
     @posts = @achievement.posts.limit(20)
   end
 
