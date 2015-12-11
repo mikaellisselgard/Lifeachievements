@@ -112,12 +112,12 @@
 			</div>
 		</div>
 	</div>
-	<div id="reveal-likes-<%=post.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<div id="reveal-likes-<%=post.id%>" class="reveal-modal medium-2 columns small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 		<% @likes = post.likes %>
 		<%= render 'posts/likes', object: @likes %>
 	</div>
-	<div id="reveal-options-<%=post.id%>" class="reveal-modal post-modal medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<div id="reveal-options-<%=post.id%>" class="reveal-modal medium-2 columns small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 		<% if user_signed_in? %>
 			<% if current_user == post.user || current_user.admin %>
