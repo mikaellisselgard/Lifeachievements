@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   before_filter :find_commenter
   respond_to :js, :html, :json
 
+  before_filter :authenticate_user! 
+
   def create
     comment = @commenter.comments.new({ 
       comment: params[:comment][:comment],
