@@ -18,6 +18,14 @@ class Post < ActiveRecord::Base
   
   validate :image_or_video
 
+  def has_image?
+    !has_video?
+  end
+
+  def has_video?
+    height == nil
+  end
+
   def check_achievement
     self.achievement.users.exclude? self.user
   end

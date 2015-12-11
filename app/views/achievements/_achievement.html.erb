@@ -20,33 +20,17 @@
 		<h3><%= link_to achievement.description, achievement %></h3>
     </div>
     <div class="achievement_posts">
-    <% if achievement.posts[0] %> 
-		<% if achievement.posts[0].height == nil %>
-			<%= link_to (video_tag achievement.posts[0].video, size:"85x65"), achievement.posts[0] %>
-		<% else %>
-			<%= link_to (image_tag achievement.posts[0].image, size:"85x65"), achievement.posts[0] %>
-		<% end %>
-	<% else %>
-		<%= image_tag 'post.png', size: "85" %>
-	<% end %>
-	<% if achievement.posts[1] %>
-		<% if achievement.posts[1].height == nil %>
-			<%= link_to (video_tag achievement.posts[1].video, size:"85x65"), achievement.posts[1] %>
-		<% else %>
-			<%= link_to (image_tag achievement.posts[1].image, size:"85x65"), achievement.posts[1] %>
-		<% end %>
-	<% else %>
-		<%= image_tag 'post.png', size: "85" %>
-	<% end %>
-	<% if achievement.posts[2] %>
-		<% if achievement.posts[2].height == nil %>
-			<%= link_to (video_tag achievement.posts[2].video, size:"85x65"), achievement.posts[2] %>
-		<% else %>
-			<%= link_to (image_tag achievement.posts[2].image, size:"85x65"), achievement.posts[2] %>
-		<% end %>
-	<% else %>
-		<%= image_tag 'post.png', size: "85" %>
-	<% end %>
+      <% 3.times do |index| %>
+        <% if achievement.posts[index] %> 
+          <% if achievement.posts[index].has_video? %>
+            <%= link_to (video_tag achievement.posts[index].video, size:"85x65"), achievement.posts[index] %>
+          <% else %>
+            <%= link_to (image_tag achievement.posts[index].image, size:"85x65"), achievement.posts[index] %>
+          <% end %>
+        <% else %>
+          <%= image_tag 'post.png', size: "85" %>
+        <% end %>
+      <% end %>
     </div>
     <div class="achievement_info">
     	<div class="achievements-counters">
@@ -99,7 +83,7 @@
 	<div id="reveal-options-<%=achievement.id%>" class="reveal-modal small medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 		<% if user_signed_in? %>
-			<% if current_user.admin %>
+			<% if current_user.admin? %>
 				<%= link_to 'Ta bort inlägg', achievement, method: :delete %><br>
 				<%= link_to 'Editera inlägg', edit_achievement_path(achievement) %><br>
 			<% else %>
