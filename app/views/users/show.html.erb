@@ -62,11 +62,11 @@
 			<% @user.followers.each do |user| %>
 				<%= link_to user_path(user) do %>
 					<% if user.avatar.url %>
-				    	<%= user.avatar %>
+				    	<%= image_tag(user.avatar, size: "30") %>
 				   	<% else %>
 						<%= image_tag('avatar.png', size: "30") %>
-					<%= user.name %><br/>
 					<% end %>
+					<%= user.name %><br/>
 				<% end %>
 			<% end %>
 		<% else %>
@@ -82,11 +82,11 @@
 			<% @user.follows.each do |user| %>
 				<%= link_to user_path(user) do %>
 					<% if user.followable.avatar.url %>
-				    	<%= user.followable.avatar %>
+				    	<%= image_tag(user.followable.avatar, size: "30") %>
 				   	<% else %>
 						<%= image_tag('avatar.png', size: "30") %>
-					<%= user.followable.name %><br/>
 					<% end %>
+					<%= user.followable.name %><br/>
 				<% end %>
 			<% end %>
 		<% else %>
