@@ -9,7 +9,6 @@
 					<% if @user == current_user %>
 						<%= link_to 'Lägg till profilbild', edit_user_path(@user), class: 'button success rounded-bottom expand' %><br>
 					<% else %>
-						
 					<% end %>
 				<% end %>
 			</div>
@@ -56,11 +55,11 @@
 			<% @user.followers.each do |user| %>
 				<%= link_to user_path(user) do %>
 					<% if user.avatar.url %>
-				    	<%= user.avatar %>
+				    	<%= image_tag(user.avatar, size: "30") %>
 				   	<% else %>
 						<%= image_tag('avatar.png', size: "30") %>
-					<%= user.name %><br/>
 					<% end %>
+					<%= user.name %><br/>
 				<% end %>
 			<% end %>
 		<% else %>
@@ -76,15 +75,15 @@
 			<% @user.follows.each do |user| %>
 				<%= link_to user_path(user) do %>
 					<% if user.followable.avatar.url %>
-				    	<%= user.followable.avatar %>
+				    	<%= image_tag(user.followable.avatar, size: "30") %>
 				   	<% else %>
 						<%= image_tag('avatar.png', size: "30") %>
-					<%= user.followable.name %><br/>
 					<% end %>
+					<%= user.followable.name %><br/>
 				<% end %>
 			<% end %>
 		<% else %>
-			<h2 class="popup-text">Den här användaren följer inga ännu.</h2>
+			<h2 class="popup-text">Den här användaren följer ingen ännu.</h2>
 		<% end %>
 	</div>
 </div>

@@ -1,12 +1,18 @@
 sv:
+  comments_count:
+    zero: "Inga kommentarer"
+    one: "1 kommentar"
+    other: "%{count} kommentarer"
+  
+  likes_count:
+    zero: "Inga gilla-markeringar"
+    one: "1 gilla-markering"
+    other: "%{count} gilla-markeringar"
+  
   achievements:
     achievement:
       posts_count:
         zero: "Ingen har klarat detta"
         one: "1 har klarat detta"
         other: "%{count} har klarat detta"
-      comments_count:
-        zero: "Inga kommentarer"
-        one: "1 kommentar"
-        other: "%{count} kommentarer"
 
