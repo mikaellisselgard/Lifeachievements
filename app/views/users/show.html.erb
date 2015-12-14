@@ -9,6 +9,7 @@
 					<% if @user == current_user %>
 						<%= link_to 'Lägg till profilbild', edit_user_path(@user), class: 'button success rounded-bottom expand' %><br>
 					<% else %>
+						
 					<% end %>
 				<% end %>
 			</div>
@@ -16,7 +17,7 @@
 		<div class="mediun-6 large-6 columns center-children">
 			<div class="user-info">
 			    <h3><%= @user.name %></h3>
-			    <%= link_to "#{count_display(@user.medals.length, 'Inga')} medaljer", user_path(@user), data: {:"reveal-id" => "reveal-medals"} %><br/>  
+			    <%= link_to "#{@user.medals.length} medaljer", user_path(@user), data: {:"reveal-id" => "reveal-medals"} %><br/>  
 				<%= link_to "#{@user.followers.length} följare", user_path(@user), data: {:"reveal-id" => "reveal-followers"} %><br/>
 				<%= link_to "Följer #{@user.follows.length}", user_path(@user), data: {:"reveal-id" => "reveal-follows"} %>
 				<div class="completion-bar-profile">
@@ -55,11 +56,11 @@
 			<% @user.followers.each do |user| %>
 				<%= link_to user_path(user) do %>
 					<% if user.avatar.url %>
-				    	<%= image_tag(user.avatar, size: "30") %>
+				    	<%= user.avatar %>
 				   	<% else %>
 						<%= image_tag('avatar.png', size: "30") %>
-					<% end %>
 					<%= user.name %><br/>
+					<% end %>
 				<% end %>
 			<% end %>
 		<% else %>
@@ -75,11 +76,11 @@
 			<% @user.follows.each do |user| %>
 				<%= link_to user_path(user) do %>
 					<% if user.followable.avatar.url %>
-				    	<%= image_tag(user.followable.avatar, size: "30") %>
+				    	<%= user.followable.avatar %>
 				   	<% else %>
 						<%= image_tag('avatar.png', size: "30") %>
-					<% end %>
 					<%= user.followable.name %><br/>
+					<% end %>
 				<% end %>
 			<% end %>
 		<% else %>
