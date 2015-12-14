@@ -25,16 +25,11 @@
 	<div class="post_info">
 		<%= link_to post, remote: true, data: {:"reveal-id" => "reveal-likes-#{post.id}"} do %>
 		<div id="counter_info-<%=post.id%>" class="counter-fix">
-			<% if post.likes_count != nil %> 
-				<%= count_display(post.likes_count, "Ingen") %>
-			<% else %>
-				Ingen
-			<% end %>
+				<%= t('likes_count', count: post.likes_count.to_i) %>
 		</div>
-		&nbsp;har gillat detta
 		<% end %>
 		<div class="counter-info-comments">
-			<%= link_to "#{count_display(post.comments.count, "Ingen")} har kommenterat", post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} %>
+			<%= link_to t('comments_count', count: post.comments.count), post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} %>
 		</div>
 	</div>
 	<div class="achievement_description_post">
@@ -86,16 +81,11 @@
 				<div class="post_info">
 					<%= link_to post, remote: true, data: {:"reveal-id" => "reveal-likes-#{post.id}"} do %>
 					<div id="counter_info-<%=post.id%>" class="counter-fix">
-						<% if post.likes_count != nil %> 
-							<%= count_display(post.likes_count, "Ingen") %>
-						<% else %>
-							Ingen
-						<% end %>
+						<%= t('likes_count', count: post.likes_count.to_i) %>
 					</div>
-					&nbsp;har gillat detta
 					<% end %>
 					<div class="counter-info-comments">
-						<%= count_display(post.comments.count, "Ingen") %> har kommenterat
+						<%= t('comments_count', count: post.comments.count) %>
 					</div>
 				</div>
 			</div>

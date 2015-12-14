@@ -8,14 +8,6 @@ module ApplicationHelper
   def lat_lng
     @lat_lng ||= session[:lat_lng] ||= get_geolocation_data_the_hard_way
   end
-  
-  def count_display(value, string)
-    if value == 0
-      return string
-    else
-      return value
-    end
-  end
 
   def icon(icon)
     "<i class='#{icon}'></i>".html_safe
