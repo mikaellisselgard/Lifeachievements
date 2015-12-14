@@ -1,4 +1,4 @@
-<% @notices.each do |notice| %>
+<% notices.each do |notice| %>
 	<% if notice.link.to_i > 0%>
 		<% if notice.notice_type == "tip" %>
 			<% @link = achievement_path(notice.link) %>
