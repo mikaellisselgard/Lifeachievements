@@ -11,8 +11,13 @@
     </div>
   <% end %>
 	<div class="field">
-		<%= f.file_field :avatar %><br>
+    <p class="edit-user-text">Profilbild</p>
+		<%= f.file_field :avatar, class: 'edit-user-text' %><br>
 	</div>
+  <div class="field">
+    <p class="edit-user-text">Användarnamn</p>
+    <%= f.text_field :name, placeholder: @user.name %>
+  </div>
   	<div class="actions">
     	<%= f.submit class: 'button expand' %>
   	</div>
