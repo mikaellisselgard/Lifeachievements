@@ -1,19 +1,18 @@
 <div class="achievements" data-id="<%= achievement.id %>" id="achievement-id">
     <%= link_to achievement.description, achievement, class: 'hide'  %>
 	<div class="achievement_categories">
-		<%= link_to '<i class="fi-marker"></i>'.html_safe, '#', class: 'achievement-marker' %>
+		<div class="locks">
+			<% if current_user.has_achievement(achievement) %>
+				<%= icon('fi-unlock locks-icon') %>
+			<% else %>
+				<%= icon('fi-lock locks-icon') %>
+			<% end %>
+		</div>
 		<div class="dropdown-button">
 			<%= link_to image_tag('dropdown.png'), achievement_path(achievement), remote: true, data: {:"reveal-id" => "reveal-options-#{achievement.id}"} %>
 		</div>
 		<div class="score">
 			<h3><%= achievement.score %></h3>
-		</div>
-		<div class="locks">
-			<% if current_user.has_achievement(achievement) %>
-				<i class="fi-unlock locks-icon"></i>
-			<% else %>
-				<i class="fi-lock locks-icon"></i>
-			<% end %>
 		</div>
 	</div>
 	<div class="achievement_description">
@@ -40,10 +39,10 @@
     	</div>
     	<ul class="achievement-ul">
 	    	<li>
-				<%= link_to '<i class="fi-torsos-all"></i>'.html_safe, achievement, remote: true, data: {:"reveal-id" => "reveal-users-#{achievement.id}"}, class: 'achievement-icons' %>
+				<%= link_to icon("fi-torsos-all"), achievement, remote: true, data: {:"reveal-id" => "reveal-users-#{achievement.id}"}, class: 'achievement-icons' %>
 			</li>
 			<li>
-				<%= link_to '<i class="fi-share"></i>'.html_safe, achievement, remote: true, data: {:"reveal-id" => "reveal-follows-#{achievement.id}"}, class: 'achievement-icons' %>
+				<%= link_to icon("fi-share"), achievement, remote: true, data: {:"reveal-id" => "reveal-follows-#{achievement.id}"}, class: 'achievement-icons' %>
 			</li>
 			<li>
 			<div id="achievement_<%=achievement.id%>" class="add-achievement">
@@ -76,4 +75,3 @@
 		<% end %>
 	</div>
 </div>
-
