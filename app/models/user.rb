@@ -13,19 +13,18 @@ class User < ActiveRecord::Base
   has_many :medals, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
-  
+
   after_create :set_bucket_list
 
   validates :name, presence: true
-  
+
   delegate :achievements, to: :bucket_list, prefix: true
-  
+
   def set_bucket_list
-    self.build_bucket_list
+    build_bucket_list
   end
-  
+
   def has_achievement(achievement)
-    self.achievements.include? achievement
+    achievements.include? achievement
   end
-  
 end

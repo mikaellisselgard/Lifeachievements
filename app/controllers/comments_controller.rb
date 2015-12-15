@@ -1,14 +1,12 @@
 class CommentsController < ApplicationController
-  before_filter :find_commenter
+  before_action :find_commenter
   respond_to :js, :html, :json
 
-  before_filter :authenticate_user! 
+  before_action :authenticate_user!
 
   def create
-    comment = @commenter.comments.new({ 
-      comment: params[:comment][:comment],
-      user_id: current_user.id
-    })
+    comment = @commenter.comments.new(comment: params[:comment][:comment],
+                                      user_id: current_user.id)
     comment.save!
 
     Notice.commenters(comment)
@@ -18,12 +16,11 @@ class CommentsController < ApplicationController
     # pass to list.html.erb
     @comments = @class.find(params[:commenter_id]).comments
   end
-  
+
   private
 
   def find_commenter
     @class = params[:commenter_type].capitalize.constantize
     @commenter = @class.find(params[:commenter_id])
   end
-  
 end

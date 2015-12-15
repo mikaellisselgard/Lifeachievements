@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class AchievementsControllerTest < ActionController::TestCase
   setup do
@@ -17,7 +17,7 @@ class AchievementsControllerTest < ActionController::TestCase
   end
 
   test "should create achievement" do
-    assert_difference('Achievement.count') do
+    assert_difference("Achievement.count") do
       post :create, achievement: { description: @achievement.description, score: @achievement.score }
     end
 
@@ -40,7 +40,7 @@ class AchievementsControllerTest < ActionController::TestCase
   end
 
   test "should destroy achievement" do
-    assert_difference('Achievement.count', -1) do
+    assert_difference("Achievement.count", -1) do
       delete :destroy, id: @achievement
     end
 

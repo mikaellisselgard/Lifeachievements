@@ -1,37 +1,37 @@
 class PostsController < ApplicationController
-before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update, :destroy]
 
-before_filter :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: :index
 
   def index
     # index for posts after fetching
-    if params[:id] and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
-      @posts = Post.where('id < ?', params[:id]).limit(20)
-    
+    if params[:id] && params[:follow_ids].nil? && params[:user].nil? && params[:achievement].nil?
+      @posts = Post.where("id < ?", params[:id]).limit(20)
+
     # index for posts pre fetching
-    elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
+    elsif params[:id].nil? && params[:follow_ids].nil? && params[:user].nil? && params[:achievement].nil?
       @posts = Post.limit(20)
     end
-    
+
     # index for users after fetching
     if params[:user]
-      @posts = User.find(params[:user]).posts.where('id < ?', params[:id]).limit(20)
+      @posts = User.find(params[:user]).posts.where("id < ?", params[:id]).limit(20)
     end
-    
+
     # index for follows after fetching
     if params[:follow_ids]
       @follow_ids = params[:follow_ids]
-      @posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(20)
+      @posts = Post.where("user_id IN (?)", @follow_ids).where("id < ?", params[:id]).limit(20)
     end
-    
+
     # index for achievement after fetching
     if params[:achievement]
-      @posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(20)
+      @posts = Achievement.find(params[:achievement]).posts.where("id < ?", params[:id]).limit(20)
     end
-    
+
     @comment = Comment.new
   end
-  
+
   def show
     @comment = Comment.new
     @comments = @post.comments.order("id DESC")
@@ -41,7 +41,7 @@ before_filter :authenticate_user!, except: :index
     @post = Post.new
     @achievement_id = params[:achievement_id]
   end
-  
+
   def like_post
     like = Like.create(user_id: current_user.id, post_id: @post.id)
     like.save
@@ -62,15 +62,15 @@ before_filter :authenticate_user!, except: :index
     @post = current_user.posts.create(post_params)
     @post.likes_count = 0
     @post.save!
-    if @post.latitude == nil
-      lat_lng = cookies[:lat_lng].split("|") rescue nil
-      @post.latitude = lat_lng[0] rescue nil
-      @post.longitude = lat_lng[1] rescue nil
+    if @post.latitude.nil?
+      lat_lng = cookies[:lat_lng].to_s.split("|")
+      @post.latitude  = lat_lng[0]
+      @post.longitude = lat_lng[1]
       @post.save!
     end
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -82,7 +82,7 @@ before_filter :authenticate_user!, except: :index
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to @post, notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -95,25 +95,23 @@ before_filter :authenticate_user!, except: :index
     if @post.user_id == current_user.id || current_user.admin
       @post.destroy
       respond_to do |format|
-        format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+        format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to :back, notice: 'No permission' }
+        format.html { redirect_to :back, notice: "No permission" }
       end
     end
   end
-  
+
   def follow_index
     # fetch all user_ids from users following current_user
     @follow_ids = current_user.follows.pluck(:followable_id)
-    @posts = Post.where('user_id IN (?)', @follow_ids).limit(20)
+    @posts = Post.where("user_id IN (?)", @follow_ids).limit(20)
     @comment = Comment.new
     # check if no result for sending nil-params to index
-    if @posts.length == 0
-      follow_ids = 'nil'
-    end
+    follow_ids = "nil" if @posts.length == 0
     respond_to do |format|
       format.html
       format.js
@@ -121,7 +119,7 @@ before_filter :authenticate_user!, except: :index
   end
 
   private
-  
+
   def set_post
     @post = Post.find(params[:id])
   end
@@ -129,7 +127,4 @@ before_filter :authenticate_user!, except: :index
   def post_params
     params.require(:post).permit(:image, :video, :message, :user_id, :achievement_id)
   end
-  
 end
-
-  
