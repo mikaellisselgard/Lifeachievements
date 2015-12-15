@@ -5,5 +5,5 @@ class AddCommentsTable < ActiveRecord::Migration
       t.references :imageable, polymorphic: true, index: true
       t.timestamps null: false
     end
-   end
- end
+  end
+end

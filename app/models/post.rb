@@ -1,3 +1,4 @@
+# coding: utf-8
 class Post < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   mount_uploader :video, VideoUploader
