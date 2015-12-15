@@ -19,10 +19,6 @@
 		<%= f.label :Video, class: 'body-text' %>
 		<%= f.file_field :video, class: 'body-text' %>
 	</div>
-	<div class="field">
-		<%= f.label 'Meddelande:', class: 'body-text' %>
-    	<%= f.text_field :message %>
-	</div>
 	<%= f.hidden_field :achievement_id, value: @achievement_id%>
   	<div class="actions">
     	<%= f.submit "Skapa inlägg", class: 'button expand' %>

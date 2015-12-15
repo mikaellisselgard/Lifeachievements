@@ -127,7 +127,7 @@ before_filter :authenticate_user!, except: :index
   end
 
   def post_params
-    params.require(:post).permit(:image, :video, :message, :user_id, :achievement_id)
+    params.require(:post).permit(:image, :video, :user_id, :achievement_id)
   end
   
 end
