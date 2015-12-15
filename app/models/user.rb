@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   
   after_create :set_bucket_list
 
-  validates :name, presence: true
+  before_create :set_user_name
   
   delegate :achievements, to: :bucket_list, prefix: true
   
@@ -27,5 +27,12 @@ class User < ActiveRecord::Base
   def has_achievement(achievement)
     self.achievements.include? achievement
   end
-  
+
+  def set_user_name 
+    self.name = self.email[/[^@]+/]
+    if User.find_by_name(self.name)
+      self.name = self.name + (1..9).sort_by{rand}.last(4).join("")
+    end 
+  end 
+
 end

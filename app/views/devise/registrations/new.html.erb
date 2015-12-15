@@ -3,11 +3,6 @@
 	  <%= devise_error_messages! %>
 
 	  <div class="field">
-	    <%= f.label 'Användarnamn', class: 'body-text' %>
-	    <%= f.text_field :name, autofocus: true %>
-	  </div>
-
-	  <div class="field">
 	    <%= f.label "E-postadress", class: 'body-text' %>
 	    <%= f.email_field :email %>
 	  </div>
@@ -20,11 +15,6 @@
 	    <%= f.password_field :password, autocomplete: "off" %>
 	  </div>
 
-	  <div class="field">
-	    <%= f.label 'Upprepa lösenord', class: 'body-text' %>
-	    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-	  </div>
-
 	  <div class="actions">
 	    <%= f.submit "Registrera", class: 'button success radius expand' %>
 	  </div>
@@ -32,4 +22,3 @@
 
 	<%= render "devise/shared/links" %>
 </div>
-
