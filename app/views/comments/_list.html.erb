@@ -1,4 +1,4 @@
-<% @comments.each do |comment| %>
+<% list.each do |comment| %>
     <div class="comments_list">
 		<div id="comment">
       		<div class="comment_user"><%= link_to comment.user.name + ':', user_path(comment.user) %></div>
