@@ -24,7 +24,7 @@
           <% if achievement.posts[index].has_video? %>
             <%= link_to (video_tag achievement.posts[index].video, size:"85x65"), achievement.posts[index] %>
           <% else %>
-            <%= link_to (image_tag achievement.posts[index].image, size:"85x65"), achievement.posts[index] %>
+            <%= link_to (image_tag achievement.posts[index].image, size:"85x65", lazy: true), achievement.posts[index] %>
           <% end %>
         <% else %>
           <%= image_tag 'post.png', size: "85" %>
