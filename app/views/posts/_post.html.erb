@@ -19,7 +19,7 @@
 		<% if post.width == nil %>
 			<%= video_tag(post.video, controls: true, autobuffer: true, width: 270, height: 350) %>
 		<% else %>
-			<%= image_tag(post.image, width: post.width, height: post.height) %>
+			<%= image_tag(post.image, width: post.width, height: post.height, lazy: true) %>
 		<% end %>
 	</div>
 	<div class="post_info">

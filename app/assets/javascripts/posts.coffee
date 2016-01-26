@@ -2,6 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+#This is also implemented on achievements 
+$(document).on 'ready page:change', ->
+  $('img').lazyload()
+  return
+
 $(document).on 'ready page:load', ->
   $('#masonry-container').imagesLoaded ->
     $('#masonry-container').masonry
@@ -43,6 +48,7 @@ $(document).on 'click', '.like', (e) ->
 masonryAdd = (items) ->
   setTimeout (->
     $('#masonry-container').masonry( 'reload' )
+    $('img').lazyload() #NOTE: Check if this is the correct place to put initialization in production
   ), 500
 
 @getGeoLocation = ->

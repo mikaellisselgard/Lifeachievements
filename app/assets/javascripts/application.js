@@ -17,6 +17,7 @@
 //= require jquery-ui
 //= require autocomplete-rails
 //= require masonry/jquery.masonry
+//= require jquery.lazyload
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
