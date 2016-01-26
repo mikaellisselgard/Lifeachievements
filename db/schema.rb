@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208082742) do
+ActiveRecord::Schema.define(version: 20151215122434) do
 
   create_table "achievements", force: :cascade do |t|
     t.text     "description"
@@ -106,7 +106,6 @@ ActiveRecord::Schema.define(version: 20151208082742) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "image"
-    t.text     "message"
     t.integer  "user_id"
     t.integer  "achievement_id"
     t.datetime "created_at",     null: false
