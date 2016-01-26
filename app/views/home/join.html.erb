@@ -1,0 +1,55 @@
+<div class="large-12 columns no-padding">
+	<div class="video-container">
+		<video class="intro-video" width="1200" height="1200" autoplay="autoplay" loop muted poster="/startposter.png" id="video-hero">
+		  <source src="/startvideo.webm" type="video/webm"/>
+		  <source src="/startvideo.mp4" type="video/mp4" />
+		</video>
+	</div>
+</div>
+<div class="large-10 columns large-centered">
+	<div class="large-7 columns how-to body-text">
+		<div class="row">
+			<div class="large-12 columns large-centered step-box">
+				<div class="large-2 columns step-images">
+					<%= image_tag 'step1.png', size: '90' %>
+				</div>
+				<div class="large-10 columns step-text">
+					<h2 class="white-text">
+						Registrera ett konto
+					</h1>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns large-centered step-box">
+				<div class="large-2 columns step-images">
+					<%= image_tag 'step2.png', size: '90' %>
+				</div>
+				<div class="large-10 columns step-text">
+					<h2 class="white-text">
+						Fånga ögonblick i din vardag
+					</h1>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-12 columns large-centered step-box">
+				<div class="large-2 columns step-images">
+					<%= image_tag 'step3.png', size: '90' %>
+				</div>
+				<div class="large-10 columns step-text">
+					<h2 class="white-text last-step">
+						Dela dina ögonblick, upplev andras, samla poäng och mycket mer!
+					</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="large-5 columns sign-up">
+		<br>
+		<h1 class="text-center white-text">Bli medlem!</h1>
+		<%= render "devise/registrations/new" %>
+	</div>
+</div>
+
+	

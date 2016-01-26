@@ -17,4 +17,13 @@ class ApplicationController < ActionController::Base
       @notices = current_user.notices.where(seen: nil).limit(10)
     end
   end
+  
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      redirect_to join_path
+    end
+  end
+  
 end

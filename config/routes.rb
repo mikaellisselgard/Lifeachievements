@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :comments
-  get 'home/index'
-
+  
   devise_for :users
   resources :posts
   resources :achievements do
@@ -22,6 +21,7 @@ Rails.application.routes.draw do
   get 'highscore', to: 'home#highscore'
   post 'comments' => 'comments#create', defaults: { format: 'js' }
   get 'friends', to: 'posts#follow_index', as: 'follow_posts'
+  get 'join', to: 'home#join'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
