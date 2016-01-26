@@ -20,9 +20,8 @@
 # Learn more: http://github.com/javan/whenever
 
 set :environment, "production"
-set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
+set :output, error: "log/cron_error_log.log", standard: "log/cron_log.log"
 
-every :sunday, :at => '12pm' do # Many shortcuts available: :hour, :day, :month, :year, :reboot
+every :sunday, at: "12pm" do # Many shortcuts available: :hour, :day, :month, :year, :reboot
   runner "Medal.generate_medals"
 end
-

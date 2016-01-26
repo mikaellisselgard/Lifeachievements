@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class AchievementsControllerTest < ActionController::TestCase
   setup do
@@ -17,8 +17,9 @@ class AchievementsControllerTest < ActionController::TestCase
   end
 
   test "should create achievement" do
-    assert_difference('Achievement.count') do
-      post :create, achievement: { description: @achievement.description, score: @achievement.score }
+    assert_difference("Achievement.count") do
+      post :create, achievement: { description: @achievement.description,
+                                   score: @achievement.score }
     end
 
     assert_redirected_to achievement_path(assigns(:achievement))
@@ -35,12 +36,15 @@ class AchievementsControllerTest < ActionController::TestCase
   end
 
   test "should update achievement" do
-    patch :update, id: @achievement, achievement: { description: @achievement.description, score: @achievement.score }
+    patch :update,
+          id: @achievement,
+          achievement: { description: @achievement.description,
+                         score: @achievement.score }
     assert_redirected_to achievement_path(assigns(:achievement))
   end
 
   test "should destroy achievement" do
-    assert_difference('Achievement.count', -1) do
+    assert_difference("Achievement.count", -1) do
       delete :destroy, id: @achievement
     end
 

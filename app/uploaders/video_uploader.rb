@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 class VideoUploader < CarrierWave::Uploader::Base
-  #include CarrierWave::Video
+  # include CarrierWave::Video
 
-  #process encode_video: [:mp4, callbacks: { after_transcode: :set_success } ]
+  # process encode_video: [:mp4, callbacks: { after_transcode: :set_success } ]
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -49,7 +49,4 @@ class VideoUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-  
- 
-
 end

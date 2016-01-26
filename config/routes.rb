@@ -1,27 +1,27 @@
 Rails.application.routes.draw do
   resources :comments
-  get 'home/index'
+  get "home/index"
 
   devise_for :users
   resources :posts
   resources :achievements do
-    get :autocomplete_achievement_description, :on => :collection
+    get :autocomplete_achievement_description, on: :collection
   end
   resources :categories
   resources :users do
-    get :autocomplete_user_name, :on => :collection
-    put 'follow', to: 'users#follow'
-    put 'unfollow', to: 'users#unfollow'
-    post 'noticed', to: 'users#noticed'
-    post 'tip', to: 'users#tip'
+    get :autocomplete_user_name, on: :collection
+    put "follow", to: 'users#follow'
+    put "unfollow", to: 'users#unfollow'
+    post "noticed", to: 'users#noticed'
+    post "tip", to: 'users#tip'
   end
-  
-  put 'bucket_list/add_bucket_list_item/:id', to: 'bucket_lists#add_bucket_list_item', as: 'add_bucket_list_item'
-  delete 'bucket_list/remove_bucket_list_item/:id', to: 'bucket_lists#remove_bucket_list_item', as: 'remove_bucket_list_item'
-  put 'posts/like/:id', to: 'posts#like_post', as: 'like_post'
-  get 'highscore', to: 'home#highscore'
-  post 'comments' => 'comments#create', defaults: { format: 'js' }
-  get 'friends', to: 'posts#follow_index', as: 'follow_posts'
+
+  put "bucket_list/add_bucket_list_item/:id", to: 'bucket_lists#add_bucket_list_item', as: "add_bucket_list_item"
+  delete "bucket_list/remove_bucket_list_item/:id", to: 'bucket_lists#remove_bucket_list_item', as: "remove_bucket_list_item"
+  put "posts/like/:id", to: 'posts#like_post', as: "like_post"
+  get "highscore", to: 'home#highscore'
+  post "comments" => 'comments#create', defaults: { format: "js" }
+  get "friends", to: 'posts#follow_index', as: "follow_posts"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
