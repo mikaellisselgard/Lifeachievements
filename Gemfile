@@ -62,3 +62,5 @@ gem 'carrierwave-video'
 gem 'streamio-ffmpeg'
 gem "chartkick"
 gem "lazyload-rails"
+
+gem 'mysql2', '~> 0.3.18'
