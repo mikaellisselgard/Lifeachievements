@@ -18,7 +18,6 @@
 
 			<div class="user-info">
 			    <h3><%= @user.name %></h3>
-			    <%= link_to "#{@user.medals.length} medaljer", user_path(@user), data: {:"reveal-id" => "reveal-medals"} %><br/>  
 				<%= link_to "#{@user.followers.length} följare", user_path(@user), data: {:"reveal-id" => "reveal-followers"} %><br/>
 				<%= link_to "Följer #{@user.follows.length}", user_path(@user), data: {:"reveal-id" => "reveal-follows"} %>
 				<div class="completion-bar-profile">
@@ -40,19 +39,6 @@
 <div id="reveal-user-options" class="reveal-modal small medal-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 	<%= link_to 'Redigera profil', edit_user_path(@user) %><br>	
-</div>
-
-<div id="reveal-medals" class="reveal-modal small medal-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
-	<div class="large-12 columns">
-		<% if @user.medals.length > 0 %>
-			<% @user.medals.each do |medal| %>
-				<%= medal.image %>
-			<% end %>
-		<% else %>
-			<h2 class="popup-text">Den här användaren har inga medaljer ännu.</h2>
-		<% end %>
-	</div>
 </div>
 
 <div id="reveal-followers" class="reveal-modal small followers-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
