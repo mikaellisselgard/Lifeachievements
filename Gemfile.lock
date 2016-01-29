@@ -105,6 +105,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
+    mysql2 (0.3.20)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
@@ -203,6 +204,7 @@ DEPENDENCIES
   lazyload-rails
   masonry-rails
   mini_magick
+  mysql2 (~> 0.3.18)
   rails (= 4.2.4)
   rails4-autocomplete
   rmagick
