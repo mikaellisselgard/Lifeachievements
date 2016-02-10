@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action :set_post, except: [:index, :new, :follow_index, :report_post]
+before_action :set_post, except: [:index, :new, :create, :follow_index, :feature_post, :report_post]
 
 before_filter :authenticate_user!, except: :index
 
@@ -61,6 +61,7 @@ before_filter :authenticate_user!, except: :index
   def create
     @post = current_user.posts.create(post_params)
     @post.likes_count = 0
+    @post.status = 1
     @post.save!
     if @post.latitude == nil
       lat_lng = cookies[:lat_lng].split("|") rescue nil
@@ -119,6 +120,16 @@ before_filter :authenticate_user!, except: :index
       format.js
     end
   end
+
+  def feature_post
+    @post = Post.find(params[:post_id])
+    if @post.status == 1
+      @post.update_attributes(status: 2)
+    else 
+      @post.update_attributes(status: 1)
+    end
+    redirect_to :back
+  end 
   
   def report_post
     @post = Post.find(params[:post_id])
@@ -133,7 +144,7 @@ before_filter :authenticate_user!, except: :index
   end
 
   def post_params
-    params.require(:post).permit(:image, :video, :user_id, :achievement_id)
+    params.require(:post).permit(:image, :video, :user_id, :achievement_id, :status)
   end
   
 end

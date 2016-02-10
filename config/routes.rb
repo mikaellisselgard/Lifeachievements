@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :posts do
     put 'report_post', to: 'posts#report_post'
+    put 'feature_post', to: 'posts#feature_post'
   end
   resources :achievements do
     get :autocomplete_achievement_description, :on => :collection
