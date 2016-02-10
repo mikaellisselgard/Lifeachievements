@@ -55,6 +55,10 @@ class Post < ActiveRecord::Base
     self.success = true
   end
   
+  def report_post(user)
+    self.reports.create(user_id: user.id, status: 0)
+  end
+  
   def image_or_video
     if image.blank? && video.blank?
       errors.add(:image, "Finns ingen bild eller video")
