@@ -111,7 +111,7 @@
 				<%= link_to 'Ta bort inlägg', post, method: :delete %><br>
 				<%= link_to 'Editera inlägg', edit_post_path(post) %><br>
 			<% else %>
-				<%= link_to 'Rapportera inlägg', '#' %><br>
+				<%= link_to 'Rapportera inlägg', post_report_post_path(post), method: :put %><br>
 				<% if current_user.following?(post.user) %>
 					<%= link_to 'Sluta följ användare', user_unfollow_path(post.user), method: :put %>
 				<% else %>

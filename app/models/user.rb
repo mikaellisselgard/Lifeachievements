@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :medals, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :reports
   
   after_create :set_bucket_list
 

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :comments
   
   devise_for :users
-  resources :posts
+  resources :posts do
+    put 'report_post', to: 'posts#report_post'
+  end
   resources :achievements do
     get :autocomplete_achievement_description, :on => :collection
   end

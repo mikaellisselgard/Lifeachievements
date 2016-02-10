@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   belongs_to :achievement
   has_many :likes, dependent: :destroy
   has_many :comments, as: :imageable, dependent: :destroy
+  has_many :reports
 
   before_create :check_achievement
   after_create :lower_achievement_score, :remove_from_bucketlist
@@ -52,6 +53,10 @@ class Post < ActiveRecord::Base
 
   def set_success(format, opts)
     self.success = true
+  end
+  
+  def report_post(user)
+    self.reports.create(user_id: user.id, status: 0)
   end
   
   def image_or_video

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action :set_post, only: [:show, :like_post, :unlike_post, :edit, :update, :destroy]
+before_action :set_post, except: [:index, :new, :follow_index, :report_post]
 
 before_filter :authenticate_user!, except: :index
 
@@ -118,6 +118,12 @@ before_filter :authenticate_user!, except: :index
       format.html
       format.js
     end
+  end
+  
+  def report_post
+    @post = Post.find(params[:post_id])
+    @post.report_post(current_user)
+    redirect_to :back
   end
 
   private
