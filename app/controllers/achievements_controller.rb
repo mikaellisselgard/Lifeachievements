@@ -14,6 +14,7 @@ class AchievementsController < ApplicationController
   # GET /achievements/1.json
   def show
     @posts = @achievement.posts.limit(20)
+    @comment = Comment.new
   end
 
   # GET /achievements/new
