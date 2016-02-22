@@ -7,7 +7,7 @@ before_filter :authenticate_user!, except: :index
     # index for posts after fetching
     if params[:id] and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
       @posts = Post.where('id < ?', params[:id]).limit(20)
-    
+      
     # index for posts pre fetching
     elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
       @posts = Post.limit(20)

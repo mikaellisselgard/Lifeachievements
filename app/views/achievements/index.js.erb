@@ -1,1 +1,3 @@
-$('#achievement-container').append('<%= escape_javascript(render(:partial => @achievements)) %>')
+<% if @achievements %>
+  $('#achievement-container').append('<%= escape_javascript(render(:partial => @achievements)) %>')
+<% end %>
