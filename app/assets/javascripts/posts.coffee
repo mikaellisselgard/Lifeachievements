@@ -61,24 +61,34 @@ setGeoCookie = (position) ->
   return
 	
 started = false
+active = false
 
 $(window).scroll ->
-  windowsHeight = $(document).height() - $(window).height()
-  currentScroll = $(window).scrollTop()
-  # scroll more than 80% of page
-  if currentScroll * 100 / windowsHeight > 95 && !started
-    started = true
-    postLoad()
-  else
-  return
-
-postLoad = ->
-  last_id = $('.box').last().attr('data-id')
+  if window.location.pathname == "/friends" || window.location.pathname.substring(0, 14) == "/achievements/" || window.location.pathname.substring(0, 7) == "/users/"
+    url = '/posts/'
+    active = true
+    last_id = $('.box').last().attr('data-id')
+  else if window.location.pathname == "/achievements"
+    url = '/achievements/'
+    active = true
+    last_id = $('.achievements').last().attr('data-id')
+  if active
+    windowsHeight = $(document).height() - $(window).height()
+    currentScroll = $(window).scrollTop()
+    # scroll more than 80% of page
+    if currentScroll * 100 / windowsHeight > 95 && !started
+      started = true
+      scrollLoad(url, last_id)
+    else
+    return
+      
+scrollLoad = (url, last_id) ->
+  console.log('t')
   # make an ajax call passing along our last user id
   $.ajax
     type: 'GET'
-    url: '/posts/'
-    data: postLoadType(last_id)
+    url: url
+    data: scrollLoadType(last_id)
     dataType: 'script'
     success: ->
       items = $(this)
@@ -86,14 +96,17 @@ postLoad = ->
       started = false
       return
   return
-  
-  
-postLoadType = (last_id) ->
+   
+scrollLoadType = (last_id) ->
   if window.location.pathname == "/friends"
     data = { id: last_id, follow_ids: follow_ids }
   else if window.location.pathname.substring(0, 7) == "/users/"
     data = { id: last_id, user: user }
+  # Load more posts for specific achievement
   else if window.location.pathname.substring(0, 14) == "/achievements/"
     data = { id: last_id, achievement: achievement }
-  else 
+  # Load more achievements
+  else if window.location.pathname == "/achievements"
+    data = { achievements: last_id }
+  else
     data = { id: last_id }

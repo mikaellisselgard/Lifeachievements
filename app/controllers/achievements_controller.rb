@@ -7,7 +7,11 @@ class AchievementsController < ApplicationController
   # GET /achievements
   # GET /achievements.json
   def index
-    @achievements = Achievement.all
+    if params[:achievements]
+      @achievements = Achievement.where('id > ?', params[:achievements]).limit(20)
+    else
+      @achievements = Achievement.limit(20)
+    end
   end
 
   # GET /achievements/1
