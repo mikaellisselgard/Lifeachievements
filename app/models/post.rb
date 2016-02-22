@@ -71,6 +71,7 @@ class Post < ActiveRecord::Base
   def process_video
     unless self.video.content_type == "application/mp4" || video.blank?
       uploaded_video = FFMPEG::Movie.new("public" + self.video.url)
+      uploaded_video.screenshot("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".jpg")
       uploaded_video.transcode("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".mp4")
       self.video = Rails.root.join("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".mp4").open
       self.save!
