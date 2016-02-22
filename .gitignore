@@ -17,5 +17,9 @@
 /tmp
 /public/uploads/
 /lib/assets/
-.DS_STORE
-/public/.DS_STORE
+*.DS_STORE
+#/public/.DS_STORE
+#/app/.DS_STORE
+
+# Ignore database configuration.
+/config/database.yml
