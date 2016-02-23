@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   
   after_create :set_bucket_list
 
-  before_save :set_user_name
+  after_create :set_user_name
   
   delegate :achievements, to: :bucket_list, prefix: true
   
@@ -30,11 +30,8 @@ class User < ActiveRecord::Base
   end
 
   def set_user_name 
-    if User.where.not(id: id).find_by_name(email[/[^@]+/])
-      self.name = email[/[^@]+/] + id.to_s
-    else
-      self.name = email[/[^@]+/] 
-    end 
+    self.name = email[/[^@]+/]
+    self.save!
   end 
 
 end
