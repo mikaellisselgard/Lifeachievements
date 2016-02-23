@@ -51,7 +51,6 @@ GEM
     carrierwave-video (0.5.6)
       carrierwave
       streamio-ffmpeg
-    chartkick (1.4.1)
     chronic (0.10.2)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -192,7 +191,6 @@ DEPENDENCIES
   byebug
   carrierwave
   carrierwave-video
-  chartkick
   coffee-rails (~> 4.1.0)
   devise
   faker

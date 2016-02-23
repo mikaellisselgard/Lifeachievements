@@ -76,7 +76,7 @@ $(window).scroll ->
     windowsHeight = $(document).height() - $(window).height()
     currentScroll = $(window).scrollTop()
     # scroll more than 80% of page
-    if currentScroll * 100 / windowsHeight > 95 && !started
+    if currentScroll * 100 / windowsHeight > 95 && !started &&
       started = true
       scrollLoad(url, last_id)
     else
