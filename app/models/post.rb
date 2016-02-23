@@ -63,9 +63,6 @@ class Post < ActiveRecord::Base
     if image.blank? && video.blank?
       errors.add(:image, "Finns ingen bild eller video")
     end
-    unless image.blank? || video.blank?
-      errors.add(:image, "Du kan inte ladda upp både bild och video")
-    end
   end
   
   def process_video
