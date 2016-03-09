@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 before_action :set_post, except: [:index, :new, :create, :follow_index, :feature_post, :report_post]
 
-before_filter :authenticate_user!, except: :index
+before_filter :authenticate_user!
 
   def index
     # index for posts after fetching

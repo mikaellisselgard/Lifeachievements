@@ -21,15 +21,14 @@ Rails.application.routes.draw do
   put 'bucket_list/add_bucket_list_item/:id', to: 'bucket_lists#add_bucket_list_item', as: 'add_bucket_list_item'
   delete 'bucket_list/remove_bucket_list_item/:id', to: 'bucket_lists#remove_bucket_list_item', as: 'remove_bucket_list_item'
   put 'posts/like/:id', to: 'posts#like_post', as: 'like_post'
-  get 'highscore', to: 'home#highscore'
   post 'comments' => 'comments#create', defaults: { format: 'js' }
-  get 'friends', to: 'posts#follow_index', as: 'follow_posts'
+  get 'explore', to: 'posts#index', as: 'explore'
   get 'join', to: 'home#join'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'posts#index'
+  root 'posts#follow_index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
