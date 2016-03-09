@@ -64,7 +64,7 @@ started = false
 active = false
 
 $(window).scroll ->
-  if window.location.pathname == "/friends" || window.location.pathname.substring(0, 14) == "/achievements/" || window.location.pathname.substring(0, 7) == "/users/"
+  if window.location.pathname == "/" || window.location.pathname.substring(0, 14) == "/achievements/" || window.location.pathname.substring(0, 7) == "/users/"
     url = '/posts/'
     active = true
     last_id = $('.box').last().attr('data-id')
@@ -83,7 +83,6 @@ $(window).scroll ->
     	return
       
 scrollLoad = (url, last_id) ->
-  console.log('t')
   # make an ajax call passing along our last user id
   $.ajax
     type: 'GET'
@@ -98,7 +97,7 @@ scrollLoad = (url, last_id) ->
   return
    
 scrollLoadType = (last_id) ->
-  if window.location.pathname == "/friends"
+  if window.location.pathname == "/"
     data = { id: last_id, follow_ids: follow_ids }
   else if window.location.pathname.substring(0, 7) == "/users/"
     data = { id: last_id, user: user }

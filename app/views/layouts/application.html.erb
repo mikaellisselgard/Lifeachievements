@@ -28,8 +28,7 @@
 			<% if user_signed_in? %>
 			    <ul class="right">
 			    	<li<% if current_page? root_path %> class="active"<% end %>><%= link_to "Hem", root_path %></li>
-					<li<% if current_page? follow_posts_path %> class="active"<% end %>><%= link_to "Vänner", follow_posts_path %></li>
-				  	<li<% if current_page? highscore_path %> class="active"<% end %>><%= link_to "Topplista", highscore_path %></li>
+					  <li<% if current_page? explore_path %> class="active"<% end %>><%= link_to "Utforska", explore_path %></li>
 				  	<li<% if current_page? achievements_path %> class="active"<% end %>><%= link_to "Achievements", achievements_path %></li>
 				  	<li<% if current_page? user_path(current_user) %> class="active"<% end %>><%= link_to "Profil", user_path(current_user) %></li>
 				  	<li><%= link_to "Logga ut", destroy_user_session_path, method: 'DELETE' %></li>
