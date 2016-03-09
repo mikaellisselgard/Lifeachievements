@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   belongs_to :achievement
   has_many :likes, dependent: :destroy
   has_many :comments, as: :imageable, dependent: :destroy
-  has_many :reports
+  has_many :reports, dependent: :destroy
 
   before_create :check_achievement
   after_create :lower_achievement_score, :remove_from_bucketlist
