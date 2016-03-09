@@ -2,16 +2,16 @@
 	<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 	  <%= devise_error_messages! %>
 
-	  <div class="field">
+	  <div class="field join-form-input">
 	    <%= f.email_field :email, placeholder: 'E-postadress' %>
 	  </div>
 
-	  <div class="field">
+	  <div class="field join-form-input">
 	    <%= f.password_field :password, autocomplete: "off", placeholder: 'Lösenord' %>
 	  </div>
 
-	  <div class="actions">
-	    <%= f.submit "Registrera", class: 'button success radius expand' %>
+	  <div class="actions join-form-input">
+	    <%= f.submit "Registrera", class: 'button success expand join-button' %>
 	  </div>
 	<% end %>
 </div>

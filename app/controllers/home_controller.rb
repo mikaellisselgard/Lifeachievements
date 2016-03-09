@@ -2,8 +2,14 @@ class HomeController < ApplicationController
 
   def index
   end
+
+  def join 
+    @posts = Post.all
+    @comment = Comment.new
+  end 
   
   def highscore
+
     @total_achievements_count = Achievement.count
     
     @user_total_stats = []
