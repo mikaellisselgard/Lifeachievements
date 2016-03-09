@@ -120,14 +120,45 @@ h1.black {
 	color: #FFFFFF;
 }
 
+h2.white-text {
+	font-size: 22px;
+}
+
 .step-box {
-	height:100px;
+	height:50px;
+}
+
+.step-images {
+	width: 80px!important;
+	height: 50px;
+	margin-top: 9px;
 }
 
 .step-text {
-	margin-top:9px;
+	margin-top:14px;
+	float: left!important;
 }
 
-.last-step {
-	margin-top:-12px;
+.join-footer {
+	position: fixed!important;
+	bottom: 0;
+	background: $darkblue;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 200px;
+}
+
+.join-form-input {
+	margin-bottom: -10px!important;
+}
+
+.join-button {
+	height: 42px!important;
+	padding-top: 12px!important;
+}
+
+@media only screen and (max-width:1025px) {
+	.how-to {
+		display: none;
+	}
 }
