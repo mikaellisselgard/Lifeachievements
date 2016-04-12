@@ -3,14 +3,16 @@ class AchievementsController < ApplicationController
 
   autocomplete :achievement, :description, full: true
 
-  before_filter :authenticate_user! 
+  #before_filter :authenticate_user! 
   # GET /achievements
   # GET /achievements.json
   def index
     if params[:achievements]
-      @achievements = Achievement.where('id > ?', params[:achievements]).limit(20)
+      @achievements = Achievement.where('id < ?', params[:achievements]).limit(20)
+      @json_achievements = Achievement.where('id < ?', params[:achievements]).reverse.take(4)
     else
       @achievements = Achievement.limit(20)
+      @json_achievements = Achievement.limit(4)
     end
   end
 
@@ -79,6 +81,6 @@ class AchievementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def achievement_params
-      params.require(:achievement).permit(:description, :score, category_ids: [])
+      params.require(:achievement).permit(:description, :score, :posts_count, category_ids: [])
     end
 end

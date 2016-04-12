@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   acts_as_followable
   acts_as_follower
   belongs_to :user
-  belongs_to :achievement
+  belongs_to :achievement, :counter_cache => true
   has_many :likes, dependent: :destroy
   has_many :comments, as: :imageable, dependent: :destroy
   has_many :reports, dependent: :destroy
@@ -74,6 +74,18 @@ class Post < ActiveRecord::Base
       self.image = File.open("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".jpg")
       self.save!
     end
+  end
+
+  def comments_count
+    self.comments.count 
+  end
+
+  def commenter_infos
+    commenter_infos = []
+    self.comments.each do |comment|
+      commenter_infos.push([comment.user.avatar_url, comment.user.name])
+    end
+    commenter_infos
   end
   
 end

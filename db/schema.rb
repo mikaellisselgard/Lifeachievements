@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210130556) do
+ActiveRecord::Schema.define(version: 20160412123539) do
 
   create_table "achievements", force: :cascade do |t|
     t.text     "description", limit: 65535
     t.integer  "score",       limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "user_id",     limit: 4
+    t.integer  "posts_count", limit: 4,     default: 0
   end
 
   add_index "achievements", ["user_id"], name: "index_achievements_on_user_id", using: :btree
@@ -108,15 +109,16 @@ ActiveRecord::Schema.define(version: 20160210130556) do
     t.string   "image",          limit: 255
     t.integer  "user_id",        limit: 4
     t.integer  "achievement_id", limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "height",         limit: 255
     t.string   "width",          limit: 255
-    t.integer  "likes_count",    limit: 4
+    t.integer  "likes_count",    limit: 4,   default: 0
     t.string   "video",          limit: 255
     t.float    "longitude",      limit: 24
     t.float    "latitude",       limit: 24
     t.integer  "status",         limit: 4
+    t.integer  "comments_count", limit: 4,   default: 0
   end
 
   add_index "posts", ["achievement_id"], name: "index_posts_on_achievement_id", using: :btree

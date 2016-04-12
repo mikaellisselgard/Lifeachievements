@@ -1,1 +1,1 @@
-json.extract! @achievement, :id, :description, :score, :created_at, :updated_at
+json.extract! @achievement, :id, :description, :score, :created_at, :updated_at, :posts
