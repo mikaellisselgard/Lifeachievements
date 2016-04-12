@@ -27,5 +27,26 @@ class Achievement < ActiveRecord::Base
     # rename and save file in used
     File.rename first_file, "lib/assets/used/#{self.first.id}"
   end
+
+  def latest_posts
+    image_urls = []
+    self.posts.first(3).each do |post|
+      image_urls.push(post.image_url(:thumb_achievement))
+    end
+    image_urls
+  end 
+
+  def completer_user_infos
+    completer_user_ids = []
+    completer_user_names = []
+    completer_user_avatars = []
+    self.posts.each do |post|
+      completer_user_ids.push(post.user.id)
+      completer_user_names.push(post.user.name)
+      completer_user_avatars.push(post.user.avatar.url)
+    end
+    completer_user_infos = [completer_user_ids, completer_user_names, completer_user_avatars]
+    completer_user_infos
+  end
   
 end
