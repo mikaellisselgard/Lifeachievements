@@ -9,7 +9,7 @@ class AchievementsController < ApplicationController
   def index
     if params[:achievements]
       @achievements = Achievement.where('id < ?', params[:achievements]).limit(20)
-      @json_achievements = Achievement.where('id < ?', params[:achievements]).reverse.take(4)
+      @json_achievements = Achievement.where('id < ?', params[:achievements]).limit(4)
     else
       @achievements = Achievement.limit(20)
       @json_achievements = Achievement.limit(4)

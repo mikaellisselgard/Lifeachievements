@@ -81,11 +81,15 @@ class Post < ActiveRecord::Base
   end
 
   def commenter_infos
-    commenter_infos = []
+    commenter_user_names = []
+    commenter_user_avatars = []
+    commenter_comments = []
     self.comments.each do |comment|
-      commenter_infos.push([comment.user.avatar_url, comment.user.name])
+      commenter_user_names.push(comment.user.name)
+      commenter_user_avatars.push(comment.user.avatar_url)
+      commenter_comments.push(comment.comment)
     end
-    commenter_infos
+    [commenter_user_names, commenter_user_avatars, commenter_comments]
   end
   
 end
