@@ -1,13 +1,11 @@
 class PostsController < ApplicationController
 before_action :set_post, except: [:index, :new, :create, :follow_index, :feature_post, :report_post]
 
-before_filter :authenticate_user!
-
   def index
     # index for posts after fetching
     if params[:id] and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
       @posts = Post.where('id < ?', params[:id]).limit(20)
-      @json_posts = Post.where('id < ?', params[:id]).reverse.take(4)
+      @json_posts = Post.where('id < ?', params[:id]).limit(4)
       
     # index for posts pre fetching
     elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
@@ -18,20 +16,20 @@ before_filter :authenticate_user!
     # index for users after fetching
     if params[:user]
       @posts = User.find(params[:user]).posts.where('id < ?', params[:id]).limit(20)
-      @json_posts = User.find(params[:user]).posts.where('id < ?', params[:id]).reverse.take(4)
+      @json_posts = User.find(params[:user]).posts.where('id < ?', params[:id]).limit(4)
     end
     
     # index for follows after fetching
     if params[:follow_ids]
       @follow_ids = params[:follow_ids]
       @posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(20)
-      @json_posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).reverse.take(4)
+      @json_posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(4)
     end
     
     # index for achievement after fetching
     if params[:achievement]
       @posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(20)
-      @json_posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).reverse.take(4)
+      @json_posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(4)
     end
     
     @comment = Comment.new
