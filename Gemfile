@@ -61,5 +61,7 @@ gem 'acts_as_follower'
 gem 'carrierwave-video'
 gem 'streamio-ffmpeg'
 gem "lazyload-rails"
+gem 'simple_token_authentication', '~> 1.0'
+gem 'devise-ios-rails'
 
 gem 'mysql2', '~> 0.3.18'
