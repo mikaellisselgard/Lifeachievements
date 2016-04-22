@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :find_notices
+  skip_before_action :verify_authenticity_token
 
   protected
 
@@ -15,14 +16,6 @@ class ApplicationController < ActionController::Base
   def find_notices
     if user_signed_in?
       @notices = current_user.notices.where(seen: nil).limit(10)
-    end
-  end
-  
-  def authenticate_user!
-    if user_signed_in?
-      super
-    else
-      redirect_to join_path
     end
   end
   
