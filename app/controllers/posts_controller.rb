@@ -139,7 +139,7 @@ before_action :set_post, except: [:index, :new, :create, :follow_index, :feature
     @post.report_post(current_user)
     redirect_to :back
   end
-
+  
   private
   
   def set_post
