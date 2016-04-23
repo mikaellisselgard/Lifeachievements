@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :find_notices
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   skip_before_action :verify_authenticity_token
 
   protected

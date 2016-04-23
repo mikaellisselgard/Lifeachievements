@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :comments
   
-  devise_ios_rails_for :users
+  devise_ios_rails_for :users, :controllers => { :sessions => 'sessions', :registrations => 'registrations'}
   resources :posts do
     put 'report_post', to: 'posts#report_post'
     put 'feature_post', to: 'posts#feature_post'
