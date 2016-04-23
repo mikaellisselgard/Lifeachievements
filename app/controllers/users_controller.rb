@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   autocomplete :user, :name, full: true
   before_action :set_user, only: [:show, :edit, :update]
   before_action :set_user_id, only: [:follow, :unfollow, :noticed, :tip]
-
-  before_filter :authenticate_user! 
+  acts_as_token_authentication_handler_for User
 
   def index
     @users = User.all
@@ -22,9 +21,11 @@ class UsersController < ApplicationController
 
     @comment = Comment.new
     @achievements = Achievement.all
+    @user_bucketlist_achievements = @user.bucket_list.achievements
     respond_to do |format|
       format.html
       format.js
+      format.json
     end
   end
   
