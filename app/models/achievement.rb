@@ -27,6 +27,10 @@ class Achievement < ActiveRecord::Base
     # rename and save file in used
     File.rename first_file, "lib/assets/used/#{self.first.id}"
   end
+  
+  def check_if_in_bucketlist(user)
+    user.bucket_list.achievements.include?(self)
+  end
 
   def latest_posts
     image_urls = []

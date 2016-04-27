@@ -14,11 +14,13 @@ class AchievementsController < ApplicationController
       @achievements = Achievement.limit(20)
       @json_achievements = Achievement.limit(4)
     end
+    @current_user = current_user
   end
 
   # GET /achievements/1
   # GET /achievements/1.json
   def show
+    @current_user = current_user
     @posts = @achievement.posts.limit(20)
     @comment = Comment.new
   end
