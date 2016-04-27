@@ -2,8 +2,8 @@ class AchievementsController < ApplicationController
   before_action :set_achievement, only: [:show, :edit, :update, :destroy]
 
   autocomplete :achievement, :description, full: true
+  acts_as_token_authentication_handler_for User
 
-  #before_filter :authenticate_user! 
   # GET /achievements
   # GET /achievements.json
   def index
