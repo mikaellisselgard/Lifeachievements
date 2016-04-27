@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'click, mouseenter', '.notices', (e) ->
-  $('#notishref').text('Notiser')
+  $('#notishref').html('<img src="/notice_icon_white.png" height="37" width="37">')
   user_id = this.id.split("-").pop()
   $.ajax({
     type: "POST",

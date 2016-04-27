@@ -25,6 +25,10 @@ class AchievementsController < ApplicationController
     @comment = Comment.new
   end
 
+  def show_bucket_list
+    @achievements = current_user.bucket_list.achievements.limit(20)
+  end
+
   # GET /achievements/new
   def new
     @achievement = Achievement.new
