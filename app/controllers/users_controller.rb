@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
     @comment = Comment.new
     @achievements = Achievement.all
+    @current_user = current_user
     @user_bucketlist_achievements = @user.bucket_list.achievements
     respond_to do |format|
       format.html
