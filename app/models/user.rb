@@ -52,13 +52,19 @@ class User < ActiveRecord::Base
     notice_user_ids = []
     notice_user_avatars = []
     notice_messages = []
+    notice_types = []
+    notice_link_ids = []
+    notice_seen = []
     self.notices.each do |notice|
       notice_user = User.find(notice.user_id)
       notice_user_ids.push(notice_user.id)
       notice_user_avatars.push(notice_user.avatar_url)
       notice_messages.push(notice.message)
+      notice_types.push(notice.notice_type)
+      notice_link_ids.push(notice.link)
+      notice_seen.push(notice.seen)
     end 
-    [notice_user_ids, notice_user_avatars, notice_messages]
+    [notice_user_ids, notice_user_avatars, notice_messages, notice_types, notice_link_ids, notice_seen]
   end 
   
 end
