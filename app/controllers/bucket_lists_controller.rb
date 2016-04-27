@@ -1,5 +1,5 @@
 class BucketListsController < ApplicationController
-  before_filter :authenticate_user! 
+  acts_as_token_authentication_handler_for User
   
   def add_bucket_list_item
     @user_bucket_list = current_user.bucket_list
