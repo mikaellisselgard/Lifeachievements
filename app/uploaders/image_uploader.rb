@@ -5,7 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :store_dimensions
   process :fix_exif_rotation
   process :extract_geolocation
-  process :resize_to_fit => [280, 1000]
+  process :resize_to_fit => [300, 1000]
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
