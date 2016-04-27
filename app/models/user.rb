@@ -47,5 +47,18 @@ class User < ActiveRecord::Base
     end
     [follow_user_names, follow_user_avatars, follow_user_ids]
   end
+
+  def notice_infos
+    notice_user_ids = []
+    notice_user_avatars = []
+    notice_messages = []
+    self.notices.each do |notice|
+      notice_user = User.find(notice.user_id)
+      notice_user_ids.push(notice_user.id)
+      notice_user_avatars.push(notice_user.avatar_url)
+      notice_messages.push(notice.message)
+    end 
+    [notice_user_ids, notice_user_avatars, notice_messages]
+  end 
   
 end
