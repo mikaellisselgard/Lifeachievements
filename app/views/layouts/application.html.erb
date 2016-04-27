@@ -32,20 +32,28 @@
 				  	<li<% if current_page? achievements_path %> class="active"<% end %>><%= link_to image_tag('achievement_icon_white.png', size: '39'), achievements_path %></li>
 				  	<li<% if current_page? user_path(current_user) %> class="active"<% end %>>
 							<% if current_user.avatar? %>
-								<%= link_to image_tag(current_user.avatar, size: '40'), user_path(current_user) %>
+								<%= link_to image_tag(current_user.avatar, size: '39'), user_path(current_user) %>
 							<% else %>
-								<%= link_to image_tag('avatar_white.png', size: '38'), user_path(current_user) %>
+								<%= link_to image_tag('avatar_white.png', size: '37'), user_path(current_user) %>
 							<% end %>
 						</li>
-						<ul class="left">
+						<ul class="right">
 				      <li id="notices-<%= current_user.id%>" class="notices has-dropdown">
-				        <a href="#" id="notishref">Notiser <% if @notices.any? %>(<%= @notices.count %>) <% end %></a>
+				      	<%= link_to (
+					      	if @notices.any?
+					      		image_tag('notice_icon_red.png', size: '37') + @notices.count.to_s
+					      	else 
+					      		image_tag('notice_icon_white.png', size: '37')
+					      	end
+				      		), '#', id: 'notishref' 
+				      	%>
+
 				        <ul class="dropdown">
 				          <%= render partial: 'users/notices', object: current_user.notices.limit(10) %>
 				        </ul>
 				      </li>
-			    	</ul>	
-				  	<li><%= link_to "Logga ut", destroy_user_session_path, method: 'DELETE' %></li>
+				  		<li><%= link_to "Logga ut", destroy_user_session_path, method: 'DELETE' %></li>
+				  	</ul>
 			    </ul>
 			<% else%>
 				<ul class="right">
