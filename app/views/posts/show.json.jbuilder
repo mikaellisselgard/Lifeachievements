@@ -5,3 +5,4 @@ json.user_name @post.user.name
 json.image_url @post.image_url
 json.achievement_description @post.achievement.description
 json.achievement_score @post.achievement.score
+json.like @post.check_like(@current_user)
