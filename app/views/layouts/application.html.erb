@@ -37,6 +37,7 @@
 								<%= link_to image_tag('avatar_white.png', size: '37'), user_path(current_user) %>
 							<% end %>
 						</li>
+						<li <% if current_page? bucket_list_path %> class="active"<% end %>><%= link_to image_tag('bucket-list-icon.png', size: '37'), bucket_list_path %></li>
 						<ul class="right">
 				      <li id="notices-<%= current_user.id%>" class="notices has-dropdown">
 				      	<%= link_to (
@@ -69,6 +70,5 @@
 		</nav>
 	</div><br>
     <%= yield %>
-
   </body>
 </html>
