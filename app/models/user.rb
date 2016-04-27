@@ -34,5 +34,18 @@ class User < ActiveRecord::Base
     self.name = email[/[^@]+/]
     self.save!
   end 
-
+  
+  def follow_infos
+    follow_user_names = []
+    follow_user_avatars = []
+    follow_user_ids = []
+    self.follows.each do |follow|
+      follow_user = User.find(follow.followable_id)
+      follow_user_names.push(follow_user.name)
+      follow_user_avatars.push(follow_user.avatar_url)
+      follow_user_ids.push(follow_user.id)
+    end
+    [follow_user_names, follow_user_avatars, follow_user_ids]
+  end
+  
 end
