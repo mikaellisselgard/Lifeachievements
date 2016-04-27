@@ -32,11 +32,12 @@ acts_as_token_authentication_handler_for User
       @posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(20)
       @json_posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(4)
     end
-    
+    @current_user = current_user
     @comment = Comment.new
   end
   
   def show
+    @current_user = current_user
     @comment = Comment.new
     @comments = @post.comments.order("id DESC")
   end

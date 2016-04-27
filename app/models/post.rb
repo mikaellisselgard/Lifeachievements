@@ -48,7 +48,11 @@ class Post < ActiveRecord::Base
   end
   
   def check_like(user)
-    self.likes.find_by_user_id(user)
+    if self.likes.find_by_user_id(user)
+      return true
+    else
+      return false
+    end
   end
 
   def set_success(format, opts)
