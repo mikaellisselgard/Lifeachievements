@@ -6,6 +6,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "colors";
 
+.changed {
+	display: none!important;
+}
+
+.drop-left {
+	margin-left: -50px!important;
+}
 
 #highscore-container {
   margin-bottom: 20px;

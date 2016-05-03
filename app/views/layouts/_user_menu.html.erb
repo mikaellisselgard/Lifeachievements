@@ -1,0 +1,97 @@
+<li class="has-dropdown user-notices"<% if current_page? user_path(current_user) %> class="active"<% end %>>
+	<% if current_user.avatar? %>
+		<%= link_to image_tag(current_user.avatar, size: '39'), '#' %>
+	<% else %>
+		<%= link_to image_tag('avatar_white.png', size: '37'), '#' %>
+	<% end %>
+	<ul class="dropdown drop-left">
+		<li>
+			<% if current_user.avatar? %>
+				<%= link_to image_tag(current_user.avatar, size: '39') + ' Min profil', user_path(current_user) %>
+			<% else %>
+				<%= link_to image_tag('avatar_white.png', size: '37') + ' Min profil', user_path(current_user) %>
+			<% end %>
+		</li>
+		<li>
+			<%= link_to "Inställningar", user_path(current_user), data: {:"reveal-id" => "reveal-user-settings"} %>
+		</li>
+		<li>
+			<%= link_to "Följare", user_path(current_user), data: {:"reveal-id" => "reveal-followers"} %>
+		</li>
+		<li>
+			<%= link_to "Följer", user_path(current_user), data: {:"reveal-id" => "reveal-follows"} %>
+		</li>
+		<li>
+			<%= link_to "Hitta vänner", user_path(current_user), data: {:"reveal-id" => "reveal-find-friends"} %>
+		</li>
+		<li>
+			<%= link_to "Logga ut", destroy_user_session_path, method: 'DELETE' %>
+		</li>
+	</ul>
+</li>
+
+
+<!-- User settings modal -->
+
+<div id="reveal-user-settings" class="reveal-modal small followers-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+	<div class="large-12 columns">
+		<%= render partial: 'users/edit_avatar' %>
+	</div>
+</div>
+
+
+<!-- Followers modal -->
+
+<div id="reveal-followers" class="reveal-modal small followers-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+	<div class="large-12 columns">
+		<% if current_user.followers.length > 0 %>
+			<% current_user.followers.each do |user| %>
+				<%= link_to user_path(user) do %>
+					<% if user.avatar.url %>
+				    	<%= image_tag(user.avatar, size: "30") %>
+				   	<% else %>
+						<%= image_tag('avatar.png', size: "30") %>
+					<% end %>
+					<%= user.name %><br/>
+				<% end %>
+			<% end %>
+		<% else %>
+			<h2 class="popup-text">Du har har inga följare ännu.</h2>
+		<% end %>
+	</div>
+</div>
+
+
+<!-- Follows modal -->
+
+<div id="reveal-follows" class="reveal-modal small follows-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+	<div class="large-12 columns">
+		<% if current_user.follows.length > 0 %>
+			<% current_user.follows.each do |user| %>
+				<%= link_to user_path(user) do %>
+					<% if user.followable.avatar.url %>
+				    	<%= image_tag(user.followable.avatar, size: "30") %>
+				   	<% else %>
+						<%= image_tag('avatar.png', size: "30") %>
+					<% end %>
+					<%= user.followable.name %><br/>
+				<% end %>
+			<% end %>
+		<% else %>
+			<h2 class="popup-text">Du följer ingen ännu.</h2>
+		<% end %>
+	</div>
+</div>
+
+
+<!-- Find friends modal -->
+
+<div id="reveal-find-friends" class="reveal-modal small followers-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+	<div class="large-12 columns">
+		Hitta vänner
+	</div>
+</div>
