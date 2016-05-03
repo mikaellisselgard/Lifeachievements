@@ -38,7 +38,7 @@
 
 <div id="reveal-user-options" class="reveal-modal small medal-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 	<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
-	<%= link_to 'Redigera profil', edit_user_path(@user) %><br>	
+	<%= render partial: 'edit_avatar' %>	
 </div>
 
 <div id="reveal-followers" class="reveal-modal small followers-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
