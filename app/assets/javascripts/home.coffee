@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on 'click, mouseenter', '.notices', (e) ->
+$(document).on 'click', '.notices', (e) ->
   $('#notishref').html('<img src="/notice_icon_white.png" height="37" width="37">')
   user_id = this.id.split("-").pop()
   $.ajax({
@@ -10,3 +10,10 @@ $(document).on 'click, mouseenter', '.notices', (e) ->
     url: 'users/' + user_id + '/noticed/',
   });
   
+$(document).on 'click', 'li.notice-dropdown', ->
+		$('.dropdown-notices').toggleClass('changed')
+  return false
+
+$(document).on 'mouseenter', 'li.user-notices', ->
+		$('.dropdown-notices').addClass('changed')
+  return false

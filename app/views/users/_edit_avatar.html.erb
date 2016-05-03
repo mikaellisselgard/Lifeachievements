@@ -1,24 +1,24 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
+<%= form_for(current_user) do |f| %>
+  <% if current_user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
-      <% @user.errors.full_messages.each do |message| %>
+      <% current_user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 	<div class="field">
-    <p class="edit-user-text">Profilbild</p>
+    <p class="user-settings-text">Profilbild</p>
 		<%= f.file_field :avatar, class: 'edit-user-text' %><br>
 	</div>
   <div class="field">
-    <p class="edit-user-text">Användarnamn</p>
-    <%= f.text_field :name, placeholder: @user.name %>
+    <p class="user-settings-text">Byt användarnamn</p>
+    <%= f.text_field :name, placeholder: current_user.name %>
   </div>
   <div class="actions">
-  	<%= f.submit class: 'button expand' %>
+  	<%= f.submit 'Spara', class: 'button expand' %>
   </div>
 <% end %>

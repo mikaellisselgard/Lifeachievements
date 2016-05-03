@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   autocomplete :user, :name, full: true
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit]
   before_action :set_user_id, only: [:follow, :unfollow, :noticed, :tip]
   acts_as_token_authentication_handler_for User
 
@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   end
   
   def update
+    @user = current_user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
