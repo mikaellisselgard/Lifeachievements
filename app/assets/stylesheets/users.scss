@@ -16,7 +16,7 @@ p.user-settings-text {
   margin-bottom: 5px;
   clear: both;
   width: auto;
-  height:280px;
+  height:150px;
 }
 
 .edit-profile-img-icon {
@@ -29,7 +29,7 @@ p.user-settings-text {
 	float: none!important;
 	color:white;
 	margin-top:15px; 
-	height:250px;
+	height:110px;
     -webkit-border-top-right-radius: 5px;
     -moz-border-top-right-radius: 5px;
     -o-border-top-right-radius: 5px;
@@ -40,7 +40,7 @@ p.user-settings-text {
     border-top-left-radius: 5px;
 	img {
 		height:100%;
-		width:280px!important;
+		width:140px!important;
 	}
 }
 
@@ -50,29 +50,31 @@ p.user-settings-text {
 }
 
 .user-info {
-	padding: 0px;
-	color:#FFFFFF;
-	width: 280px;
-	float:none!important;
-	margin:12px auto;
-	height:225px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    h3 {
-    	text-align: center;
-    	color: #FFFFFF;
-    }
-    h2 {
-    	text-align: center;
-    	color: #FFFFFF;
-    	font-size: 18px;
-    }
+    margin-top: 50px;
+}
 
+h3.profile-heading {
+    color: #FFFFFF;
+}
+
+.user-follow {
+    height: 50px;
+    padding-top: 10px;
     a {
-    	font-size: 18px!important;
-    	color: #FFFFFF!important;
+        font-size: 18px!important;
+        color: #FFFFFF!important;
     }
+}
+
+.user-progress {
+    height: 50px;
+}
+
+.user-score {
+    height: 50px;
+    color: #FFFFFF;
+    font-size: 18px;
+    padding-top: 10px;
 }
 
 .users {
