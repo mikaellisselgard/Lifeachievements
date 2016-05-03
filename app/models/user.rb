@@ -48,6 +48,19 @@ class User < ActiveRecord::Base
     [follow_user_names, follow_user_avatars, follow_user_ids]
   end
 
+  def follower_infos
+    follower_user_names = []
+    follower_user_avatars = []
+    follower_user_ids = []
+    self.followers.each do |follower|
+      follower_user = User.find(follower.id)
+      follower_user_names.push(follower_user.name)
+      follower_user_avatars.push(follower_user.avatar_url)
+      follower_user_ids.push(follower_user.id)
+    end
+    [follower_user_names, follower_user_avatars, follower_user_ids]
+  end
+
   def notice_infos
     notice_user_ids = []
     notice_user_avatars = []

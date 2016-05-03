@@ -10,7 +10,10 @@ class UsersController < ApplicationController
   
   def show
     @posts = @user.posts.limit(20)
-    
+    @json_posts = @user.posts.limit(4)
+    @json_achievements = Achievement.where(id: @json_posts.pluck(:achievement_id))
+    @user_score = @user.posts.joins(:achievement).sum(:score)
+  
     @total_achievements_count = Achievement.count
     @total_posts_count = @user.posts.count
 
