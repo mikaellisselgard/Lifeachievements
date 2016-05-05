@@ -149,7 +149,12 @@ acts_as_token_authentication_handler_for User
   end
 
   def post_params
-    params.require(:post).permit(:image, :video, :user_id, :achievement_id, :status, :comments_count)
+    if params[:image] != nil || params[:video] != nil
+      # For iOS requests
+      params.permit(:image, :video, :achievement_id)
+    else
+      params.require(:post).permit(:image, :video, :user_id, :achievement_id, :status, :comments_count)
+    end
   end
   
 end
