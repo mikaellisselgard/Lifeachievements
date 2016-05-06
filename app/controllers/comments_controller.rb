@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :find_commenter
   respond_to :js, :html, :json
+  acts_as_token_authentication_handler_for User
 
   before_filter :authenticate_user! 
 
