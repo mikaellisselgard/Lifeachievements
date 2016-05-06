@@ -5,7 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :store_dimensions
   process :fix_exif_rotation
   process :extract_geolocation
-  process :resize_to_fit => [300, 1000]
+  process :resize_to_fit => [320, 1000]
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -93,7 +93,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def store_dimensions
     if file && model
-      height = 280
+      height = 320
       width_before, height_before = `identify -format "%wx%h" #{file.path}`.split(/x/)
       dimension = height_before.to_f / width_before.to_f
       model.width = height
