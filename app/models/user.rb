@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   
   after_create :set_bucket_list
 
-  after_create :set_user_name
+  after_create :set_user_name, :set_user_avatar
   
   delegate :achievements, to: :bucket_list, prefix: true
   
@@ -34,6 +34,11 @@ class User < ActiveRecord::Base
     self.name = email[/[^@]+/]
     self.save!
   end 
+  
+  def set_user_avatar
+    self.avatar = File.open("public/avatar.png")
+    self.save!
+  end
   
   def follow_infos
     follow_user_names = []
