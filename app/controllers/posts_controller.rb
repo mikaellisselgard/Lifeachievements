@@ -9,7 +9,7 @@ acts_as_token_authentication_handler_for User
       @json_posts = Post.where('id < ?', params[:id]).limit(4)
       
     # index for posts pre fetching
-    elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
+    elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil? and params[:reload].nil?
       @posts = Post.limit(20)
       @json_posts = Post.limit(4)
     end
@@ -32,6 +32,13 @@ acts_as_token_authentication_handler_for User
       @posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(20)
       @json_posts = Achievement.find(params[:achievement]).posts.where('id < ?', params[:id]).limit(4)
     end
+    
+    if params[:reload]
+      @post_ids = params[:reload]
+      @updated_at = params[:updated_at]
+      @json_posts = changed_posts(@post_ids, @updated_at)
+    end
+     
     @current_user = current_user
     @comment = Comment.new
   end
@@ -140,6 +147,18 @@ acts_as_token_authentication_handler_for User
     @post = Post.find(params[:post_id])
     @post.report_post(current_user)
     redirect_to :back
+  end
+  
+  def changed_posts(post_ids, updated_at)
+    changed_post_ids = []
+    post_ids.each_with_index do |post_id, index|
+      current_timestamp = Post.find(post_id).updated_at.strftime('%a, %d %b %Y %H:%M:%S')
+      old_timestamp = updated_at[index].to_datetime.strftime('%a, %d %b %Y %H:%M:%S')
+      if current_timestamp != old_timestamp 
+        changed_post_ids.push(post_id)
+      end
+    end
+    @posts = Post.where(id: changed_post_ids)
   end
   
   private
