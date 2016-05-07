@@ -4,12 +4,11 @@ acts_as_token_authentication_handler_for User
 
   def index
     # index for posts after fetching
-    if params[:id] and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil?
+    if params[:id] and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil? and params[:reload].nil? and params[:new].nil?
       @posts = Post.where('id < ?', params[:id]).limit(20)
       @json_posts = Post.where('id < ?', params[:id]).limit(4)
-      
     # index for posts pre fetching
-    elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil? and params[:reload].nil?
+    elsif params[:id].nil? and params[:follow_ids].nil? and params[:user].nil? and params[:achievement].nil? and params[:reload].nil? and params[:new].nil?
       @posts = Post.limit(20)
       @json_posts = Post.limit(4)
     end
@@ -38,7 +37,11 @@ acts_as_token_authentication_handler_for User
       @updated_at = params[:updated_at]
       @json_posts = changed_posts(@post_ids, @updated_at)
     end
-     
+    
+    if params[:new]
+      @json_posts = Post.where('id > ?', params[:new]).reverse
+    end
+    
     @current_user = current_user
     @comment = Comment.new
   end
