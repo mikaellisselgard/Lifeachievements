@@ -6,3 +6,4 @@ json.follower_infos @user.follower_infos
 json.posts @json_posts
 json.achievements @json_achievements
 json.user_score @user_score
+json.follow @current_user.follows_user(@user)
