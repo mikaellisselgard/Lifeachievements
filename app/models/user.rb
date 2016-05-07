@@ -40,6 +40,10 @@ class User < ActiveRecord::Base
     self.save!
   end
   
+  def follows_user(followed_user)
+    self.follows.pluck(:followable_id).include? followed_user.id
+  end
+  
   def follow_infos
     follow_user_names = []
     follow_user_avatars = []
