@@ -23,7 +23,7 @@ class AchievementsController < ApplicationController
     end
     
     if params[:new]
-      @json_posts = Achievement.where('id > ?', params[:new]).reverse
+      @json_achievements = Achievement.where('id > ?', params[:new]).reverse
     end
     
   end
