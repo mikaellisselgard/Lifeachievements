@@ -6,11 +6,13 @@ class BucketList < ActiveRecord::Base
     self.achievements << achievement unless self.achievements.include?(achievement)
     self.save!
     self.user.touch
+    achievement.touch
   end
   
   def remove_achievement(achievement)
     self.achievements.destroy(achievement)
     self.user.touch
+    achievement.touch
   end
   
 end
