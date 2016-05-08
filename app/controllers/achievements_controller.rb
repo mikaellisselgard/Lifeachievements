@@ -15,6 +15,17 @@ class AchievementsController < ApplicationController
       @json_achievements = Achievement.limit(4)
     end
     @current_user = current_user
+    
+    if params[:reload]
+      achievement_ids = params[:reload]
+      updated_at = params[:updated_at]
+      @json_achievements = changed_achievements(achievement_ids, updated_at)
+    end
+    
+    if params[:new]
+      @json_posts = Achievement.where('id > ?', params[:new]).reverse
+    end
+    
   end
 
   # GET /achievements/1
@@ -77,6 +88,18 @@ class AchievementsController < ApplicationController
       format.html { redirect_to achievements_url, notice: 'Achievement was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def changed_achievements(achievement_ids, updated_at)
+    changed_achievement_ids = []
+    achievement_ids.each_with_index do |achievement_id, index|
+      current_timestamp = Achievement.find(achievement_id).updated_at.strftime('%a, %d %b %Y %H:%M:%S')
+      old_timestamp = updated_at[index].to_datetime.strftime('%a, %d %b %Y %H:%M:%S')
+      if current_timestamp != old_timestamp 
+        changed_achievement_ids.push(achievement_id)
+      end
+    end
+    achievements = Achievement.where(id: changed_achievement_ids)
   end
 
   private
