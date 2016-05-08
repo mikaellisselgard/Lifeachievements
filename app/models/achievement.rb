@@ -31,6 +31,10 @@ class Achievement < ActiveRecord::Base
   def check_if_in_bucketlist(user)
     user.bucket_list.achievements.include?(self)
   end
+  
+  def check_if_completed(user)
+    user.achievements.include?(self)
+  end
 
   def latest_posts
     image_urls = []
