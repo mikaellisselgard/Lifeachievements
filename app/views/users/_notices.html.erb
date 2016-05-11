@@ -1,12 +1,10 @@
 <% notices.each do |notice| %>
-	<% if notice.link.to_i > 0%>
-		<% if notice.notice_type == "tip" %>
-			<% @link = achievement_path(notice.link) %>
-		<% else %>
-			<% @link = post_path(notice.link) %>
-		<% end %>
-	<% else %>
+	<% if notice.notice_type == 'tip' %>
+		<% @link = achievement_path(notice.link) %>
+	<% elsif notice.notice_type == 'follow' %>
 		<% @link = user_path(notice.user_id)%>
+	<% else %>
+		<% @link = post_path(notice.link) %>
 	<% end %>
 	<li<% if notice.seen.nil? %> class="active"<% end %>><%= link_to notice.message, @link %></li>
 <% end %>
