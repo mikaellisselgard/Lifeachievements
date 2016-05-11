@@ -16,7 +16,7 @@ p.user-settings-text {
   margin-bottom: 5px;
   clear: both;
   width: auto;
-  height:150px;
+  height:170px;
 }
 
 .edit-profile-img-icon {
@@ -24,9 +24,26 @@ p.user-settings-text {
     color: #FFFFFF!important;
 }
 
+.follow-button {
+    height: 30px!important;
+    padding: 7px!important;
+    font-size: 12px!important;
+}
+
+
+.follow-actions {
+    width: 140px;
+    height: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .user-avatar {
+    width: 140px;
 	padding: 0px;
 	float: none!important;
+    margin-left: auto;
+    margin-right: auto;
 	color:white;
 	margin-top:15px; 
 	height:110px;
@@ -68,6 +85,10 @@ h3.profile-heading {
 
 .user-progress {
     height: 50px;
+}
+
+a.follow {
+    color: #FFFFFF!important;
 }
 
 .user-score {

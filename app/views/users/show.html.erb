@@ -8,6 +8,15 @@
 					<%= image_tag 'avatar.png', width: 140, height: 90 %>
 				<% end %>
 			</div>
+			<% unless @user == current_user %>
+				<div class="follow-actions">
+					<% if current_user.follows_user(@user) %>
+						<%= link_to 'Sluta följ', user_unfollow_path(@user), method: :PUT, class: 'button expand success follow follow-button' %>
+					<% else %>
+						<%= link_to 'Följ', user_follow_path(@user), method: :PUT, class: 'button expand success follow follow-button' %>	
+					<% end %>
+				</div>
+			<% end %>
 		</div>
 		<div class="large-10 columns center-children">
 			<% if @user == current_user %>
