@@ -48,7 +48,7 @@
 	<div class="large-12 columns">
 		<% if current_user.followers.length > 0 %>
 			<% current_user.followers.each do |user| %>
-				<%= link_to user_path(user.followable) do %>
+				<%= link_to user_path(user) do %>
 					<% if user.avatar.url %>
 				    	<%= image_tag(user.avatar, size: "30") %>
 				   	<% else %>
