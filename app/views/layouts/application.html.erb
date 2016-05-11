@@ -14,7 +14,7 @@
 
   <body>
 	<div class="fixed bottom-bordered" height="45px">
-		<nav class="top-bar" data-topbar role="navigation" data-options="scrolltop:false is_hover: false">
+		<nav class="top-bar" data-topbar role="navigation">
 		  <ul class="title-area">
 		    <li class="name">
 		      <h1><%= link_to "Veckokampen", root_path %></h1>
@@ -45,7 +45,7 @@
 				      		), '#', id: 'notishref' 
 				      	%>
 
-				        <ul class="dropdown changed dropdown-notices">
+				        <ul class="dropdown dropdown-notices">
 				          <%= render partial: 'users/notices', object: current_user.notices.limit(10) %>
 				        </ul>
 				      </li>

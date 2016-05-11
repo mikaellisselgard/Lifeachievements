@@ -10,10 +10,3 @@ $(document).on 'click', '.notices', (e) ->
     url: 'users/' + user_id + '/noticed/',
   });
   
-$(document).on 'click', 'li.notice-dropdown', ->
-		$('.dropdown-notices').toggleClass('changed')
-  return false
-
-$(document).on 'mouseenter', 'li.user-notices', ->
-		$('.dropdown-notices').addClass('changed')
-  return false

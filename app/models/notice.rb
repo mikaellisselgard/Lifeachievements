@@ -53,7 +53,7 @@ class Notice < ActiveRecord::Base
       user_ids: [following.id],
       user_id: follower.id,
       link: "follow",
-      notice_type: "tip"
+      notice_type: "follow"
     })
     if follow
       follow_notice.message = follow_user.name + " följer nu dig"
