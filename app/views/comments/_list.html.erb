@@ -1,8 +1,20 @@
 <% list.each do |comment| %>
     <div class="comments_list">
 		<div id="comment">
-      		<div class="comment_user"><%= link_to comment.user.name + ':', user_path(comment.user) %></div>
-			<div class="comment_content"><%= comment.comment %></div>
+      <div class="comment_user">
+      	<%= link_to '<span>'.html_safe + 
+	      							image_tag(comment.user.avatar_url, size: '30') + 
+	      						'</span>'.html_safe +
+	      						'<span class="username">'.html_safe + 
+	      							comment.user.name + 
+	      						':</span>'.html_safe, 
+	      						user_path(comment.user)
+      	%>
+      </div>
+			<div class="comment_content">
+				<%= comment.comment %>
+			</div>
 		</div>
     </div>
+    <hr class="comment-separator">
 <% end %>
