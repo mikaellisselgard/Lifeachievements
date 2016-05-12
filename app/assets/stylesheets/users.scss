@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'colors';
 
+.user-name {
+    margin-bottom: 30px!important;
+}
+
 .user-profile {
 	background: $darkblue;
 }

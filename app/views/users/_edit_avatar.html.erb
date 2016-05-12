@@ -14,11 +14,37 @@
     <p class="user-settings-text">Profilbild</p>
 		<%= f.file_field :avatar, class: 'edit-user-text' %><br>
 	</div>
-  <div class="field">
+  <div class="field user-name">
     <p class="user-settings-text">Byt användarnamn</p>
     <%= f.text_field :name, placeholder: current_user.name %>
   </div>
+  <div class="field">
+    <%= link_to "Byt lösenord", '#', class: 'button expand success', data: {:"reveal-id" => "reveal-user-password"} %>
+  </div>
   <div class="actions">
-  	<%= f.submit 'Spara', class: 'button expand' %>
+  	<%= f.submit 'Spara', class: 'button expand success' %>
   </div>
 <% end %>
+
+
+
+<div id="reveal-user-password" class="reveal-modal small medal-modal large-10 medium-10 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+  <div class="large-10 large-centered columns">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+      Byt lösenord
+      <div class="field">
+        <p class="user-settings-text">Nuvarande lösenord</p>
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div>
+      <div class="field">
+        <p class="user-settings-text">Nytt lösenord</p>
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+      <div class="actions">
+        <%= f.submit 'Spara', class: 'button expand success' %>
+      </div>
+    <% end %>
+  </div>
+</div>
