@@ -71,6 +71,15 @@ class UsersController < ApplicationController
     @user.notices.where(seen: nil).update_all(seen: Time.now)
     redirect_to :back
   end
+  
+  def change_password
+    if current_user.valid_password? params[:current_password]
+      current_user.reset_password(params[:password], params[:password_confirmation])
+      @result = true
+    else
+      @result = false
+    end
+  end
     
   private
   

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post 'tip', to: 'users#tip'
   end
   
+  put 'change_password', to: 'users#change_password'
   get 'bucket_list', to: 'achievements#show_bucket_list', as: 'bucket_list'
   put 'bucket_list/add_bucket_list_item/:id', to: 'bucket_lists#add_bucket_list_item', as: 'add_bucket_list_item'
   delete 'bucket_list/remove_bucket_list_item/:id', to: 'bucket_lists#remove_bucket_list_item', as: 'remove_bucket_list_item'
