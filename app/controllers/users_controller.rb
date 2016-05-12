@@ -83,7 +83,12 @@ class UsersController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:name, :avatar)
+    if params[:avatar] != nil
+      # For iOS requests
+      params.permit(:avatar)
+    else
+      params.require(:user).permit(:name, :avatar)
+    end
   end
   
 end
