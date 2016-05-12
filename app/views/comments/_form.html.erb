@@ -1,3 +1,10 @@
-<%= form_for @comment, url: commenter_url(form.id), remote: true do |f| %>
-  <%= f.text_field :comment, placeholder: "Skriv kommentar..", class: 'comment-inputs', autocomplete: 'off' %>
-<% end %>
+<div class="large-12 column">
+	<%= form_for @comment, url: commenter_url(form.id), remote: true do |f| %>
+	  <div class="large-10 column comment-input">
+	  	<%= f.text_field :comment, placeholder: "Skriv kommentar..", class: 'comment-inputs', autocomplete: 'off' %>
+	  </div>
+	  <div class="large-2 column comment-button-container">
+	  	<%= f.submit 'Skicka', class: 'button expand success comment-button' %>
+	  </div>
+	<% end %>
+</div>
