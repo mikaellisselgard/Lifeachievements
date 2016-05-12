@@ -8,6 +8,11 @@
 	  </div>
 
 	  <div class="field">
+	    <%= f.label "Användarnamn", class: 'body-text' %>
+	    <%= f.text_field :name %>
+	  </div>
+
+	  <div class="field">
 	    <%= f.label 'Lösenord', class: 'body-text' %>
 	    <% if @minimum_password_length %>
 	    <em class="body-text">Minst (<%= @minimum_password_length %>) tecken</em>
