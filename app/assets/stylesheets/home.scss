@@ -6,6 +6,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "colors";
 
+.login {
+	display: none;
+	input:focus { 
+   	outline:none;
+    border-color:#9ecaed;
+    box-shadow:0 0 5px #9ecaed;
+	}
+}
+
+.registration {
+	display: block;
+	input:focus { 
+   	outline:none;
+    border-color:#9ecaed;
+    box-shadow:0 0 5px #9ecaed;
+	}
+}
+
 .popup-hr {
 	margin-top: 9px;
 	margin-bottom: 8px;
@@ -164,7 +182,7 @@ h2.white-text {
 	background: $darkblue;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	height: 230px;
+	height: 255px;
 }
 
 .join-form-input {

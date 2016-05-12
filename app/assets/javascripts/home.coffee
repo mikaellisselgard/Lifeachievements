@@ -9,4 +9,13 @@ $(document).on 'click', '.notices', (e) ->
     type: "POST",
     url: 'users/' + user_id + '/noticed/',
   });
-  
+
+$(document).on 'click', '#sign_in', ->
+	$('.registration').fadeOut(300)
+	$('.login').fadeIn(300)
+	$("input#user_email").focus()
+
+$(document).on 'click', '#register', ->
+	$('.login').fadeOut(300)
+	$('.registration').fadeIn(300)
+	$("#user_email").focus()  
