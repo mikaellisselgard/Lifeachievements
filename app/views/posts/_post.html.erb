@@ -107,9 +107,11 @@
 	<div id="reveal-options-<%=post.id%>" class="reveal-modal medium-2 columns small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 		<% if user_signed_in? %>
-			<% if current_user == post.user || current_user.admin %>
+			<% if current_user.admin %>
 				<%= link_to 'Ta bort inlägg', post, method: :delete %><br>
 				<%= link_to 'Feature/Unfeature', post_feature_post_path(post), method: :put %><br>
+			<% elsif current_user == post.user %>
+				<%= link_to 'Ta bort inlägg', post, method: :delete %><br>
 			<% else %>
 				<%= link_to 'Rapportera inlägg', post_report_post_path(post), method: :put %><br>
 				<% if current_user.following?(post.user) %>
