@@ -1,8 +1,12 @@
-<% current_user.follows.each do |follow| %>
-	<!-- follow.followable to get the users you follow -->
-	<%= link_to user_tip_path(follow.followable, achievement: achievement), method: :post do |user| %>
-		<%= image_tag(follow.followable.avatar, size: '30') %>
-		<%= follow.followable.name %>
+<% if current_user.follows.count > 0 %>
+	<% current_user.follows.each do |follow| %>
+		<!-- follow.followable to get the users you follow -->
+		<%= link_to user_tip_path(follow.followable, achievement: achievement), method: :post do |user| %>
+			<%= image_tag(follow.followable.avatar, size: '30') %>
+			<%= follow.followable.name %>
+		<% end %>
+		<hr class="popup-hr">
 	<% end %>
-	<hr class="popup-hr">
+<% else %>
+	Du följer ingen ännu.
 <% end %>
