@@ -109,7 +109,6 @@
 		<% if user_signed_in? %>
 			<% if current_user == post.user || current_user.admin %>
 				<%= link_to 'Ta bort inlägg', post, method: :delete %><br>
-				<%= link_to 'Editera inlägg', edit_post_path(post) %><br>
 				<%= link_to 'Feature/Unfeature', post_feature_post_path(post), method: :put %><br>
 			<% else %>
 				<%= link_to 'Rapportera inlägg', post_report_post_path(post), method: :put %><br>
