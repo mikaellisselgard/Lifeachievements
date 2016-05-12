@@ -1,8 +1,12 @@
-<% users.each do |user| %>
-	<% @achievement_user = User.find(user) %>
-	<%= link_to user_path(@achievement_user) do |user| %>
-		<%= image_tag(@achievement_user.avatar, size: '30') %>
-		<%= @achievement_user.name %>
+<% if users.count > 0 %>
+	<% users.each do |user| %>
+		<% @achievement_user = User.find(user) %>
+		<%= link_to user_path(@achievement_user) do |user| %>
+			<%= image_tag(@achievement_user.avatar, size: '30') %>
+			<%= @achievement_user.name %>
+		<% end %>
+		<hr class="popup-hr">
 	<% end %>
-	<hr class="popup-hr">
+<% else %>
+	Ingen har klarat detta uppdrag. 
 <% end %>
