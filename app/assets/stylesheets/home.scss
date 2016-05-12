@@ -6,6 +6,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "colors";
 
+.popup-hr {
+	margin-top: 9px;
+	margin-bottom: 8px;
+}
+
+.likes {
+	display: block;
+	span {
+		margin-right: 5px;
+	}
+}
+
 .changed {
 	display: none!important;
 }

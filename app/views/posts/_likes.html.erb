@@ -1,8 +1,13 @@
-<% likes.each do |like| %>
-	<% if like.user.avatar.length > 0 %>
-		<%= link_to image_tag(like.user.avatar, width: "50px", height: "50px"), user_path(like.user)%>
-	<% else %>
-		<%= link_to image_tag('avatar.png', width: "50px", height: "50px"), user_path(like.user)%>
+<div class="likes">
+	<% likes.each do |like| %>
+		<%= link_to user_path(like.user) do |user| %>
+				<span>
+					<%= image_tag(like.user.avatar, size: '30') %>
+				</span>
+				<span>
+					<%= like.user.name%>
+				</span>
+		<% end %>
+		<hr class="popup-hr">
 	<% end %>
-	<%= like.user.name %><br>
-<% end %>
+</div>
