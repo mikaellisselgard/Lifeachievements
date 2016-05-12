@@ -2,14 +2,14 @@
     <div class="comments_list">
 		<div id="comment">
       <div class="comment_user">
-      	<%= link_to '<span>'.html_safe + 
-	      							image_tag(comment.user.avatar_url, size: '30') + 
-	      						'</span>'.html_safe +
-	      						'<span class="username">'.html_safe + 
-	      							comment.user.name + 
-	      						':</span>'.html_safe, 
-	      						user_path(comment.user)
-      	%>
+      	<%= link_to user_path(comment.user) do |user| %>
+      		<span>
+      			<%= image_tag(comment.user.avatar, size: '30') %>
+      		</span>
+      		<span class="username">
+      			<%= comment.user.name %>:
+      		</span>
+      	<% end %>
       </div>
 			<div class="comment_content">
 				<%= comment.comment %>
