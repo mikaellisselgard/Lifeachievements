@@ -62,12 +62,9 @@
 		<% if @user.followers.length > 0 %>
 			<% @user.followers.each do |user| %>
 				<%= link_to user_path(user) do %>
-					<% if user.avatar.url %>
-				    	<%= image_tag(user.avatar, size: "30") %>
-				   	<% else %>
-						<%= image_tag('avatar.png', size: "30") %>
-					<% end %>
-					<%= user.name %><br/>
+				  <%= image_tag(user.avatar, size: "30") %>
+					<%= user.name %>
+					<hr class="popup-hr">
 				<% end %>
 			<% end %>
 		<% else %>
@@ -82,12 +79,9 @@
 		<% if @user.follows.length > 0 %>
 			<% @user.follows.each do |user| %>
 				<%= link_to user_path(user) do %>
-					<% if user.followable.avatar.url %>
-				    	<%= image_tag(user.followable.avatar, size: "30") %>
-				   	<% else %>
-						<%= image_tag('avatar.png', size: "30") %>
-					<% end %>
-					<%= user.followable.name %><br/>
+				  <%= image_tag(user.followable.avatar, size: "30") %>		
+					<%= user.followable.name %>
+					<hr class="popup-hr">
 				<% end %>
 			<% end %>
 		<% else %>

@@ -53,12 +53,16 @@
 		<%= link_to 'Ladda upp bild/video', new_post_path(achievement_id: achievement.id), class: 'button expand success radius achievement-actions'%>
     </div>
 	<div id="reveal-users-<%=achievement.id%>" class="reveal-modal small medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
-		<%= render partial: 'achievements/users', object: achievement.posts.pluck(:user_id) %>
+		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+		<div class="large-12 columns">
+			<%= render partial: 'achievements/users', object: achievement.posts.pluck(:user_id) %>
+		</div>
 	</div>
 	<div id="reveal-follows-<%=achievement.id%>" class="reveal-modal small medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-		<a class="close-reveal-modal device button secondary supertiny" aria-label="Close">Stäng</a>
-		<%= render partial: 'users/follows', locals: {achievement: achievement} %>
+		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
+		<div class="large-12 columns">
+			<%= render partial: 'users/follows', locals: {achievement: achievement} %>
+		</div>
 	</div>
 	<div id="reveal-options-<%=achievement.id%>" class="reveal-modal small medium-2 columns" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
