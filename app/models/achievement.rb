@@ -35,6 +35,15 @@ class Achievement < ActiveRecord::Base
   def check_if_completed(user)
     user.achievements.include?(self)
   end
+  
+  def check_user_post(user)
+    post = self.posts.find_by_user_id(user.id)
+    if post
+      post.id
+    else
+      0
+    end
+  end
 
   def latest_posts
     image_urls = []
