@@ -84,4 +84,18 @@ class User < ActiveRecord::Base
     [notice_user_ids, notice_user_avatars, notice_messages, notice_types, notice_link_ids, notice_seen]
   end 
   
+  def check_like_in_posts(posts)
+    user_likes_post_ids = likes.pluck(:post_id)
+    post_ids = posts.pluck(:id)
+    like_array = []
+    post_ids.each do |post_id|
+      if user_likes_post_ids.include? post_id
+        like_array.push(true)
+      else
+        like_array.push(false)
+      end
+    end
+    like_array
+  end
+  
 end
