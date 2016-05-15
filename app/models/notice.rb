@@ -79,7 +79,7 @@ class Notice < ActiveRecord::Base
       user_ids: tip_to.id,
       user_id: tip_from.id,
       link: tip_id,
-      message: tip_from.name + " vill tipsa dig om ett achievement",
+      message: tip_from.name + " vill tipsa dig om ett uppdrag",
       notice_type: "tip"
     }).save
   end
