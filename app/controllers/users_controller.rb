@@ -96,7 +96,7 @@ class UsersController < ApplicationController
       # For iOS requests
       params.permit(:name, :avatar, :current_password, :password, :password_confirmation)
     else
-      params.require(:user).permit(:name, :avatar, :current_password, :password, :password_confirmation)
+      params.require(:user).permit(:name, :avatar, :current_password, :password, :open)
     end
   end
   
