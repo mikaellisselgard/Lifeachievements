@@ -12,7 +12,10 @@
   <% end %>
 	<div class="field">
     <p class="user-settings-text">Profilbild</p>
-		<%= f.file_field :avatar, class: 'edit-user-text' %><br>
+    <p class="user_avatar">
+      <%= f.file_field :avatar %>
+      <label for="user_avatar">Välj fil</label>
+    </p>
 	</div>
   <div class="field user-name">
     <p class="user-settings-text">Byt användarnamn</p>

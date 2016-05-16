@@ -3,6 +3,44 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'colors';
 
+
+.user_avatar {
+  position: relative;
+}
+
+p.user-avatar:hover {
+    cursor: pointer;
+    z-index: 10;
+}
+
+.user_avatar label {
+  background: #43AC6A;
+  text-align: center;
+  padding-top: 10px;
+  height: 40px;
+  width: 80px;
+  color: #FFFFFF;
+  transition: all .4s;
+}
+
+.user_avatar input {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  top: 0;
+  width: 80px!important;
+  height: 40px;
+  opacity: 0.01;
+  cursor: pointer;
+}
+
+.user_avatar input:hover + label,
+.user_avatar input:focus + label {
+  background: #368a55;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
 .ios-button {
     margin-left: 0!important;
 }
@@ -24,7 +62,6 @@ input[type="checkbox"].ios-switch + div {
     box-shadow: inset 0 0 0 0px rgba(0,0,0,0.4);
     margin: 15px 1.2em 15px 2.5em;
 }
-
 
 /* Big Track */
 input[type="checkbox"].bigswitch.ios-switch + div {
