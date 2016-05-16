@@ -18,9 +18,15 @@
     <p class="user-settings-text">Byt användarnamn</p>
     <%= f.text_field :name, placeholder: current_user.name %>
   </div>
-  <div class="field">
-    <p class="user-settings-text">Dela profil</p>
-    <label><%= f.check_box :open, class: 'ios-switch green bigswitch' %><div class="open-button"><div></div></div></label>
+  <div class="large-2 columns">
+    <div class="field">
+      <p class="user-settings-text">Dela profil</p>
+      <label><%= f.check_box :open, class: 'ios-switch green bigswitch' %><div class="ios-button"><div></div></div></label>
+    </div>
+  </div>
+  <div class="large-3 columns">
+    <p class="user-settings-text">Dela GPS-data</p>
+    <label><%= f.check_box :share_gps, class: 'ios-switch green bigswitch' %><div class="ios-button"><div></div></div></label>
   </div>
   <div class="field">
     <%= link_to "Byt lösenord", '#', class: 'button expand success', data: {:"reveal-id" => "reveal-user-password"} %>
