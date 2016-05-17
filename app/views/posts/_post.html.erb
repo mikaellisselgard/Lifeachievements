@@ -8,9 +8,6 @@
 			<% end %>
 			<h3><%= link_to post.user.name, user_path(post.user) %></h3>
 		</div>
-		<div class="dropdown-button">
-			<%= link_to image_tag('dropdown.png'), user_path(post.user), remote: true, data: {:"reveal-id" => "reveal-options-#{post.id}"} %>
-		</div>
 		<div class="score">
 			<h3><%= post.achievement.score %></h3>
 		</div>
@@ -24,13 +21,21 @@
 	</div>
 	<div class="post_info">
 		<%= link_to post, remote: true, data: {:"reveal-id" => "reveal-likes-#{post.id}"} do %>
-		<div id="counter_info-<%=post.id%>" class="counter-fix">
-				<%= t('likes_count', count: post.likes_count.to_i) %>
-		</div>
+			<div id="likes-counter-<%=post.id%>" class="counter-fix post-counters">
+					<%= post.likes_count.to_i %>
+			</div>
+			<div class="post-likes">
+				<%= image_tag '/like-icons/like.png' %>
+			</div>
 		<% end %>
-		<div class="counter-info-comments">
-			<%= link_to t('comments_count', count: post.comments.count), post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} %>
-		</div>
+		<%= link_to post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} do %>
+			<div class="post-comments">
+				<%= image_tag 'fi-comments.png' %>
+			</div>
+			<div class="counter-info-comments post-counters">
+				<%= post.comments.count %>
+			</div>
+		<% end %>
 	</div>
 	<div class="achievement_description_post">
 		<h3><%= link_to post.achievement.description, post.achievement %></h3>
@@ -40,14 +45,16 @@
 			<ul class="button-group radius post-buttons">
 			<% if user_signed_in? %>
 				<% if post.check_like(current_user) %>
-					<li><%= link_to 'Sluta gilla', like_post_path(post), method: :PUT, remote: true, class: 'like button success button-size' %></li>
+					<li><%= link_to image_tag('/like-icons/liked.png', id: "heart-#{post.id}" ), like_post_path(post), method: :PUT, remote: true, class: 'like', id: "like-icon-#{post.id}" %></li>
 				<% else %>
-					<li><%= link_to "Gilla", like_post_path(post), method: :PUT, remote: true, class: 'like button success button-size' %></li>
+					<li><%= link_to image_tag('/like-icons/like.png', id: "heart-#{post.id}" ), like_post_path(post), method: :PUT, remote: true, class: 'like', id: "like-icon-#{post.id}" %></li>
 				<% end %>
-				<li><%= link_to 'Kommentera', post, remote: true, class: 'button success button-size', data: {:"reveal-id" => "reveal-#{post.id}"} %></li>
+				<li><%= link_to image_tag('fi-comment.png'), post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} %></li>
+				<li><%= link_to image_tag('more-icon.png'), user_path(post.user), remote: true, data: {:"reveal-id" => "reveal-options-#{post.id}"} %></li>
 			<% else %>
-				<li><%= link_to "Gilla", new_user_registration_path, class: 'button success button-size' %></li>
-				<li><%= link_to "Kommentera", new_user_registration_path, class: 'button success button-size' %></li>
+				<li><%= link_to image_tag('fi-heart.png'), new_user_registration_path %></li>
+				<li><%= link_to image_tag('fi-comment.png'), new_user_registration_path %></li>
+				<li><%= link_to image_tag('more-icon.png'), new_user_registration_path %></li>
 			<% end %>
 			</ul>
 		</div>

@@ -14,37 +14,27 @@ $(document).on 'ready page:load', ->
       columnWidth: 290
 	  isFitWidth: true
 	  return
-	
-$(document).on 'click', '.like', (e) ->
-  $(this).html (index, oldHtml) ->
-    popupDivId = "counter_info_popup-" + $(this).parent().parent().parent().attr("id").split("-").pop()
-    outsideDivId = "counter_info-" + $(this).parent().parent().parent().attr("id").split("-").pop()
-    popupHtml = "like-button-popup-" + $(this).parent().parent().parent().attr("id").split("-").pop()
-    outsideHtml = "like-button-" + $(this).parent().parent().parent().attr("id").split("-").pop()
-    if oldHtml == 'Gilla'
-      $("#" + outsideHtml).find('a:first').html('Sluta gilla')
-      $("#" + popupHtml).find('a:first').html('Sluta gilla')
-      oldNumber = $("#" + outsideDivId).html()
-      newNumber = Number(oldNumber) + 1
-      if isNaN(newNumber)
-        newNumber = 1
-      $("#" + outsideDivId).html(newNumber)
-      $("#" + popupDivId).html(newNumber)
-    else
-      $("#" + outsideHtml).find('a:first').html('Gilla')
-      $("#" + popupHtml).find('a:first').html('Gilla')
-      oldNumber = $("#" + outsideDivId).html()
-      newNumber = Number(oldNumber) - 1
-      if newNumber == 0
-        newNumber = "Ingen"
-      $("#" + outsideDivId).html(newNumber)
-      $("#" + popupDivId).html(newNumber)
-    return
-	
+
+$(document).on 'click', ".like", ->
+  post_id = $(this).attr('id').split('-')[2]
+  
+  # Collect likes count div for correct post 
+  likes_count = $('#likes-counter-' + post_id)
+
+  # Split image source to collect image name 'like' and 'liked'
+  image_name = $(this).find("#heart-" + post_id).attr("src").split('/')[4].split('.')[0]
+
+  if image_name == "like"
+    $(this).find("#heart-" + post_id).attr('src','http://localhost:3000/like-icons/liked.png')
+    likes_count.html(Number(likes_count.html()) + 1)
+  else
+    $(this).find("#heart-" + post_id).attr('src', 'http://localhost:3000/like-icons/like.png')
+    likes_count.html(Number(likes_count.html()) - 1)
+
+
 #$(document).on 'click tap touchstart', '.reveal-modal-bg', ->
   #$('[data-reveal]').foundation 'reveal', 'close'
   
-
 masonryAdd = (items) ->
   setTimeout (->
     $('#masonry-container').masonry( 'reload' )
