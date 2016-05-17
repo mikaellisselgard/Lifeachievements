@@ -67,7 +67,7 @@ acts_as_token_authentication_handler_for User
       like = @post.likes.find_by_user_id(current_user.id)
       like.destroy
     end
-    render json: @post
+    head :no_content
   end
 
   def edit
