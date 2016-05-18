@@ -3,6 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'colors';
 
+.gps-container {
+  padding: 0!important;
+}
+
+.share-gps {
+  padding-top: 13px;
+  padding-left: 0!important;
+  float: left;
+  text-align: left;
+}
+
+.gps-button {
+  float: right;
+  padding: 0!important;
+}
 
 .user_avatar {
   position: relative;
@@ -41,10 +56,6 @@ p.user-avatar:hover {
   cursor: pointer;
 }
 
-.ios-button {
-    margin-left: 0!important;
-}
-
 input[type="checkbox"] { 
     position: absolute;
     opacity: 0;
@@ -60,7 +71,7 @@ input[type="checkbox"].ios-switch + div {
     -webkit-transition-duration: .4s;
     -webkit-transition-property: background-color, box-shadow;
     box-shadow: inset 0 0 0 0px rgba(0,0,0,0.4);
-    margin: 15px 1.2em 15px 2.5em;
+    margin: 15px 1.2em 15px 2.0em;
 }
 
 /* Big Track */
