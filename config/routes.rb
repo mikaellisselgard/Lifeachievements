@@ -6,12 +6,9 @@ Rails.application.routes.draw do
     put 'report_post', to: 'posts#report_post'
     put 'feature_post', to: 'posts#feature_post'
   end
-  resources :achievements do
-    get :autocomplete_achievement_description, :on => :collection
-  end
+  resources :achievements
   resources :categories
   resources :users do
-    get :autocomplete_user_name, :on => :collection
     put 'follow', to: 'users#follow'
     put 'unfollow', to: 'users#unfollow'
     post 'noticed', to: 'users#noticed'
@@ -26,6 +23,10 @@ Rails.application.routes.draw do
   post 'comments' => 'comments#create', defaults: { format: 'js' }
   get 'explore', to: 'posts#index', as: 'explore'
   get 'join', to: 'home#join'
+
+  resources :search_results do
+    get :autocomplete_search_result_record_string, on: :collection  
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
