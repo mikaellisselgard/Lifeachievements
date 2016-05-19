@@ -10,10 +10,21 @@ class Achievement < ActiveRecord::Base
   validates :description, presence: true
   
   after_create :set_score
+  after_create :create_search_result
+
+  before_destroy :remove_search_result
   
   def set_score
     self.score = 100
     self.save!
+  end
+
+  def create_search_result
+    SearchResult.create(record_string: description, record_id: id, record_type: 'achievement')
+  end
+
+  def remove_search_result 
+    SearchResult.where(record_id: id).where(record_type: 'achievement').destroy_all
   end
   
   def self.generate_new_achievements

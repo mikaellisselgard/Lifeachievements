@@ -17,13 +17,23 @@ class User < ActiveRecord::Base
   has_many :reports
   
   after_create :set_bucket_list
-
+  after_create :create_search_result
   after_create :set_user_avatar
+
+  before_destroy :remove_search_result
   
   delegate :achievements, to: :bucket_list, prefix: true
   
   def set_bucket_list
     self.build_bucket_list
+  end
+
+  def create_search_result 
+    SearchResult.create(record_string: name, record_id: id, record_type: 'user')
+  end 
+
+  def remove_search_result 
+    SearchResult.where(record_id: id).where(record_type: 'user').destroy_all
   end
   
   def has_achievement(achievement)
