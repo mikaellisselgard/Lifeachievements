@@ -1,7 +1,6 @@
 class AchievementsController < ApplicationController
   before_action :set_achievement, only: [:show, :edit, :update, :destroy]
 
-  autocomplete :achievement, :description, full: true
   acts_as_token_authentication_handler_for User
 
   # GET /achievements
