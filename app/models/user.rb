@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
   def has_achievement(achievement)
     self.achievements.include? achievement
   end
+
+  def show_post_for_achievement(achievement)
+    self.posts.find_by_achievement_id(achievement.id)
+  end 
   
   def set_user_avatar
     self.avatar = File.open("public/avatar.png")
