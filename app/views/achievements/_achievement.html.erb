@@ -8,9 +8,13 @@
 				<%= icon('fi-lock locks-icon') %>
 			<% end %>
 		</div>
-		<div class="dropdown-button">
-			<%= link_to image_tag('dropdown.png'), achievement_path(achievement), remote: true, data: {:"reveal-id" => "reveal-options-#{achievement.id}"} %>
-		</div>
+		<% if user_signed_in? %>
+			<% if current_user.admin %>
+				<div class="dropdown-button">
+					<%= link_to image_tag('dropdown.png'), achievement_path(achievement), remote: true, data: {:"reveal-id" => "reveal-options-#{achievement.id}"} %>
+				</div>
+			<% end %>
+		<% end %>
 		<div class="score">
 			<h3><%= achievement.score %></h3>
 		</div>
@@ -68,10 +72,8 @@
 		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 		<% if user_signed_in? %>
 			<% if current_user.admin? %>
-				<%= link_to 'Ta bort inlägg', achievement, method: :delete %><br>
-				<%= link_to 'Editera inlägg', edit_achievement_path(achievement) %><br>
-			<% else %>
-				<%= link_to 'Rapportera inlägg', '#' %><br>
+				<%= link_to 'Ta bort uppdrag', achievement, method: :delete %><br>
+				<%= link_to 'Editera uppdrag', edit_achievement_path(achievement) %><br>
 			<% end %>
 		<% end %>
 	</div>
