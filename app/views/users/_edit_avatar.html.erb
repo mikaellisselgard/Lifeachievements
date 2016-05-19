@@ -60,5 +60,6 @@
         <%= f.submit 'Spara', class: 'button expand success' %>
       </div>
     <% end %>
+    <%= link_to "Tillbaka", user_path(current_user), remote: true, data: {:"reveal-id" => "reveal-user-options"} %>
   </div>
 </div>
