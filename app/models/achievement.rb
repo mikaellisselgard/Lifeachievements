@@ -20,7 +20,7 @@ class Achievement < ActiveRecord::Base
   end
 
   def create_search_result
-    SearchResult.create(record_string: description, record_id: id, record_type: 'achievement')
+    SearchResult.create(record_string: description, record_id: id, record_type: 'achievement', record_image: '/achievement_icon_blue.png')
   end
 
   def remove_search_result 

@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
   has_many :reports
   
   after_create :set_bucket_list
-  after_create :create_search_result
   after_create :set_user_avatar
+  after_create :create_search_result
 
   before_destroy :remove_search_result
   
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def create_search_result 
-    SearchResult.create(record_string: name, record_id: id, record_type: 'user')
+    SearchResult.create(record_string: name, record_id: id, record_type: 'user', record_image: avatar_url)
   end 
 
   def remove_search_result 
