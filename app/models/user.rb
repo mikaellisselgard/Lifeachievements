@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end 
 
   def remove_search_result 
-    SearchResult.where(record_id: id).where(record_type: 'user').destroy_all
+    SearchResult.where(record_type: 'user').find_by_record_id(id).destroy
   end
   
   def has_achievement(achievement)

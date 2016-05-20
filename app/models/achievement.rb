@@ -24,7 +24,7 @@ class Achievement < ActiveRecord::Base
   end
 
   def remove_search_result 
-    SearchResult.where(record_id: id).where(record_type: 'achievement').destroy_all
+    SearchResult.where(record_type: 'achievement').find_by_record_id(id).destroy
   end
   
   def self.generate_new_achievements
