@@ -47,10 +47,12 @@ class Achievement < ActiveRecord::Base
 
   def latest_posts
     image_urls = []
+    post_ids = []
     self.posts.first(3).each do |post|
       image_urls.push(post.image_url(:thumb_achievement))
+      post_ids.push(post.id)
     end
-    image_urls
+    [image_urls, post_ids]
   end 
 
   def completer_user_infos
