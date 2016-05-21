@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  autocomplete :user, :name, full: true
   before_action :set_user, only: [:show, :edit]
   before_action :set_user_id, only: [:follow, :unfollow, :noticed, :tip]
   acts_as_token_authentication_handler_for User

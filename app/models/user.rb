@@ -17,13 +17,25 @@ class User < ActiveRecord::Base
   has_many :reports
   
   after_create :set_bucket_list
-
   after_create :set_user_avatar
+  after_create :create_search_result
+
+  after_save :change_avatar
+
+  before_destroy :remove_search_result
   
   delegate :achievements, to: :bucket_list, prefix: true
   
   def set_bucket_list
     self.build_bucket_list
+  end
+
+  def create_search_result 
+    SearchResult.create(record_string: name, record_id: id, record_type: 'user', record_image: avatar_url)
+  end 
+
+  def remove_search_result 
+    SearchResult.where(record_type: 'user').find_by_record_id(id).destroy
   end
   
   def has_achievement(achievement)
@@ -37,6 +49,13 @@ class User < ActiveRecord::Base
   def set_user_avatar
     self.avatar = File.open("public/avatar.png")
     self.save!
+  end
+
+  #This should be refactored, with a state_changed like solution perhaps
+  def change_avatar 
+    search_result = SearchResult.where(record_id: id).find_by_record_id(id)
+    search_result.record_image = avatar_url
+    search_result.save!
   end
   
   def follows_user(followed_user)
