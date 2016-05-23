@@ -9,3 +9,5 @@ json.user_score @user_score
 json.achievement_count @total_posts_count
 json.follow @current_user.follows_user(@user)
 json.like @current_user.check_like_in_posts(@json_posts)
+json.post_ids @user_post_ids
+json.achievement_ids @user_achievement_ids
