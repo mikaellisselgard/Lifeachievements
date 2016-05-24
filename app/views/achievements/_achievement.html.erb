@@ -50,7 +50,13 @@
 			</li>
 			<li>
 				<div id="achievement_<%=achievement.id%>" class="add-achievement">
-					<%= render partial: 'bucket_lists/bucket_list_actions', locals: {achievement: achievement} %>
+					<% if user_signed_in? %>
+						<% if current_user.has_achievement(achievement) %>
+							<%= link_to image_tag('achievement-completed.png'), post_path(current_user.show_post_for_achievement(achievement)), class: 'achievement-icons' %>
+						<% else %>
+							<%= render partial: 'bucket_lists/bucket_list_actions', locals: {achievement: achievement} %>
+						<% end %>
+					<% end %>
 			  </div>
 		  </li>
 		</ul>
