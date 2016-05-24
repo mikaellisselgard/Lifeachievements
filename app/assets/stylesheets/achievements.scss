@@ -3,7 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "colors";
 
-
+.tip-button {
+	float: right;
+	margin-right: 10px!important;
+	margin-bottom: 0px!important;
+}
 
 p.upload-post {
 	height: 50px;
