@@ -79,34 +79,33 @@ h1.black {
 }
 
 .completion-bar {
-	margin-top:5px;
-	height:30px;
+	margin-top:10px;
+	height:20px;
 	width:100%;
 	border:1px solid #ccc;
 }
 
 .completion-bar-profile {
 	margin: 10px auto;
-	height:30px;
-	width:210px;
+	height:20px;
+	width:100%;
 	border:1px solid #ccc;
-}
-
-.fill {
-	height:28px;
-	background: $success-color;
-	p {
-		margin-left:115px;
-		color: $white;
-	}
-
 	p.user_profile {
-		margin-left: 30px!important;
-		color: $white;
+		color: #000000;
 		margin: 0;
 		padding: 0;
 		width: 150px;
+		font-size: 12px;
+		margin-top: -18px;
+		margin-left: auto;
+		margin-right: auto;
 	}
+}
+
+.fill {
+	height:18px;
+	width: 0px;
+	background: #6ba5f7;
 }
 
 .highscore_user {

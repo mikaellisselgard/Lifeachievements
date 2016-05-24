@@ -129,7 +129,7 @@ input[type="checkbox"].green.ios-switch:checked + div > div {
 }
 
 .user-profile {
-	background: $darkblue;
+	background: #FFFFFF;
 }
 
 p.user-settings-text {
@@ -141,12 +141,12 @@ p.user-settings-text {
   margin-bottom: 5px;
   clear: both;
   width: auto;
-  height:170px;
+  height:190px;
 }
 
 .edit-profile-img-icon {
     font-size: 25px;
-    color: #FFFFFF!important;
+    color: #000000!important;
 }
 
 .follow-button {
@@ -193,19 +193,25 @@ p.user-settings-text {
 
 .user-info {
     margin-top: 50px;
+    height: 95px;
 }
 
 h3.profile-heading {
-    color: #FFFFFF;
+    color: #000000;
 }
 
 .user-follow {
     height: 50px;
     padding-top: 10px;
+    color: #000000!important;
     a {
         font-size: 18px!important;
-        color: #FFFFFF!important;
+        color: #000000!important;
     }
+}
+
+.last-user-info {
+  float: left!important;
 }
 
 .user-progress {
@@ -218,7 +224,7 @@ a.follow {
 
 .user-score {
     height: 50px;
-    color: #FFFFFF;
+    color: #000000;
     font-size: 18px;
     padding-top: 10px;
 }
