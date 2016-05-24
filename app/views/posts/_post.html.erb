@@ -21,11 +21,11 @@
 	</div>
 	<div class="post_info">
 		<%= link_to post, remote: true, data: {:"reveal-id" => "reveal-likes-#{post.id}"} do %>
-			<div id="likes-counter-<%=post.id%>" class="counter-fix post-counters">
-					<%= post.likes_count.to_i %>
-			</div>
 			<div class="post-likes">
 				<%= image_tag '/like-icons/like.png' %>
+			</div>
+			<div id="likes-counter-<%=post.id%>" class="counter-fix post-counters">
+					<%= post.likes_count.to_i %>
 			</div>
 		<% end %>
 		<%= link_to post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} do %>
