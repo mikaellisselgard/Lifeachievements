@@ -58,7 +58,25 @@
 			<% if current_user.has_achievement(achievement) %>
 				<%= link_to 'Visa inlägg', post_path(current_user.show_post_for_achievement(achievement)), class: 'button expand success radius achievement-actions' %>
 			<% else %>
-				<%= link_to 'Ladda upp bild/video', new_post_path(achievement_id: achievement.id), class: 'button expand success radius achievement-actions'%>
+				<%= form_for(@post) do |f| %>
+				  <% if @post.errors.any? %>
+				    <div id="error_explanation">
+				      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+				      <ul>
+				      <% @post.errors.full_messages.each do |message| %>
+				        <li><%= message %></li>
+				      <% end %>
+				      </ul>
+				    </div>
+				  <% end %>
+				  <div class="field">
+				    <p class="upload-post">
+				      <%= f.file_field :video, id: 'upload' %>
+				      <label for="upload-post">Ladda upp</label>
+				    </p>
+					</div>
+					<%= f.hidden_field :achievement_id, value: achievement.id%>
+				<% end %>
 			<% end %>
 		<% end %>
   </div>
