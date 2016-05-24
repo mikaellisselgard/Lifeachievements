@@ -2,6 +2,16 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$(document).on 'click', '#comment-link', ->
+  setTimeout (->
+    windowHeight = $(window).height()
+    elementOffset = $('#comment').offset().top
+    elementHeight = $('#comment').height()
+    $('html, body').animate({ scrollTop: elementOffset - windowHeight + elementHeight }, 'fast')
+  ), 500
+
+
+
 $(document).on 'change', '#upload', ->
   $(this).parent().parent().parent().submit()
   return

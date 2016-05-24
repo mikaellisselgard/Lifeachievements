@@ -28,7 +28,7 @@
 					<%= post.likes_count.to_i %>
 			</div>
 		<% end %>
-		<%= link_to post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} do %>
+		<%= link_to post, remote: true, id: 'comment-link', data: {:"reveal-id" => "reveal-#{post.id}"} do %>
 			<div class="post-comments">
 				<%= image_tag 'fi-comments.png' %>
 			</div>
@@ -49,7 +49,7 @@
 				<% else %>
 					<li><%= link_to image_tag('/like-icons/like.png', id: "heart-#{post.id}" ), like_post_path(post), method: :PUT, remote: true, class: 'like', id: "like-icon-#{post.id}" %></li>
 				<% end %>
-				<li><%= link_to image_tag('fi-comment.png'), post, remote: true, data: {:"reveal-id" => "reveal-#{post.id}"} %></li>
+				<li><%= link_to image_tag('fi-comment.png'), post, remote: true, id: 'comment-link', data: {:"reveal-id" => "reveal-#{post.id}"} %></li>
 				<li><%= link_to image_tag('more-icon.png'), user_path(post.user), remote: true, data: {:"reveal-id" => "reveal-options-#{post.id}"} %></li>
 			<% else %>
 				<li><%= link_to image_tag('fi-heart.png'), new_user_registration_path %></li>
@@ -97,7 +97,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="large-6 columns">
+		<div class="large-6 columns" id="comment">
 			<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 			<div id="comment_list-<%= post.id %>" class="comments">
 				<%= render partial: 'comments/list', object: post.comments %>
