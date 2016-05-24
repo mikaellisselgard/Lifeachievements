@@ -1,4 +1,4 @@
 <%= form_for( :user, remote: true, html: { method: :get, id: "search_form"}) do |f| %>
     <%= f.autocomplete_field :description, autocomplete_search_result_record_string_search_results_path,
-                             value: "", id: "search", placeholder: "Sök..." %>	
+                             value: "", id: "search", class: 'search-form', placeholder: "Sök..." %>	
 <% end %>
