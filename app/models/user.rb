@@ -54,10 +54,12 @@ class User < ActiveRecord::Base
   end
 
   #This should be refactored, with a state_changed like solution perhaps
-  def change_avatar 
+  def change_avatar
     search_result = SearchResult.where(record_id: id).find_by_record_id(id)
-    search_result.record_image = avatar_url
-    search_result.save!
+    unless search_result == nil
+      search_result.record_image = avatar_url
+      search_result.save!
+    end
   end
   
   def follows_user(followed_user)
