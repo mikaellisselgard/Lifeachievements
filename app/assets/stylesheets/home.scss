@@ -6,6 +6,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "colors";
 
+.search-form {
+	width: 280px!important;
+	height: 38px!important;
+	margin-top: -5px!important;
+}
+
 a.join-forms {
 	color: #FFFFFF!important;
 }
