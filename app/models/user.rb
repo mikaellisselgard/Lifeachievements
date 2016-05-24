@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  EMAIL_FORMAT = %r(\A\S+@\S+\z)
   mount_uploader :avatar, AvatarUploader, dependent: :destroy
   acts_as_token_authenticatable
   acts_as_followable
@@ -19,10 +20,11 @@ class User < ActiveRecord::Base
   after_create :set_bucket_list
   after_create :set_user_avatar
   after_create :create_search_result
-
   after_save :change_avatar
-
   before_destroy :remove_search_result
+
+  validates :name, presence: true 
+  validates :email, format: { with: EMAIL_FORMAT }
   
   delegate :achievements, to: :bucket_list, prefix: true
   
