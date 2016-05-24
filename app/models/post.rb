@@ -82,7 +82,7 @@ class Post < ActiveRecord::Base
 
   #Set image from video column and remove uploaded image from video if uploaded record is an image
   def set_image
-    if self.video.content_type.split('/')[0] == 'image'
+    if self.video.content_type && self.video.content_type.split('/')[0] == 'image'
       self.image = self.video
       self.remove_video!
       self.save
