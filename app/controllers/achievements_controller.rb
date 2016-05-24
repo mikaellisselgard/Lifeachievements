@@ -25,8 +25,7 @@ class AchievementsController < ApplicationController
       @json_achievements = Achievement.where('id > ?', params[:new]).reverse
     end
 
-    @post = Post.new
-    
+    @post = Post.new  
   end
 
   # GET /achievements/1
@@ -40,6 +39,7 @@ class AchievementsController < ApplicationController
 
   def show_bucket_list
     @achievements = current_user.bucket_list.achievements.limit(20)
+    @post = Post.new
   end
 
   # GET /achievements/new
