@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$(document).on 'change', '#upload', ->
+  $(this).parent().parent().parent().submit()
+  return
+
 #This is also implemented on achievements 
 $(document).on 'ready page:change', ->
   $('img').lazyload()

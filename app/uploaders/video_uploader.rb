@@ -2,7 +2,7 @@
 
 class VideoUploader < CarrierWave::Uploader::Base
   #include CarrierWave::Video
-
+  after :remove, :clear_uploader
   #process encode_video: [:mp4, callbacks: { after_transcode: :set_success } ]
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -16,6 +16,11 @@ class VideoUploader < CarrierWave::Uploader::Base
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  def clear_uploader
+    @file = @filename = @original_filename = @cache_id = @version = @storage = nil
+    model.send(:write_attribute, mounted_as, nil) unless model.destroyed?
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
