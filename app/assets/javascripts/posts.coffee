@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'change', '#upload', ->
-  $(this).parent().submit()
+  $(this).parent().parent().parent().submit()
   return
 
 #This is also implemented on achievements 
