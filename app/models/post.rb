@@ -11,8 +11,8 @@ class Post < ActiveRecord::Base
 
   before_create :check_achievement
   after_create :lower_achievement_score, :remove_from_bucketlist
+  after_create :set_image
   after_save :process_video
-
   before_destroy :higher_achievement_score
 
   default_scope { order('created_at DESC') }
@@ -77,6 +77,15 @@ class Post < ActiveRecord::Base
       self.video = Rails.root.join("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".mp4").open
       self.image = File.open("public/uploads/post/video/" + self.id.to_s + "/" + self.id.to_s + ".jpg")
       self.save!
+    end
+  end
+
+  #Set image from video column and remove uploaded image from video if uploaded record is an image
+  def set_image
+    if self.video.content_type.split('/')[0] == 'image'
+      self.image = self.video
+      self.remove_video!
+      self.save
     end
   end
 
