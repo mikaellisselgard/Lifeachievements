@@ -3,6 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'colors';
 
+.popup-follow-button {
+  float: right;
+  margin-right: 10px!important;
+  margin-bottom: 0px!important;
+}
+
 .user-settings {
   font-size: 28px;
   color: $darkblue;
