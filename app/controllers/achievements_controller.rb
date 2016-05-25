@@ -33,6 +33,7 @@ class AchievementsController < ApplicationController
   def show
     @current_user = current_user
     @posts = @achievement.posts.limit(20)
+    @video_urls = @posts.map { |p| p.video_url }  
     @comment = Comment.new
     @post = Post.new
   end
