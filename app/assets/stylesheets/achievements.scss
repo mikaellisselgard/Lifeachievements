@@ -87,18 +87,13 @@ p.upload-post:hover {
 
 .score {
 	float: right;
-	background: $success-color;
 	width: 45px;
 	height: 45px;
-	-webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    border-radius: 100%;
-
     h3 {
-    	margin-top: 11px!important;
+    	margin-top: 14px!important;
     	text-align: center;
     	float: none!important;
-    	color: $white!important;
+    	color: #000000!important;
     	font-size: 16px;
     }
 }
