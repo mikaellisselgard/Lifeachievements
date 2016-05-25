@@ -13,10 +13,10 @@
 		</div>
 	</div>
 	<div class="post_image" height="<%= post.height %>px!important">
-		<% if post.has_image? %>
-			<%= image_tag(post.image, width: post.width, height: post.height, lazy: true) %>
-		<% else %>
+		<% if post.has_video? %>
 			<%= video_tag(post.video, controls: true, autobuffer: true, width: 270, height: 350) %>
+		<% else %>
+			<%= image_tag(post.image, width: post.width, height: post.height, lazy: true) %>
 		<% end %>
 	</div>
 	<div class="post_info">
