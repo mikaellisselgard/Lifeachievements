@@ -3,7 +3,7 @@
 		<!-- follow.followable to get the users you follow -->
 		<%= image_tag(follow.followable.avatar, size: '30') %>
 		<%= follow.followable.name %>	
-		<%= link_to 'Tipsa', user_tip_path(follow.followable, achievement: achievement), class: 'button tiny success tip-button', method: :post %>
+		<%= link_to 'Tipsa', user_tip_path(follow.followable, achievement: achievement), class: 'button tiny radius success tip-button', method: :post %>
 		<hr class="popup-hr">
 	<% end %>
 <% else %>
