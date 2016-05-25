@@ -100,6 +100,7 @@ h1.black {
 	height:20px;
 	width:100%;
 	border:1px solid #ccc;
+	background: #f1f1f1;
 	p.user_profile {
 		color: #000000;
 		margin: 0;
@@ -115,7 +116,7 @@ h1.black {
 .fill {
 	height:18px;
 	width: 0px;
-	background: #6ba5f7;
+	background: $success-color;
 }
 
 .highscore_user {
