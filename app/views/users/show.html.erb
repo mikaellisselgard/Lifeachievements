@@ -68,6 +68,13 @@
 				<%= link_to user_path(user) do %>
 				  <%= image_tag(user.avatar, size: "30") %>
 					<%= user.name %>
+					<% unless current_user == user %>
+						<% if current_user.follows_user(user) %>
+							<%= link_to 'Sluta följ', user_unfollow_path(user), method: :PUT, class: 'button tiny radius success popup-follow-button' %>
+						<% else %>
+							<%= link_to 'Följ', user_follow_path(user), method: :PUT, class: 'button tiny radius success popup-follow-button' %>	
+						<% end %>
+					<% end %>
 					<hr class="popup-hr">
 				<% end %>
 			<% end %>
@@ -85,6 +92,13 @@
 				<%= link_to user_path(user) do %>
 				  <%= image_tag(user.followable.avatar, size: "30") %>		
 					<%= user.followable.name %>
+					<% unless current_user == user.followable %>
+						<% if current_user.follows_user(user.followable) %>
+							<%= link_to 'Sluta följ', user_unfollow_path(user.followable), method: :PUT, class: 'button tiny radius success popup-follow-button' %>
+						<% else %>
+							<%= link_to 'Följ', user_follow_path(user.followable), method: :PUT, class: 'button tiny radius success popup-follow-button' %>	
+						<% end %>
+					<% end %>
 					<hr class="popup-hr">
 				<% end %>
 			<% end %>
