@@ -17,7 +17,7 @@
 		<div class="large-10 columns center-children">
 			<% if @user == current_user %>
 				<div class="dropdown-button">
-					<%= link_to image_tag('dropdown.png'), user_path(@user), remote: true, data: {:"reveal-id" => "reveal-user-options"} %>
+					<%= link_to icon('fi-widget user-settings'), user_path(@user), remote: true, data: {:"reveal-id" => "reveal-user-options"} %>
 				</div>
 			<% end %>
 			<div class="user-info">
