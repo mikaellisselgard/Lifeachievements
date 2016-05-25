@@ -119,6 +119,12 @@
 				<% if current_user.admin %>
 					<%= link_to 'Ta bort inlägg', post, method: :delete %><br>
 					<%= link_to 'Feature/Unfeature', post_feature_post_path(post), method: :put %><br>
+					<%= link_to 'Lägg till uppdrag i min lista', add_bucket_list_item_path(post.achievement.id), method: :put, remote: true, class: 'close-reveal-modal add-bucketlist' %><br>
+					<% if current_user.following?(post.user) %>
+						<%= link_to 'Sluta följ användare', user_unfollow_path(post.user), method: :put %>
+					<% else %>
+						<%= link_to 'Följ användare', user_follow_path(post.user), method: :put %>
+					<% end %>
 				<% elsif current_user == post.user %>
 					<%= link_to 'Ta bort inlägg', post, method: :delete %><br>
 				<% else %>
