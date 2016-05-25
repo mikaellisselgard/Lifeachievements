@@ -22,6 +22,7 @@ acts_as_token_authentication_handler_for User
     # index for follows after fetching
     if params[:follow_ids]
       @follow_ids = params[:follow_ids]
+      @follow_ids.push(current_user.id)
       @posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(20)
       @json_posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(4)
     end
@@ -124,6 +125,7 @@ acts_as_token_authentication_handler_for User
   def follow_index
     # fetch all user_ids from users following current_user
     @follow_ids = current_user.follows.pluck(:followable_id)
+    @follow_ids.push(current_user.id)
     @posts = Post.where('user_id IN (?)', @follow_ids).limit(20)
     @comment = Comment.new
     # check if no result for sending nil-params to index
