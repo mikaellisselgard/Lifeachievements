@@ -3,6 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'colors';
 
+.user-settings {
+  font-size: 28px;
+  color: $darkblue;
+}
+
 .gps-container {
   padding: 0!important;
 }
