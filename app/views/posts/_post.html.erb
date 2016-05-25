@@ -114,7 +114,9 @@
 	<div id="reveal-options-<%=post.id%>" class="reveal-modal medium-2 columns small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 		<a class="close-reveal-modal close-fix" aria-label="Close">&#215;</a>
 		<div class="large-12 columns">
-			<%= link_to 'Visa uppdrag', post.achievement %><br>
+			<% unless achievement_path(post.achievement) %>
+				<%= link_to 'Visa uppdrag', post.achievement %><br>
+			<% end %>
 			<% if user_signed_in? %>
 				<% if current_user.admin %>
 					<%= link_to 'Ta bort inlägg', post, method: :delete %><br>
@@ -128,7 +130,7 @@
 				<% elsif current_user == post.user %>
 					<%= link_to 'Ta bort inlägg', post, method: :delete %><br>
 				<% else %>
-					<% unless already_in_bucket_list(post.achievement) %>
+					<% unless already_in_bucket_list(post.achievement) || current_user.has_achievement(post.achievement) %>
 						<%= link_to 'Lägg till uppdrag i min lista', add_bucket_list_item_path(post.achievement.id), method: :put, remote: true, class: 'close-reveal-modal add-bucketlist' %><br>
 					<% end %>
 					<%= link_to 'Rapportera inlägg', post_report_post_path(post), method: :put %><br>
