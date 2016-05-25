@@ -19,12 +19,8 @@ class Post < ActiveRecord::Base
   
   validate :image_or_video
 
-  def has_image?
-    !has_video?
-  end
-
   def has_video?
-    height == nil
+    !video.file.nil?
   end
 
   def check_achievement
