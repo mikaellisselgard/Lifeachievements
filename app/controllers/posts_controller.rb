@@ -34,15 +34,20 @@ acts_as_token_authentication_handler_for User
     end
     
     if params[:reload]
-      @post_ids = params[:reload]
-      @updated_at = params[:updated_at]
-      @json_posts = changed_posts(@post_ids, @updated_at)
+      post_ids = params[:reload]
+      updated_at = params[:updated_at]
+      result = changed_posts(post_ids, updated_at)
+      changed_post_ids = result[0]
+      @json_posts = Post.where(id: changed_post_ids)
+      unless result[1].empty?
+        @deleted_post_ids = [result[1]]
+      end
     end
     
     if params[:new]
       @json_posts = Post.where('id > ?', params[:new]).reverse
     end
-    
+
     @current_user = current_user
     @comment = Comment.new
   end
@@ -156,14 +161,19 @@ acts_as_token_authentication_handler_for User
   
   def changed_posts(post_ids, updated_at)
     changed_post_ids = []
+    deleted_post_ids = []
     post_ids.each_with_index do |post_id, index|
-      current_timestamp = Post.find(post_id).updated_at.strftime('%a, %d %b %Y %H:%M:%S')
+      current_timestamp = Post.find(post_id).updated_at.strftime('%a, %d %b %Y %H:%M:%S') rescue nil
       old_timestamp = updated_at[index].to_datetime.strftime('%a, %d %b %Y %H:%M:%S')
       if current_timestamp != old_timestamp 
-        changed_post_ids.push(post_id)
+        unless current_timestamp == nil 
+          changed_post_ids.push(post_id)
+        else
+          deleted_post_ids.push(post_id)
+        end
       end
     end
-    @posts = Post.where(id: changed_post_ids)
+    [changed_post_ids, deleted_post_ids]
   end
   
   private

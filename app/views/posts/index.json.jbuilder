@@ -1,3 +1,6 @@
+json.array!(@deleted_post_ids) do |deleted|
+json.deleted deleted
+end
 json.array!(@json_posts) do |post|
   json.extract! post, :id, :user_id, :achievement_id, :likes_count, :comments_count, :commenter_infos, :created_at, :updated_at
   json.user_avatar_url post.user.avatar_url
