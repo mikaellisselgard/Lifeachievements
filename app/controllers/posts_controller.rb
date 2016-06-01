@@ -20,11 +20,11 @@ acts_as_token_authentication_handler_for User
     end
     
     # index for follows after fetching
-    if params[:follow_ids]
-      @follow_ids = current_user.follows.pluck(:followable_id)
-      @follow_ids.push(current_user.id)
-      @posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(20)
-      @json_posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(4)
+    if params[:follow_ids] and params[:new].nil?
+      follow_ids = current_user.follows.pluck(:followable_id)
+      follow_ids.push(current_user.id)
+      @posts = Post.where('user_id IN (?)', follow_ids).where('id < ?', params[:id]).limit(20)
+      @json_posts = Post.where('user_id IN (?)', follow_ids).where('id < ?', params[:id]).limit(4)
     end
     
     # index for achievement after fetching
@@ -45,7 +45,12 @@ acts_as_token_authentication_handler_for User
     end
     
     if params[:new]
-      @json_posts = Post.where('id > ?', params[:new]).reverse
+      if params[:follow_ids]
+        follow_ids = current_user.follows.pluck(:followable_id)
+        @json_posts = Post.where('user_id IN (?)', follow_ids).where('id < ?', params[:new]).reverse
+      else
+        @json_posts = Post.where('id > ?', params[:new]).reverse
+      end
     end
 
     @current_user = current_user
