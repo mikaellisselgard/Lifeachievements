@@ -47,6 +47,7 @@ acts_as_token_authentication_handler_for User
     if params[:new]
       if params[:follow_ids]
         follow_ids = current_user.follows.pluck(:followable_id)
+        follow_ids.push(current_user.id)
         @json_posts = Post.where('user_id IN (?)', follow_ids).where('id > ?', params[:new]).reverse
       else
         @json_posts = Post.where('id > ?', params[:new]).reverse
