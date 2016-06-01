@@ -21,7 +21,7 @@ acts_as_token_authentication_handler_for User
     
     # index for follows after fetching
     if params[:follow_ids]
-      @follow_ids = params[:follow_ids]
+      @follow_ids = current_user.follows.pluck(:followable_id)
       @follow_ids.push(current_user.id)
       @posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(20)
       @json_posts = Post.where('user_id IN (?)', @follow_ids).where('id < ?', params[:id]).limit(4)
@@ -132,6 +132,7 @@ acts_as_token_authentication_handler_for User
     @follow_ids = current_user.follows.pluck(:followable_id)
     @follow_ids.push(current_user.id)
     @posts = Post.where('user_id IN (?)', @follow_ids).limit(20)
+    @json_posts = Post.where('user_id IN (?)', @follow_ids).limit(4)
     @comment = Comment.new
     # check if no result for sending nil-params to index
     if @posts.length == 0
@@ -140,6 +141,9 @@ acts_as_token_authentication_handler_for User
     respond_to do |format|
       format.html
       format.js
+      format.json {
+        render "index.json.jbuilder"
+      }
     end
   end
 
