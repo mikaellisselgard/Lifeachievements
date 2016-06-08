@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     SearchResult.where(record_type: 'user').find_by_record_id(id).destroy
   end
   
+  def remove_notice_links
+    Notice.where(user_id: id).destroy_all
+  end
+  
   def has_achievement(achievement)
     self.achievements.include? achievement
   end

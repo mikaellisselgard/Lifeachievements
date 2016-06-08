@@ -13,6 +13,7 @@ class Achievement < ActiveRecord::Base
   after_create :create_search_result
 
   before_destroy :remove_search_result
+  before_destroy :remove_notice_links
   
   def set_score
     self.score = 100
@@ -25,6 +26,10 @@ class Achievement < ActiveRecord::Base
 
   def remove_search_result 
     SearchResult.where(record_type: 'achievement').find_by_record_id(id).destroy
+  end
+  
+  def remove_notice_links
+    Notice.where(notice_type: 'tip').where(link: id).destroy_all
   end
   
   def self.generate_new_achievements
