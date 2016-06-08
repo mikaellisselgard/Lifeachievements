@@ -14,6 +14,7 @@ class Post < ActiveRecord::Base
   after_create :set_image
   after_save :process_video
   before_destroy :higher_achievement_score
+  before_destroy :remove_notice_links
 
   default_scope { order('created_at DESC') }
   
@@ -41,6 +42,10 @@ class Post < ActiveRecord::Base
   
   def remove_from_bucketlist
     self.user.bucket_list.achievements.destroy(self.achievement)
+  end
+  
+  def remove_notice_links
+    Notice.where(notice_type: ['comment', 'like']).where(link: id).destroy_all
   end
   
   def check_like(user)
