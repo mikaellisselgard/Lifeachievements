@@ -57,7 +57,11 @@ class User < ActiveRecord::Base
     self.avatar = File.open("public/avatar.png")
     self.save!
   end
-
+  
+  def notices_has_been_showed
+    notices.where(seen: nil).update_all(seen: Time.now)
+  end
+  
   #This should be refactored, with a state_changed like solution perhaps
   def change_avatar
     search_result = SearchResult.where(record_id: id).find_by_record_id(id)
