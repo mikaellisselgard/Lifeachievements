@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :achievements, through: :posts, dependent: :destroy
   has_and_belongs_to_many :notices
-  has_one :bucket_list
+  has_one :bucket_list, dependent: :destroy
   has_many :medals, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   after_create :create_search_result
   after_save :change_avatar
   before_destroy :remove_search_result
+  before_destroy :remove_notice_links
 
   validates :name, presence: true 
   validates :email, format: { with: EMAIL_FORMAT }
