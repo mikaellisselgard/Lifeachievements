@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   end
   
   def noticed
-    @user.notices.where(seen: nil).update_all(seen: Time.now)
+    @user.notices_has_been_showed
     redirect_to :back
   end
   
