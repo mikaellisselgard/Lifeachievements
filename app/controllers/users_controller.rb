@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @current_user = current_user
     @user_bucketlist_achievements = @user.bucket_list.achievements
     @user_post_ids = @user.posts.pluck(:id)
-    @user_achievement_ids = Achievement.where(id: @user.posts.pluck(:achievement_id)).pluck(:id)
+    @user_achievement_ids = @user.posts.pluck(:achievement_id)
     @user_video_urls = @json_posts.map { |p| p.video_url }
     respond_to do |format|
       format.html
